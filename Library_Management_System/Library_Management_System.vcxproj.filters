@@ -21,10 +21,19 @@
     <ClCompile Include="Dashboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="view_book.cpp">
+    <ClCompile Include="View_Book.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="add_book.cpp">
+    <ClCompile Include="Add_Book.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sqlite3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Linked_List.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -39,6 +48,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="add_book.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sqlite3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Linked_List.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -121,10 +121,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="add_book.cpp" />
+    <ClCompile Include="Add_Book.cpp" />
     <ClCompile Include="Dashboard.cpp" />
+    <ClCompile Include="Linked_List.cpp" />
     <ClCompile Include="Login_Form.cpp" />
-    <ClCompile Include="view_book.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="sqlite3.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
+    </ClCompile>
+    <ClCompile Include="View_Book.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="add_book.h">
@@ -133,9 +139,12 @@
     <ClInclude Include="Dashboard.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Linked_List.h" />
     <ClInclude Include="Login_Form.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Source.h" />
+    <ClInclude Include="sqlite3.h" />
     <ClInclude Include="view_book.h">
       <FileType>CppForm</FileType>
     </ClInclude>

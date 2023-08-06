@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Source.h"
+
 namespace LibraryManagementSystem {
 
 	using namespace System;
@@ -35,6 +37,7 @@ namespace LibraryManagementSystem {
 			}
 		}
 	private: System::Windows::Forms::Label^ label2;
+
 	protected:
 
 	private:
@@ -78,5 +81,8 @@ namespace LibraryManagementSystem {
 
 		}
 #pragma endregion
+		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+			InitializeDatabase();
+		}
 	};
 }

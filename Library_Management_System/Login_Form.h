@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Dashboard.h"
+#include "sqlite3.h"
 
 namespace LibraryManagementSystem {
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "sqlite3.h"
 #include "view_book.h"
 #include "add_book.h"
 
@@ -56,6 +57,7 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::ToolStripMenuItem^ addABookToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ addMutilpleBookToolStripMenuItem;
 	private: System::Windows::Forms::Panel^ mainpanel;
+	private: System::Windows::Forms::ToolStripMenuItem^ hiToolStripMenuItem;
 	private: System::ComponentModel::IContainer^ components;
 
 	private:
@@ -90,6 +92,7 @@ namespace LibraryManagementSystem {
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->mainpanel = (gcnew System::Windows::Forms::Panel());
+			this->hiToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -98,9 +101,10 @@ namespace LibraryManagementSystem {
 			this->menuStrip1->BackColor = System::Drawing::Color::DodgerBlue;
 			this->menuStrip1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(6) {
 				this->booksToolStripMenuItem,
-					this->studentToolStripMenuItem, this->issueAndReturnToolStripMenuItem, this->historyToolStripMenuItem, this->exitToolStripMenuItem
+					this->studentToolStripMenuItem, this->issueAndReturnToolStripMenuItem, this->historyToolStripMenuItem, this->exitToolStripMenuItem,
+					this->hiToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -230,6 +234,12 @@ namespace LibraryManagementSystem {
 			this->mainpanel->Size = System::Drawing::Size(1064, 649);
 			this->mainpanel->TabIndex = 1;
 			// 
+			// hiToolStripMenuItem
+			// 
+			this->hiToolStripMenuItem->Name = L"hiToolStripMenuItem";
+			this->hiToolStripMenuItem->Size = System::Drawing::Size(40, 28);
+			this->hiToolStripMenuItem->Text = L"Hi";
+			// 
 			// Dashboard
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
@@ -250,27 +260,27 @@ namespace LibraryManagementSystem {
 
 		}
 
-	// Load form to mainpanel
-	public: void loadform(Form^ form) {
-		this->mainpanel->Controls->Clear();
-		form->TopLevel = false;
-		form->Dock = DockStyle::Fill;
-		this->mainpanel->Controls->Add(form);
-		form->Show();
-	}
+		// Load form to mainpanel
+		public: void loadform(Form^ form) {
+			this->mainpanel->Controls->Clear();
+			form->TopLevel = false;
+			form->Dock = DockStyle::Fill;
+			this->mainpanel->Controls->Add(form);
+			form->Show();
+		}
 
 #pragma endregion
 	
-	private: System::Void exitToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-		Application::Exit();
-	}
-	private: System::Void viewBooksToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-		view_book^ f = gcnew view_book;
-		loadform(f);
-	}
-	private: System::Void addABookToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-		add_book^ f = gcnew add_book;
-		loadform(f);
-	}
-};
+		private: System::Void exitToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+			Application::Exit();
+		}
+		private: System::Void viewBooksToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+			view_book^ f = gcnew view_book;
+			loadform(f);
+		}
+		private: System::Void addABookToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+			add_book^ f = gcnew add_book;
+			loadform(f);
+		}
+	};
 }
