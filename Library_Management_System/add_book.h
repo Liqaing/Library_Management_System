@@ -1,0 +1,65 @@
+#pragma once
+
+namespace LibraryManagementSystem {
+
+	using namespace System;
+	using namespace System::ComponentModel;
+	using namespace System::Collections;
+	using namespace System::Windows::Forms;
+	using namespace System::Data;
+	using namespace System::Drawing;
+
+	/// <summary>
+	/// Summary for add_book
+	/// </summary>
+	public ref class add_book : public System::Windows::Forms::Form
+	{
+	public:
+		add_book(void)
+		{
+			InitializeComponent();
+			//
+			//TODO: Add the constructor code here
+			//
+		}
+
+	protected:
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		~add_book()
+		{
+			if (components)
+			{
+				delete components;
+			}
+		}
+
+	private:
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		System::ComponentModel::Container ^components;
+
+#pragma region Windows Form Designer generated code
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		void InitializeComponent(void)
+		{
+			this->SuspendLayout();
+			// 
+			// add_book
+			// 
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
+			this->ClientSize = System::Drawing::Size(1064, 681);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->Name = L"add_book";
+			this->Text = L"add_book";
+			this->ResumeLayout(false);
+
+		}
+#pragma endregion
+	};
+}
