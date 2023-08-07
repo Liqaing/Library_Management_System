@@ -1,5 +1,6 @@
+/*
 #include <iostream>
-#include "Linked_List.h"
+
 
 
 typedef struct Book {
@@ -28,16 +29,15 @@ Book *book;
 Student *student;
 
 
-/*
-	Note:
-	- plist = header of linked list
-	- 
-*/ 
+
+//	Note:
+//	- plist = header of linked list
+//	-  
 
 // Initialize node
 template <typename T>
 T* InitializeLinkedList(T* head) {
-	head = NULL;
+	head = nullptr;
 	return head;
 }
 
@@ -46,7 +46,7 @@ template <typename T>
 T* GetNode(T data) {
 	Node<T>* NewNode = new Node<T>;
 	NewNode->data = data;
-	NewNode->next = NULL;
+	NewNode->next = nullptr;
 	return newnode;
 }
 
@@ -57,3 +57,4 @@ void InsertAtBeginning(Node <T>*& head, T data) {
 	NewNode->next = head;
 	head = NewNode;
 }
+*/

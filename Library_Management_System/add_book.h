@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Source.h"
+#include "Linked_List.h"
 
 namespace LibraryManagementSystem {
 
@@ -223,6 +224,7 @@ namespace LibraryManagementSystem {
 			this->save->TabIndex = 11;
 			this->save->Text = L"Save";
 			this->save->UseVisualStyleBackColor = false;
+			this->save->Click += gcnew System::EventHandler(this, &add_book::save_Click);
 			// 
 			// button2
 			// 
@@ -259,8 +261,8 @@ namespace LibraryManagementSystem {
 		}
 #pragma endregion
 	
-	
-	
-
-};
+		private: System::Void save_Click(System::Object^ sender, System::EventArgs^ e) {
+			InsertAtBeginning()
+		}
+	};
 }
