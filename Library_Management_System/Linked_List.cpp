@@ -43,7 +43,17 @@ T* InitializeLinkedList(T* head) {
 
 // Get Node
 template <typename T>
-T* get_node() {
-	Node<T>* newnode = new Node<T>;
+T* GetNode(T data) {
+	Node<T>* NewNode = new Node<T>;
+	NewNode->data = data;
+	NewNode->next = NULL;
 	return newnode;
+}
+
+
+template <typename T>
+void InsertAtBeginning(Node <T>*& head, T data) {
+	Node<T>* NewNode = GetNode(data);
+	NewNode->next = head;
+	head = NewNode;
 }
