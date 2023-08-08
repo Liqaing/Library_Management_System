@@ -2,8 +2,6 @@
 
 #include <iostream>
 
-
-
 typedef struct Book {
 	char book_id[10];
 	char title[64];
@@ -26,8 +24,8 @@ struct Node {
 };
 
 
-Book* book;
-Student* student;
+Book* book = nullptr;
+Student* student = nullptr;
 
 
 /*

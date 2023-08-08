@@ -90,9 +90,9 @@ namespace LibraryManagementSystem {
 			this->returnBookToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->historyToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->hiToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->mainpanel = (gcnew System::Windows::Forms::Panel());
-			this->hiToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -101,6 +101,8 @@ namespace LibraryManagementSystem {
 			this->menuStrip1->BackColor = System::Drawing::Color::DodgerBlue;
 			this->menuStrip1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->menuStrip1->GripMargin = System::Windows::Forms::Padding(2, 2, 0, 2);
+			this->menuStrip1->ImageScalingSize = System::Drawing::Size(36, 36);
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(6) {
 				this->booksToolStripMenuItem,
 					this->studentToolStripMenuItem, this->issueAndReturnToolStripMenuItem, this->historyToolStripMenuItem, this->exitToolStripMenuItem,
@@ -108,7 +110,7 @@ namespace LibraryManagementSystem {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(1064, 32);
+			this->menuStrip1->Size = System::Drawing::Size(1064, 63);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"Dashboard";
 			// 
@@ -119,20 +121,20 @@ namespace LibraryManagementSystem {
 					this->searchBookToolStripMenuItem, this->addNewBookToolStripMenuItem, this->deleteBookToolStripMenuItem
 			});
 			this->booksToolStripMenuItem->Name = L"booksToolStripMenuItem";
-			this->booksToolStripMenuItem->Size = System::Drawing::Size(74, 28);
+			this->booksToolStripMenuItem->Size = System::Drawing::Size(165, 55);
 			this->booksToolStripMenuItem->Text = L"Books";
 			// 
 			// viewBooksToolStripMenuItem
 			// 
 			this->viewBooksToolStripMenuItem->Name = L"viewBooksToolStripMenuItem";
-			this->viewBooksToolStripMenuItem->Size = System::Drawing::Size(207, 28);
+			this->viewBooksToolStripMenuItem->Size = System::Drawing::Size(461, 60);
 			this->viewBooksToolStripMenuItem->Text = L"View Books";
 			this->viewBooksToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::viewBooksToolStripMenuItem_Click);
 			// 
 			// searchBookToolStripMenuItem
 			// 
 			this->searchBookToolStripMenuItem->Name = L"searchBookToolStripMenuItem";
-			this->searchBookToolStripMenuItem->Size = System::Drawing::Size(207, 28);
+			this->searchBookToolStripMenuItem->Size = System::Drawing::Size(461, 60);
 			this->searchBookToolStripMenuItem->Text = L"Search Book";
 			// 
 			// addNewBookToolStripMenuItem
@@ -142,26 +144,26 @@ namespace LibraryManagementSystem {
 					this->addMutilpleBookToolStripMenuItem
 			});
 			this->addNewBookToolStripMenuItem->Name = L"addNewBookToolStripMenuItem";
-			this->addNewBookToolStripMenuItem->Size = System::Drawing::Size(207, 28);
+			this->addNewBookToolStripMenuItem->Size = System::Drawing::Size(461, 60);
 			this->addNewBookToolStripMenuItem->Text = L"Add New Book";
 			// 
 			// addABookToolStripMenuItem
 			// 
 			this->addABookToolStripMenuItem->Name = L"addABookToolStripMenuItem";
-			this->addABookToolStripMenuItem->Size = System::Drawing::Size(233, 28);
+			this->addABookToolStripMenuItem->Size = System::Drawing::Size(525, 60);
 			this->addABookToolStripMenuItem->Text = L"Add a Book";
 			this->addABookToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::addABookToolStripMenuItem_Click);
 			// 
 			// addMutilpleBookToolStripMenuItem
 			// 
 			this->addMutilpleBookToolStripMenuItem->Name = L"addMutilpleBookToolStripMenuItem";
-			this->addMutilpleBookToolStripMenuItem->Size = System::Drawing::Size(233, 28);
+			this->addMutilpleBookToolStripMenuItem->Size = System::Drawing::Size(525, 60);
 			this->addMutilpleBookToolStripMenuItem->Text = L"Add Mutilple Book";
 			// 
 			// deleteBookToolStripMenuItem
 			// 
 			this->deleteBookToolStripMenuItem->Name = L"deleteBookToolStripMenuItem";
-			this->deleteBookToolStripMenuItem->Size = System::Drawing::Size(207, 28);
+			this->deleteBookToolStripMenuItem->Size = System::Drawing::Size(461, 60);
 			this->deleteBookToolStripMenuItem->Text = L"Delete Book";
 			// 
 			// studentToolStripMenuItem
@@ -171,19 +173,19 @@ namespace LibraryManagementSystem {
 					this->deleteStudentToolStripMenuItem
 			});
 			this->studentToolStripMenuItem->Name = L"studentToolStripMenuItem";
-			this->studentToolStripMenuItem->Size = System::Drawing::Size(86, 28);
+			this->studentToolStripMenuItem->Size = System::Drawing::Size(193, 55);
 			this->studentToolStripMenuItem->Text = L"Student";
 			// 
 			// registerNewStudentToolStripMenuItem
 			// 
 			this->registerNewStudentToolStripMenuItem->Name = L"registerNewStudentToolStripMenuItem";
-			this->registerNewStudentToolStripMenuItem->Size = System::Drawing::Size(262, 28);
+			this->registerNewStudentToolStripMenuItem->Size = System::Drawing::Size(595, 60);
 			this->registerNewStudentToolStripMenuItem->Text = L"Register New Student";
 			// 
 			// deleteStudentToolStripMenuItem
 			// 
 			this->deleteStudentToolStripMenuItem->Name = L"deleteStudentToolStripMenuItem";
-			this->deleteStudentToolStripMenuItem->Size = System::Drawing::Size(262, 28);
+			this->deleteStudentToolStripMenuItem->Size = System::Drawing::Size(595, 60);
 			this->deleteStudentToolStripMenuItem->Text = L"Delete Student";
 			// 
 			// issueAndReturnToolStripMenuItem
@@ -193,52 +195,53 @@ namespace LibraryManagementSystem {
 					this->returnBookToolStripMenuItem
 			});
 			this->issueAndReturnToolStripMenuItem->Name = L"issueAndReturnToolStripMenuItem";
-			this->issueAndReturnToolStripMenuItem->Size = System::Drawing::Size(164, 28);
+			this->issueAndReturnToolStripMenuItem->Size = System::Drawing::Size(371, 55);
 			this->issueAndReturnToolStripMenuItem->Text = L"Issue and Return";
 			// 
 			// issueBookToolStripMenuItem
 			// 
 			this->issueBookToolStripMenuItem->Name = L"issueBookToolStripMenuItem";
-			this->issueBookToolStripMenuItem->Size = System::Drawing::Size(184, 28);
+			this->issueBookToolStripMenuItem->Size = System::Drawing::Size(416, 60);
 			this->issueBookToolStripMenuItem->Text = L"Issue Book";
 			// 
 			// returnBookToolStripMenuItem
 			// 
 			this->returnBookToolStripMenuItem->Name = L"returnBookToolStripMenuItem";
-			this->returnBookToolStripMenuItem->Size = System::Drawing::Size(184, 28);
+			this->returnBookToolStripMenuItem->Size = System::Drawing::Size(416, 60);
 			this->returnBookToolStripMenuItem->Text = L"Return Book";
 			// 
 			// historyToolStripMenuItem
 			// 
 			this->historyToolStripMenuItem->Name = L"historyToolStripMenuItem";
-			this->historyToolStripMenuItem->Size = System::Drawing::Size(79, 28);
+			this->historyToolStripMenuItem->Size = System::Drawing::Size(179, 55);
 			this->historyToolStripMenuItem->Text = L"History";
 			// 
 			// exitToolStripMenuItem
 			// 
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
-			this->exitToolStripMenuItem->Size = System::Drawing::Size(53, 28);
+			this->exitToolStripMenuItem->Size = System::Drawing::Size(117, 55);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::exitToolStripMenuItem_Click);
 			// 
+			// hiToolStripMenuItem
+			// 
+			this->hiToolStripMenuItem->Name = L"hiToolStripMenuItem";
+			this->hiToolStripMenuItem->Size = System::Drawing::Size(85, 55);
+			this->hiToolStripMenuItem->Text = L"Hi";
+			// 
 			// contextMenuStrip1
 			// 
+			this->contextMenuStrip1->ImageScalingSize = System::Drawing::Size(36, 36);
 			this->contextMenuStrip1->Name = L"contextMenuStrip1";
 			this->contextMenuStrip1->Size = System::Drawing::Size(61, 4);
 			// 
 			// mainpanel
 			// 
 			this->mainpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->mainpanel->Location = System::Drawing::Point(0, 32);
+			this->mainpanel->Location = System::Drawing::Point(0, 63);
 			this->mainpanel->Name = L"mainpanel";
-			this->mainpanel->Size = System::Drawing::Size(1064, 649);
+			this->mainpanel->Size = System::Drawing::Size(1064, 618);
 			this->mainpanel->TabIndex = 1;
-			// 
-			// hiToolStripMenuItem
-			// 
-			this->hiToolStripMenuItem->Name = L"hiToolStripMenuItem";
-			this->hiToolStripMenuItem->Size = System::Drawing::Size(40, 28);
-			this->hiToolStripMenuItem->Text = L"Hi";
 			// 
 			// Dashboard
 			// 
