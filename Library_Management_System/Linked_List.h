@@ -1,59 +1,62 @@
 #pragma once
 
+#include <string>
 #include <iostream>
 
 typedef struct Book {
-	char book_id[10];
-	char title[64];
+	std::string book_id;
+	std::string title;
 	int pages_num;
 	int qty;
-	char author[64];
+	std::string author;
 } Book;
 
 typedef struct Student {
-	char first_name[15];
-	char last_name[15];
-	char student_id[10];
-	char telephone[10];
+	std::string first_name;
+	std::string last_name;
+	std::string student_id;
+	std::string telephone;
 } Student;
+
 
 template <typename T>
 struct Node {
 	T data;
-	struct Node* next;
+	struct Node<T>* next;
 };
-
-
-Book* book = nullptr;
-Student* student = nullptr;
-
 
 /*
 	Note:
-	- plist = header of linked list
+	- head = header of linked list
 	-
 */
 
 // Initialize node
 template <typename T>
-T* InitializeLinkedList(T* head) {
-	head = NULL;
+Node<T>* InitializeLinkedList() {
+	Node<T>* head = nullptr;
 	return head;
 }
 
 // Get Node
 template <typename T>
-T* GetNode(T data) {
+Node<T>* GetNode(T data) {
 	Node<T>* NewNode = new Node<T>;
 	NewNode->data = data;
-	NewNode->next = NULL;
-	return newnode;
+	NewNode->next = nullptr;
+	return NewNode;
 }
 
 
+// Create Linked List
+//template <typename T>
+//T* CreateLinkedList() {
+
+//}
+
+// Insert node into linked list
 template <typename T>
-void InsertAtBeginning(Node <T>*& head, T data) {
+void InsertAtBeginning(Node<T> *&head, T data) {
 	Node<T>* NewNode = GetNode(data);
-	NewNode->next = head;
 	head = NewNode;
 }
