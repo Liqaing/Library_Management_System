@@ -49,14 +49,23 @@ Node<T>* GetNode(T data) {
 
 
 // Create Linked List
-//template <typename T>
-//T* CreateLinkedList() {
+/*
+template <typename T>
+Node<T>* CreateLinkedList(Node<T> *head, T data) {
+	// If this is the first node
+	if (head == nullptr) {
+		InsertAtBeginning(head, data);
+	}
+}
+*/
 
-//}
 
 // Insert node into linked list
 template <typename T>
-void InsertAtBeginning(Node<T> *&head, T data) {
+void InsertLinkedList(Node<T> *&head, T data) {
 	Node<T>* NewNode = GetNode(data);
+	// New node point to current head;
+	NewNode->next = head;
+	// head point to new node;
 	head = NewNode;
 }

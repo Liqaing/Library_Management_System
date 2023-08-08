@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Source.h"
 
 namespace LibraryManagementSystem {
 
@@ -81,8 +80,6 @@ namespace LibraryManagementSystem {
 
 		}
 #pragma endregion
-		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-			InitializeDatabase();
-		}
+		
 	};
 }

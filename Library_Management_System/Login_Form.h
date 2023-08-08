@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Dashboard.h"
-#include "sqlite3.h"
+#include "Database.h"
 
 namespace LibraryManagementSystem {
 
@@ -89,7 +89,7 @@ namespace LibraryManagementSystem {
 			this->label1->ForeColor = System::Drawing::Color::White;
 			this->label1->Location = System::Drawing::Point(202, 66);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(638, 33);
+			this->label1->Size = System::Drawing::Size(1393, 75);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Welcome to the Library Management System";
 			// 
@@ -103,7 +103,7 @@ namespace LibraryManagementSystem {
 			this->label2->ForeColor = System::Drawing::Color::White;
 			this->label2->Location = System::Drawing::Point(357, 162);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(107, 24);
+			this->label2->Size = System::Drawing::Size(244, 51);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Username :";
 			// 
@@ -114,7 +114,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->username->Location = System::Drawing::Point(361, 189);
 			this->username->Name = L"username";
-			this->username->Size = System::Drawing::Size(302, 29);
+			this->username->Size = System::Drawing::Size(302, 56);
 			this->username->TabIndex = 2;
 			// 
 			// label3
@@ -127,7 +127,7 @@ namespace LibraryManagementSystem {
 			this->label3->ForeColor = System::Drawing::Color::White;
 			this->label3->Location = System::Drawing::Point(357, 271);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(102, 24);
+			this->label3->Size = System::Drawing::Size(235, 51);
 			this->label3->TabIndex = 3;
 			this->label3->Text = L"Password :";
 			// 
@@ -139,7 +139,7 @@ namespace LibraryManagementSystem {
 			this->password->Location = System::Drawing::Point(361, 298);
 			this->password->Name = L"password";
 			this->password->PasswordChar = '*';
-			this->password->Size = System::Drawing::Size(302, 29);
+			this->password->Size = System::Drawing::Size(302, 56);
 			this->password->TabIndex = 4;
 			// 
 			// login
@@ -191,13 +191,12 @@ namespace LibraryManagementSystem {
 			this->Name = L"Login_Form";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Login_Form";
+			this->Load += gcnew System::EventHandler(this, &Login_Form::Login_Form_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	
-	
 
 	private: System::Void exit_Click(System::Object^ sender, System::EventArgs^ e) {
 		Application::Exit();
@@ -210,6 +209,9 @@ namespace LibraryManagementSystem {
 			this->Hide();
 			dashboard->Show();
 		}
+	}
+	private: System::Void Login_Form_Load(System::Object^ sender, System::EventArgs^ e) {
+		InitializeDatabase();
 	}
 };
 }

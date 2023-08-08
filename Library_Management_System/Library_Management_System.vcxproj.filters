@@ -30,7 +30,7 @@
     <ClCompile Include="sqlite3.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="Database.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Linked_List.cpp">
@@ -53,7 +53,7 @@
     <ClInclude Include="sqlite3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source.h">
+    <ClInclude Include="Database.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Linked_List.h">
