@@ -58,5 +58,6 @@ void InsertBookLinkedListIntoDB(Node<T> *head) {
 	Node<T> *current = head;
 	while (current != nullptr) {
 		InsertBookDB(current->data);
+		current = current->next;
 	}
 }
