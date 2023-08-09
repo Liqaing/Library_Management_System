@@ -1,5 +1,5 @@
 #pragma once
-#include "Linked_List.h"
+#include "Struct.h"
 
 void InitializeDatabase();
-void InsertBook(Book book);
+void InsertBookDB(Book book);

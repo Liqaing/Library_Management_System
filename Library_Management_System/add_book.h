@@ -3,10 +3,12 @@
 #include <iostream>
 #include <string>
 #include <msclr/marshal_cppstd.h>
-#include "Database.h"
+#include "Struct.h"
 #include "Linked_List.h"
 
-
+// Forward Declaration
+void InitializeDatabase();
+void InsertBookDB(Book book);
 
 namespace LibraryManagementSystem {
 
@@ -348,7 +350,7 @@ namespace LibraryManagementSystem {
 			Node<Book>* BookListHead = InitializeLinkedList<Book>();
 			InsertLinkedList(BookListHead, book);
 			
-			InsertBook(BookListHead->data);
+			InsertBookDB(BookListHead->data);
 			//this->label8->Text = msclr::interop::marshal_as<System::String^>(BookListHead->data.author);
 		}
 };

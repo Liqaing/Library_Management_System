@@ -1,8 +1,9 @@
 #include "Database.h"
-#include "Linked_List.h"
-#include <iostream>
+#include "Struct.h"
 #include "sqlite3.h"
-#include <string>
+
+// Forward Declaration
+
 
 const char *LibraryDB= "library.sqlite3";
 
@@ -28,7 +29,7 @@ void InitializeDatabase() {
 	sqlite3_close(db);
 }
 
-void InsertBook(Book book) {
+void InsertBookDB(Book book) {
 	// Open Database Connection
 	sqlite3	*db;
 	int result = sqlite3_open(LibraryDB, &db);

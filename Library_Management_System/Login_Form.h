@@ -1,7 +1,10 @@
 #pragma once
 
 #include "Dashboard.h"
-#include "Database.h"
+#include "Struct.h"
+
+// Forward Declaration
+void InitializeDatabase();
 
 namespace LibraryManagementSystem {
 
