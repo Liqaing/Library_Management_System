@@ -24,6 +24,11 @@ namespace LibraryManagementSystem {
 	/// </summary>
 	public ref class add_book : public System::Windows::Forms::Form
 	{
+	// Variable Declaration
+	private:
+		Node<Book> *BookList = nullptr;
+		
+
 	public:
 		add_book(void)
 		{
@@ -247,6 +252,7 @@ namespace LibraryManagementSystem {
 			this->add->TabIndex = 11;
 			this->add->Text = L"Add to linked list";
 			this->add->UseVisualStyleBackColor = false;
+			this->add->Click += gcnew System::EventHandler(this, &add_book::add_Click_1);
 			// 
 			// label7
 			// 
@@ -340,6 +346,13 @@ namespace LibraryManagementSystem {
 #pragma endregion
 		
 		private: System::Void save_Click_1(System::Object^ sender, System::EventArgs^ e) {
+			if (this->BookList != nullptr) {
+				InsertBookLinkedListIntoDB(this->BookList);
+			}
+			//this->label8->Text = msclr::interop::marshal_as<System::String^>(BookListHead->data.author);
+		}
+
+		private: System::Void add_Click_1(System::Object^ sender, System::EventArgs^ e) {
 			Book book;
 			book.book_id = msclr::interop::marshal_as<std::string>(this->BookID->Text);
 			book.title = msclr::interop::marshal_as<std::string>(this->BookTitle->Text);
@@ -347,11 +360,14 @@ namespace LibraryManagementSystem {
 			book.qty = System::Convert::ToInt32(this->qty->Text);
 			book.author = msclr::interop::marshal_as<std::string>(this->author->Text);
 
-			Node<Book>* BookListHead = InitializeLinkedList<Book>();
-			InsertLinkedList(BookListHead, book);
+			// Initalize Booklist if it null
+			if (this->BookList == nullptr) {
+				this->BookList = InitializeLinkedList<Book>();
+			}
 			
-			InsertBookDB(BookListHead->data);
-			//this->label8->Text = msclr::interop::marshal_as<System::String^>(BookListHead->data.author);
+			// Add book into linked list
+			this->BookList = InsertLinkedList(this->BookList, book);
+			
 		}
-};
+	};
 }

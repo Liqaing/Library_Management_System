@@ -2,11 +2,10 @@
 
 #include <string>
 #include "Struct.h"
-
+#include "Database.h"
 
 // Forward Declaration
-void InsertBookDB(Book book);
-
+//void InsertBookDB(Book book);
 
 /*
 	Note:
@@ -44,19 +43,20 @@ Node<T>* CreateLinkedList(Node<T> *head, T data) {
 
 // Insert node into linked list
 template <typename T>
-void InsertLinkedList(Node<T> *&head, T data) {
+Node<T> *InsertLinkedList(Node<T> *head, T data) {
 	Node<T>* NewNode = GetNode(data);
 	// New node point to current head;
 	NewNode->next = head;
 	// head point to new node;
 	head = NewNode;
+	return head;
 }
 
 template <typename T>
 void InsertBookLinkedListIntoDB(Node<T> *head) {
 	// Current pointer point to head of linked list
 	Node<T> *current = head;
-	while (current->next != nullptr) {
+	while (current != nullptr) {
 		InsertBookDB(current->data);
 	}
 }
