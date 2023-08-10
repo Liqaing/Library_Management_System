@@ -52,6 +52,8 @@ Node<T> *InsertLinkedList(Node<T> *head, T data) {
 	return head;
 }
 
+
+// Insert linked list of books into database
 template <typename T>
 void InsertBookLinkedListIntoDB(Node<T> *head) {
 	// Current pointer point to head of linked list
@@ -61,3 +63,4 @@ void InsertBookLinkedListIntoDB(Node<T> *head) {
 		current = current->next;
 	}
 }
+
