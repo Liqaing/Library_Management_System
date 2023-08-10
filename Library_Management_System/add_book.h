@@ -55,10 +55,10 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::TextBox^ BookTitle;
 
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ pages;
+
 
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::TextBox^ qty;
+
 
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::TextBox^ author;
@@ -72,6 +72,9 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::Label^ label10;
 	private: System::Windows::Forms::Label^ label11;
 	private: System::Windows::Forms::Button^ save;
+	private: System::Windows::Forms::NumericUpDown^ pages;
+	private: System::Windows::Forms::NumericUpDown^ qty;
+
 
 
 
@@ -102,9 +105,7 @@ namespace LibraryManagementSystem {
 			this->BookID = (gcnew System::Windows::Forms::TextBox());
 			this->BookTitle = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->pages = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->qty = (gcnew System::Windows::Forms::TextBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->author = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
@@ -115,6 +116,10 @@ namespace LibraryManagementSystem {
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->save = (gcnew System::Windows::Forms::Button());
+			this->pages = (gcnew System::Windows::Forms::NumericUpDown());
+			this->qty = (gcnew System::Windows::Forms::NumericUpDown());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pages))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->qty))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -125,7 +130,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(426, 22);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(181, 29);
+			this->label1->Size = System::Drawing::Size(385, 63);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Add new Book";
 			// 
@@ -137,7 +142,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label2->Location = System::Drawing::Point(296, 117);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(62, 18);
+			this->label2->Size = System::Drawing::Size(133, 38);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Book ID";
 			// 
@@ -148,7 +153,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->BookID->Location = System::Drawing::Point(431, 112);
 			this->BookID->Name = L"BookID";
-			this->BookID->Size = System::Drawing::Size(334, 23);
+			this->BookID->Size = System::Drawing::Size(334, 41);
 			this->BookID->TabIndex = 2;
 			// 
 			// BookTitle
@@ -158,7 +163,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->BookTitle->Location = System::Drawing::Point(431, 164);
 			this->BookTitle->Name = L"BookTitle";
-			this->BookTitle->Size = System::Drawing::Size(334, 23);
+			this->BookTitle->Size = System::Drawing::Size(334, 41);
 			this->BookTitle->TabIndex = 4;
 			// 
 			// label3
@@ -169,19 +174,9 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label3->Location = System::Drawing::Point(296, 169);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(75, 18);
+			this->label3->Size = System::Drawing::Size(162, 38);
 			this->label3->TabIndex = 3;
 			this->label3->Text = L"Book Title";
-			// 
-			// pages
-			// 
-			this->pages->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->pages->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->pages->Location = System::Drawing::Point(431, 215);
-			this->pages->Name = L"pages";
-			this->pages->Size = System::Drawing::Size(334, 23);
-			this->pages->TabIndex = 6;
 			// 
 			// label4
 			// 
@@ -191,19 +186,9 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label4->Location = System::Drawing::Point(296, 216);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(122, 18);
+			this->label4->Size = System::Drawing::Size(267, 38);
 			this->label4->TabIndex = 5;
 			this->label4->Text = L"Number of pages";
-			// 
-			// qty
-			// 
-			this->qty->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->qty->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->qty->Location = System::Drawing::Point(431, 260);
-			this->qty->Name = L"qty";
-			this->qty->Size = System::Drawing::Size(334, 23);
-			this->qty->TabIndex = 8;
 			// 
 			// label5
 			// 
@@ -213,7 +198,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label5->Location = System::Drawing::Point(296, 265);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(62, 18);
+			this->label5->Size = System::Drawing::Size(139, 38);
 			this->label5->TabIndex = 7;
 			this->label5->Text = L"Quantity";
 			// 
@@ -224,7 +209,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->author->Location = System::Drawing::Point(431, 304);
 			this->author->Name = L"author";
-			this->author->Size = System::Drawing::Size(334, 23);
+			this->author->Size = System::Drawing::Size(334, 41);
 			this->author->TabIndex = 10;
 			// 
 			// label6
@@ -235,7 +220,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label6->Location = System::Drawing::Point(296, 309);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(51, 18);
+			this->label6->Size = System::Drawing::Size(113, 38);
 			this->label6->TabIndex = 9;
 			this->label6->Text = L"Author";
 			// 
@@ -259,7 +244,7 @@ namespace LibraryManagementSystem {
 			this->label7->AutoSize = true;
 			this->label7->Location = System::Drawing::Point(329, 510);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(35, 13);
+			this->label7->Size = System::Drawing::Size(79, 29);
 			this->label7->TabIndex = 12;
 			this->label7->Text = L"label7";
 			// 
@@ -268,7 +253,7 @@ namespace LibraryManagementSystem {
 			this->label8->AutoSize = true;
 			this->label8->Location = System::Drawing::Point(523, 510);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(35, 13);
+			this->label8->Size = System::Drawing::Size(79, 29);
 			this->label8->TabIndex = 13;
 			this->label8->Text = L"label8";
 			// 
@@ -277,7 +262,7 @@ namespace LibraryManagementSystem {
 			this->label9->AutoSize = true;
 			this->label9->Location = System::Drawing::Point(391, 510);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(35, 13);
+			this->label9->Size = System::Drawing::Size(79, 29);
 			this->label9->TabIndex = 13;
 			this->label9->Text = L"label8";
 			// 
@@ -286,7 +271,7 @@ namespace LibraryManagementSystem {
 			this->label10->AutoSize = true;
 			this->label10->Location = System::Drawing::Point(451, 510);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(41, 13);
+			this->label10->Size = System::Drawing::Size(92, 29);
 			this->label10->TabIndex = 14;
 			this->label10->Text = L"label10";
 			// 
@@ -295,7 +280,7 @@ namespace LibraryManagementSystem {
 			this->label11->AutoSize = true;
 			this->label11->Location = System::Drawing::Point(589, 510);
 			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(41, 13);
+			this->label11->Size = System::Drawing::Size(92, 29);
 			this->label11->TabIndex = 15;
 			this->label11->Text = L"label11";
 			// 
@@ -314,10 +299,34 @@ namespace LibraryManagementSystem {
 			this->save->UseVisualStyleBackColor = false;
 			this->save->Click += gcnew System::EventHandler(this, &add_book::save_Click_1);
 			// 
+			// pages
+			// 
+			this->pages->Anchor = System::Windows::Forms::AnchorStyles::Top;
+			this->pages->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->pages->Location = System::Drawing::Point(431, 216);
+			this->pages->Name = L"pages";
+			this->pages->Size = System::Drawing::Size(334, 41);
+			this->pages->TabIndex = 17;
+			this->pages->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			// 
+			// qty
+			// 
+			this->qty->Anchor = System::Windows::Forms::AnchorStyles::Top;
+			this->qty->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->qty->Location = System::Drawing::Point(431, 265);
+			this->qty->Name = L"qty";
+			this->qty->Size = System::Drawing::Size(334, 41);
+			this->qty->TabIndex = 18;
+			this->qty->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			// 
 			// add_book
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(1080, 720);
+			this->Controls->Add(this->qty);
+			this->Controls->Add(this->pages);
 			this->Controls->Add(this->save);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->label10);
@@ -327,9 +336,7 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->add);
 			this->Controls->Add(this->author);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->qty);
 			this->Controls->Add(this->label5);
-			this->Controls->Add(this->pages);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->BookTitle);
 			this->Controls->Add(this->label3);
@@ -339,6 +346,8 @@ namespace LibraryManagementSystem {
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"add_book";
 			this->Text = L"add_book";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pages))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->qty))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -353,11 +362,23 @@ namespace LibraryManagementSystem {
 		}
 
 		private: System::Void add_Click_1(System::Object^ sender, System::EventArgs^ e) {
+
+			// Validate texbox
+			if (String::IsNullOrEmpty(this->BookID->Text) || String::IsNullOrEmpty(this->BookTitle->Text) || String::IsNullOrEmpty(this->author->Text)) {
+				MessageBox::Show("Please fill the input");
+				return;
+			}
+
+			if (this->pages->Value <= 0 || this->qty->Value <= 0) {
+				MessageBox::Show("Invalid pages number and quatity");
+				return;
+			}
+
 			Book book;
 			book.book_id = msclr::interop::marshal_as<std::string>(this->BookID->Text);
 			book.title = msclr::interop::marshal_as<std::string>(this->BookTitle->Text);
-			book.pages_num = System::Convert::ToInt32(this->pages->Text);
-			book.qty = System::Convert::ToInt32(this->qty->Text);
+			book.pages_num = (int)(this->pages->Value);
+			book.qty = (int)(this->qty->Value);
 			book.author = msclr::interop::marshal_as<std::string>(this->author->Text);
 
 			// Initalize Booklist if it null
@@ -368,6 +389,12 @@ namespace LibraryManagementSystem {
 			// Add book into linked list
 			this->BookList = InsertLinkedList(this->BookList, book);
 			
+			// Clear text box
+			this->BookID->Text = "";
+			this->BookTitle->Text = "";
+			this->pages->Value = 1;
+			this->qty->Value = 1;
+			this->author->Text = "";
 		}
 	};
 }
