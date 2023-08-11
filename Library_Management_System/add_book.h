@@ -361,9 +361,20 @@ namespace LibraryManagementSystem {
 		}
 #pragma endregion
 		
+		// Note: i can't seem to add same value twice to db
+
 		private: System::Void save_Click_1(System::Object^ sender, System::EventArgs^ e) {
 			if (this->BookList != nullptr) {
+				// Insert booklist to database
 				InsertBookLinkedListIntoDB(this->BookList);
+				listView1->Items->Clear();
+				// Free all node in booklist after using it
+				ClearLinkedList(this->BookList);
+				this->BookList = nullptr;
+			}
+			else {
+				MessageBox::Show("Linked List is empty, Nothing to save");
+				return;
 			}
 			//this->label8->Text = msclr::interop::marshal_as<System::String^>(BookListHead->data.author);
 		}
@@ -398,7 +409,7 @@ namespace LibraryManagementSystem {
 			this->BookList = InsertLinkedList(this->BookList, book);
 			
 			// Clear linked list view subitem
-			
+			listView1->Items->Clear();
 
 			// Display data in linked list
 			this->current = this->BookList;
@@ -419,15 +430,12 @@ namespace LibraryManagementSystem {
 				item->SubItems->Add(qty);
 
 				item->SubItems->Add(msclr::interop::marshal_as<System::String^>(current->data.author));
-
-				
 				
 				// Add item into list view
 				listView1->Items->Add(item);
 
 				current = current->next;
 			}
-			
 
 			// Clear textbox
 			this->BookID->Text = "";

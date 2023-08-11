@@ -3,3 +3,4 @@
 
 void InitializeDatabase();
 void InsertBookDB(Book book);
+Node<Book>* ReadBooksDataFromDB();

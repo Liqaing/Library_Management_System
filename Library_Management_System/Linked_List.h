@@ -29,6 +29,11 @@ Node<T>* GetNode(T data) {
 }
 
 
+template <typename T>
+void FreeNode(Node<T> *Node) {
+	delete Node;
+}
+
 // Create Linked List
 /*
 template <typename T>
@@ -64,3 +69,14 @@ void InsertBookLinkedListIntoDB(Node<T> *head) {
 	}
 }
 
+// Clear all node in linked list
+template <typename T>
+void ClearLinkedList(Node<T> *head) {
+	Node<T>* current = head;
+	// Create pointer node point to current, then move current to next and free node
+	while (current != nullptr) {
+		Node<T>* Node = current;
+		current = current->next;
+		free(Node);
+	}
+}
