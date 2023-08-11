@@ -24,6 +24,7 @@ namespace LibraryManagementSystem {
 	/// </summary>
 	public ref class add_book : public System::Windows::Forms::Form
 	{
+	
 	// Variable Declaration
 	private:
 		Node<Book> *BookList = nullptr;

@@ -141,9 +141,9 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->password->Location = System::Drawing::Point(361, 298);
 			this->password->Name = L"password";
-			this->password->PasswordChar = '*';
 			this->password->Size = System::Drawing::Size(302, 56);
 			this->password->TabIndex = 4;
+			this->password->UseSystemPasswordChar = true;
 			// 
 			// login
 			// 
