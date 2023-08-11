@@ -28,7 +28,7 @@ namespace LibraryManagementSystem {
 	// Variable Declaration
 	private:
 		Node<Book> *BookList = nullptr;
-		
+		Node<Book>* current = nullptr;
 
 	public:
 		add_book(void)
@@ -397,15 +397,34 @@ namespace LibraryManagementSystem {
 			// Add book into linked list
 			this->BookList = InsertLinkedList(this->BookList, book);
 			
+			// Clear linked list view subitem
+			
+
 			// Display data in linked list
-			Node<Book> *current = BookList->next;
-			while (current != nullptr)
+			this->current = this->BookList;
+			while (this->current != nullptr)
 			{
-				listView1->Clear();
-				this->listView1->Items->Add(msclr::interop::marshal_as<System::String^>(current->data.book_id));
-				this->listView1->Items->Add(msclr::interop::marshal_as<System::String^>(current->data.title));
+				// Create list view item
+				ListViewItem^ item = gcnew ListViewItem();
 				
-				this->listView1->Items->Add(msclr::interop::marshal_as<System::String^>(current->data.author));
+				item->SubItems->Clear();
+
+				// Set text for each subitem 
+				item->Text = msclr::interop::marshal_as<System::String^>(current->data.book_id); // First column
+				item->SubItems->Add(msclr::interop::marshal_as<System::String^>(current->data.title));
+				
+				System::String^ pages = System::Convert::ToString(current->data.pages_num);
+				System::String^ qty = System::Convert::ToString(current->data.qty);
+				item->SubItems->Add(pages);
+				item->SubItems->Add(qty);
+
+				item->SubItems->Add(msclr::interop::marshal_as<System::String^>(current->data.author));
+
+				
+				
+				// Add item into list view
+				listView1->Items->Add(item);
+
 				current = current->next;
 			}
 			
@@ -420,5 +439,5 @@ namespace LibraryManagementSystem {
 	
 		private: System::Void listView1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 		}
-};
+	};
 }
