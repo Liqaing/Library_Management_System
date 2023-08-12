@@ -24,32 +24,26 @@ namespace LibraryManagementSystem {
 	// Declare variable
 	private:
 		Node<Book>* BookList = nullptr;
+		Node<Book>* current = nullptr;
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ BookID;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Title;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ pages;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ qty;
 	public: System::Windows::Forms::DataGridViewTextBoxColumn^ Author;
 	private: System::Windows::Forms::TextBox^ UserInput;
+	private: System::Windows::Forms::Button^ SearchTitle;
+	private: System::Windows::Forms::Button^ SearchAuthor;
+	private: System::Windows::Forms::Button^ Refresh;
+
 	public:
 
 	public:
 	private:
 
 
-	private: System::Windows::Forms::Button^ Search;
 
-
-
-
-
-
-
-
-
-
-
-
-		   Node<Book>* current = nullptr;
+	private: System::Windows::Forms::Label^ label2;
 
 
 	public:
@@ -76,13 +70,6 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::Label^ label1;
 
-
-
-
-
-
-
-
 	protected:
 
 	private:
@@ -106,7 +93,10 @@ namespace LibraryManagementSystem {
 			this->Author = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->UserInput = (gcnew System::Windows::Forms::TextBox());
-			this->Search = (gcnew System::Windows::Forms::Button());
+			this->SearchTitle = (gcnew System::Windows::Forms::Button());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->SearchAuthor = (gcnew System::Windows::Forms::Button());
+			this->Refresh = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -120,7 +110,7 @@ namespace LibraryManagementSystem {
 				this->BookID,
 					this->Title, this->pages, this->qty, this->Author
 			});
-			this->dataGridView1->Location = System::Drawing::Point(25, 73);
+			this->dataGridView1->Location = System::Drawing::Point(21, 110);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
 			this->dataGridView1->Size = System::Drawing::Size(821, 544);
@@ -173,30 +163,78 @@ namespace LibraryManagementSystem {
 			// 
 			// UserInput
 			// 
-			this->UserInput->Location = System::Drawing::Point(862, 73);
+			this->UserInput->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->UserInput->Location = System::Drawing::Point(81, 75);
 			this->UserInput->Name = L"UserInput";
-			this->UserInput->Size = System::Drawing::Size(190, 20);
+			this->UserInput->Size = System::Drawing::Size(190, 24);
 			this->UserInput->TabIndex = 4;
 			// 
-			// Search
+			// SearchTitle
 			// 
-			this->Search->BackColor = System::Drawing::Color::DeepSkyBlue;
-			this->Search->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->SearchTitle->BackColor = System::Drawing::Color::DeepSkyBlue;
+			this->SearchTitle->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->SearchTitle->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->Search->ForeColor = System::Drawing::Color::White;
-			this->Search->Location = System::Drawing::Point(862, 109);
-			this->Search->Name = L"Search";
-			this->Search->Size = System::Drawing::Size(89, 27);
-			this->Search->TabIndex = 5;
-			this->Search->Text = L"Search";
-			this->Search->UseVisualStyleBackColor = false;
-
+			this->SearchTitle->ForeColor = System::Drawing::Color::White;
+			this->SearchTitle->Location = System::Drawing::Point(277, 75);
+			this->SearchTitle->Name = L"SearchTitle";
+			this->SearchTitle->Size = System::Drawing::Size(101, 24);
+			this->SearchTitle->TabIndex = 5;
+			this->SearchTitle->Text = L"Search Title";
+			this->SearchTitle->UseVisualStyleBackColor = false;
+			this->SearchTitle->Click += gcnew System::EventHandler(this, &view_book::Search_Click);
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->BackColor = System::Drawing::Color::Transparent;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(18, 77);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(55, 18);
+			this->label2->TabIndex = 6;
+			this->label2->Text = L"Search";
+			// 
+			// SearchAuthor
+			// 
+			this->SearchAuthor->BackColor = System::Drawing::Color::DeepSkyBlue;
+			this->SearchAuthor->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->SearchAuthor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->SearchAuthor->ForeColor = System::Drawing::Color::White;
+			this->SearchAuthor->Location = System::Drawing::Point(384, 76);
+			this->SearchAuthor->Name = L"SearchAuthor";
+			this->SearchAuthor->Size = System::Drawing::Size(101, 24);
+			this->SearchAuthor->TabIndex = 7;
+			this->SearchAuthor->Text = L"Search Author";
+			this->SearchAuthor->UseVisualStyleBackColor = false;
+			this->SearchAuthor->Click += gcnew System::EventHandler(this, &view_book::SearchAuthor_Click);
+			// 
+			// Refresh
+			// 
+			this->Refresh->BackColor = System::Drawing::Color::DeepSkyBlue;
+			this->Refresh->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->Refresh->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->Refresh->ForeColor = System::Drawing::Color::White;
+			this->Refresh->Location = System::Drawing::Point(491, 76);
+			this->Refresh->Name = L"Refresh";
+			this->Refresh->Size = System::Drawing::Size(101, 24);
+			this->Refresh->TabIndex = 8;
+			this->Refresh->Text = L"Refresh";
+			this->Refresh->UseVisualStyleBackColor = false;
+			this->Refresh->Click += gcnew System::EventHandler(this, &view_book::Refresh_Click);
 			// 
 			// view_book
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(1064, 681);
-			this->Controls->Add(this->Search);
+			this->Controls->Add(this->Refresh);
+			this->Controls->Add(this->SearchAuthor);
+			this->Controls->Add(this->label2);
+			this->Controls->Add(this->SearchTitle);
 			this->Controls->Add(this->UserInput);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->dataGridView1);
@@ -216,12 +254,17 @@ namespace LibraryManagementSystem {
 			// Read data from db into linked list
 			BookList = ReadBooksDataFromDB();
 
-
 			// Travese, Display data from linked list into datagridview
 			current = BookList;
 			while (current != nullptr) {
 				// Set text for each columns in row
-				dataGridView1->Rows->Add(current->data.book_id, msclr::interop::marshal_as<System::String^>(current->data.title), current->data.pages_num, current->data.qty ,msclr::interop::marshal_as<System::String^>(current->data.author));
+				dataGridView1->Rows->Add(
+					current->data.book_id, 
+					msclr::interop::marshal_as<System::String^>(current->data.title),
+					current->data.pages_num, current->data.qty,
+					msclr::interop::marshal_as<System::String^>(current->data.author)
+				);
+				
 				current = current->next;
 			}
 		}
@@ -238,6 +281,43 @@ namespace LibraryManagementSystem {
 			}
 		}
 		*/
+		// Search Linked List for book title
+		private: System::Void Search_Click(System::Object^ sender, System::EventArgs^ e) {
+			// Retrive the input
+			std::string SearchData = msclr::interop::marshal_as<std::string>(UserInput->Text);
+			
+			// Cleare data gird view
+			dataGridView1->Rows->Clear();
+			
+			SearchBookTitle(dataGridView1, BookList, SearchData);
+		}
 
+		// Search for =authour
+		private: System::Void SearchAuthor_Click(System::Object^ sender, System::EventArgs^ e) {
+			// Retrive the input
+			std::string SearchData = msclr::interop::marshal_as<std::string>(UserInput->Text);
+
+			// Cleare data gird view
+			dataGridView1->Rows->Clear();
+
+			SearchBookAuthor(dataGridView1, BookList, SearchData);
+		}
+		
+		// Display all book
+		private: System::Void Refresh_Click(System::Object^ sender, System::EventArgs^ e) {
+			dataGridView1->Rows->Clear();
+			current = BookList;
+			while (current != nullptr) {
+				// Set text for each columns in row
+				dataGridView1->Rows->Add(
+					current->data.book_id,
+					msclr::interop::marshal_as<System::String^>(current->data.title),
+					current->data.pages_num, current->data.qty,
+					msclr::interop::marshal_as<System::String^>(current->data.author)
+				);
+
+				current = current->next;
+			}
+		}
 	};
 }

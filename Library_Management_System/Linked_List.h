@@ -3,6 +3,7 @@
 #include <string>
 #include "Struct.h"
 #include "Database.h"
+#include <msclr/marshal_cppstd.h>
 
 // Forward Declaration
 //void InsertBookDB(Book book);
@@ -81,17 +82,71 @@ void ClearLinkedList(Node<T> *head) {
 	}
 }
 
-// Search linked list
-/*
-template <typename T, typename Predicate>
-Node<T>* SearchLinkedList(Node<T>* head, Predicate predicate) {
-	Node<T>* current = head;
+// Search Book linked list
+/* Take one input but search for in both title and author column
+template <typename T>
+Node<T> *SearchLinkedList(Node<T> *head, std::string SearchData) {
+	
+	Node<T> *current = head;
+
+	// Split linked list
+	Node<T> *NewHead = nullptr;
+	
 	while (current != nullptr) {
-		if (predicate(current->data, presi)) {
-			return current; // Found a match
+		if (current->data.title == SearchData) {
+			NewHead = InsertLinkedList(NewHead, current->data);
+			//return current; // Found a match
+		}
+		else if (current->data.author == SearchData) {
+			NewHead = InsertLinkedList(NewHead, current->data);
+		}
+		current = current->next;
+		
+	}
+	return NewHead; // Not found
+}
+*/
+
+// Search for book title in linked list and display it to data grid view
+template <typename T>
+void SearchBookTitle(System::Windows::Forms::DataGridView^ dataGridView, Node<T> *head, std::string SearchTitle) {
+	
+	Node<T> *current = head;
+
+	while (current != nullptr) {
+		// if found
+		if (current->data.title == SearchTitle) {
+			// add row to data grid view
+			dataGridView->Rows->Add(
+				current->data.book_id,
+				msclr::interop::marshal_as<System::String^>(current->data.title),
+				current->data.pages_num, current->data.qty,
+				msclr::interop::marshal_as<System::String^>(current->data.author)
+			);
 		}
 		current = current->next;
 	}
-	return nullptr; // Not found
+	return;
 }
-*/
+
+// Search for book author
+template <typename T>
+void SearchBookAuthor(System::Windows::Forms::DataGridView^ dataGridView, Node<T>* head, std::string SearchTitle) {
+
+	Node<T>* current = head;
+
+	while (current != nullptr) {
+		// if found
+		if (current->data.author == SearchTitle) {
+			// add row to data grid view
+			dataGridView->Rows->Add(
+				current->data.book_id,
+				msclr::interop::marshal_as<System::String^>(current->data.title),
+				current->data.pages_num, current->data.qty,
+				msclr::interop::marshal_as<System::String^>(current->data.author)
+			);
+		}
+		current = current->next;
+	}
+	return;
+}

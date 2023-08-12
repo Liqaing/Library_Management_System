@@ -247,10 +247,13 @@ namespace LibraryManagementSystem {
 
 		// Load form to mainpanel
 		public: void loadform(Form^ form) {
+
 			this->mainpanel->Controls->Clear();
+			
 			// Set properties for the form
 			form->TopLevel = false;
 			form->Dock = DockStyle::Fill;
+			
 			this->mainpanel->Controls->Add(form);
 			form->Show();
 		}
@@ -275,6 +278,5 @@ namespace LibraryManagementSystem {
 			loadform(f);
 		}
 
-
-};
+	};
 }
