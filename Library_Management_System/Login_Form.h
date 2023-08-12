@@ -201,20 +201,21 @@ namespace LibraryManagementSystem {
 		}
 #pragma endregion
 
-	private: System::Void exit_Click(System::Object^ sender, System::EventArgs^ e) {
-		Application::Exit();
-	}
-
-	// Open dashboard
-	private: System::Void login_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (username->Text == "admin" && password->Text == "admin") {
-			Dashboard^ dashboard = gcnew Dashboard;
-			this->Hide();
-			dashboard->Show();
+		private: System::Void exit_Click(System::Object^ sender, System::EventArgs^ e) {
+			Application::Exit();
 		}
-	}
-	private: System::Void Login_Form_Load(System::Object^ sender, System::EventArgs^ e) {
-		InitializeDatabase();
-	}
-};
+
+		// Open dashboard
+		private: System::Void login_Click(System::Object^ sender, System::EventArgs^ e) {
+			if (username->Text == "admin" && password->Text == "admin") {
+				Dashboard^ dashboard = gcnew Dashboard;
+				this->Hide();
+				dashboard->Show();
+			}
+		}
+		// On form load, initialize database
+		private: System::Void Login_Form_Load(System::Object^ sender, System::EventArgs^ e) {
+			InitializeDatabase();
+		}
+	};
 }

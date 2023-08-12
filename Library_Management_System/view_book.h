@@ -1,9 +1,10 @@
 #pragma once
 
 #include "Linked_List.h"
+#include <msclr/marshal_cppstd.h>
 
 // Forward Declaration
-Node<Book>* ReadBooksDataFromDB();
+Node<Book> *ReadBooksDataFromDB();
 
 namespace LibraryManagementSystem {
 
@@ -22,8 +23,9 @@ namespace LibraryManagementSystem {
 
 	// Declare variable
 	private:
-	private:
 		Node<Book>* BookList = nullptr;
+		Node<Book>* current = nullptr;
+
 
 	public:
 		view_book(void)
@@ -53,7 +55,7 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Pages;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Quatity;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Author;
-	private: System::Windows::Forms::Button^ button1;
+
 
 
 	protected:
@@ -78,7 +80,6 @@ namespace LibraryManagementSystem {
 			this->Quatity = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Author = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -142,26 +143,16 @@ namespace LibraryManagementSystem {
 			this->label1->TabIndex = 3;
 			this->label1->Text = L"Add New Book";
 			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(963, 189);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(65, 47);
-			this->button1->TabIndex = 4;
-			this->button1->Text = L"button1";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &view_book::button1_Click);
-			// 
 			// view_book
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(1064, 681);
-			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->dataGridView1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"view_book";
 			this->Text = L"view_book";
+			this->Load += gcnew System::EventHandler(this, &view_book::view_book_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -169,9 +160,22 @@ namespace LibraryManagementSystem {
 		}
 #pragma endregion
 	
-		
-		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// When form load
+		private: System::Void view_book_Load(System::Object^ sender, System::EventArgs^ e) {
+			// Read data from db into linked list
 			BookList = ReadBooksDataFromDB();
+
+			// Travese, Display data from linked list into datagridview
+			current = BookList;
+			while (current != nullptr) {
+
+				// Set text for each columns in row
+
+				dataGridView1->Rows->Add(msclr::interop::marshal_as<System::String^>(current->data.book_id), msclr::interop::marshal_as<System::String^>(current->data.title), current->data.pages_num, current->data.qty ,msclr::interop::marshal_as<System::String^>(current->data.author));
+
+				current = current->next;
+
+			}
 		}
 	};
 }

@@ -361,7 +361,7 @@ namespace LibraryManagementSystem {
 		}
 #pragma endregion
 		
-		// Note: i can't seem to add same value twice to db
+		// Note: Can't add item with same book id into database
 
 		private: System::Void save_Click_1(System::Object^ sender, System::EventArgs^ e) {
 			if (this->BookList != nullptr) {
