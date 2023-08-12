@@ -80,3 +80,18 @@ void ClearLinkedList(Node<T> *head) {
 		free(Node);
 	}
 }
+
+// Search linked list
+/*
+template <typename T, typename Predicate>
+Node<T>* SearchLinkedList(Node<T>* head, Predicate predicate) {
+	Node<T>* current = head;
+	while (current != nullptr) {
+		if (predicate(current->data, presi)) {
+			return current; // Found a match
+		}
+		current = current->next;
+	}
+	return nullptr; // Not found
+}
+*/

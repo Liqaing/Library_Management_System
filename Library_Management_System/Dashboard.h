@@ -223,7 +223,6 @@ namespace LibraryManagementSystem {
 			this->mainpanel->Name = L"mainpanel";
 			this->mainpanel->Size = System::Drawing::Size(1064, 649);
 			this->mainpanel->TabIndex = 1;
-			
 			// 
 			// Dashboard
 			// 
@@ -238,6 +237,7 @@ namespace LibraryManagementSystem {
 			this->Name = L"Dashboard";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Dashboard";
+			this->Load += gcnew System::EventHandler(this, &Dashboard::Dashboard_Load);
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
 			this->ResumeLayout(false);
@@ -256,7 +256,13 @@ namespace LibraryManagementSystem {
 		}
 
 #pragma endregion
-	
+
+		// On form load, show view book
+		private: System::Void Dashboard_Load(System::Object^ sender, System::EventArgs^ e) {
+			view_book^ f = gcnew view_book;
+			loadform(f);
+		}
+
 		private: System::Void exitToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 			Application::Exit();
 		}
@@ -269,5 +275,6 @@ namespace LibraryManagementSystem {
 			loadform(f);
 		}
 
-	};
+
+};
 }
