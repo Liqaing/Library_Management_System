@@ -362,4 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-Library_Management_System/.sqlite3
+Library_Management_System/library.sqlite3
