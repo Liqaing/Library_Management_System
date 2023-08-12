@@ -2,7 +2,7 @@
 #include <iostream>
 
 typedef struct Book {
-	std::string book_id;
+	int book_id;
 	std::string title;
 	int pages_num;
 	int qty;

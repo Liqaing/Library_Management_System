@@ -51,8 +51,8 @@ namespace LibraryManagementSystem {
 			}
 		}
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ BookID;
+
+
 	private: System::Windows::Forms::TextBox^ BookTitle;
 
 	private: System::Windows::Forms::Label^ label3;
@@ -76,7 +76,7 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::NumericUpDown^ pages;
 	private: System::Windows::Forms::NumericUpDown^ qty;
 	private: System::Windows::Forms::ListView^ listView1;
-	private: System::Windows::Forms::ColumnHeader^ ListViewBookID;
+
 	private: System::Windows::Forms::ColumnHeader^ ListViewTitle;
 	private: System::Windows::Forms::ColumnHeader^ ListViewPages;
 	private: System::Windows::Forms::ColumnHeader^ ListViewQty;
@@ -111,8 +111,6 @@ namespace LibraryManagementSystem {
 		void InitializeComponent(void)
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->BookID = (gcnew System::Windows::Forms::TextBox());
 			this->BookTitle = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
@@ -124,7 +122,6 @@ namespace LibraryManagementSystem {
 			this->pages = (gcnew System::Windows::Forms::NumericUpDown());
 			this->qty = (gcnew System::Windows::Forms::NumericUpDown());
 			this->listView1 = (gcnew System::Windows::Forms::ListView());
-			this->ListViewBookID = (gcnew System::Windows::Forms::ColumnHeader());
 			this->ListViewTitle = (gcnew System::Windows::Forms::ColumnHeader());
 			this->ListViewPages = (gcnew System::Windows::Forms::ColumnHeader());
 			this->ListViewQty = (gcnew System::Windows::Forms::ColumnHeader());
@@ -145,34 +142,12 @@ namespace LibraryManagementSystem {
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Add New Book";
 			// 
-			// label2
-			// 
-			this->label2->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(296, 80);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(62, 18);
-			this->label2->TabIndex = 1;
-			this->label2->Text = L"Book ID";
-			// 
-			// BookID
-			// 
-			this->BookID->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->BookID->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->BookID->Location = System::Drawing::Point(431, 75);
-			this->BookID->Name = L"BookID";
-			this->BookID->Size = System::Drawing::Size(334, 23);
-			this->BookID->TabIndex = 2;
-			// 
 			// BookTitle
 			// 
 			this->BookTitle->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->BookTitle->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->BookTitle->Location = System::Drawing::Point(431, 127);
+			this->BookTitle->Location = System::Drawing::Point(431, 70);
 			this->BookTitle->Name = L"BookTitle";
 			this->BookTitle->Size = System::Drawing::Size(334, 23);
 			this->BookTitle->TabIndex = 4;
@@ -183,7 +158,7 @@ namespace LibraryManagementSystem {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(296, 132);
+			this->label3->Location = System::Drawing::Point(296, 75);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(75, 18);
 			this->label3->TabIndex = 3;
@@ -195,7 +170,7 @@ namespace LibraryManagementSystem {
 			this->label4->AutoSize = true;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label4->Location = System::Drawing::Point(296, 179);
+			this->label4->Location = System::Drawing::Point(296, 122);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(122, 18);
 			this->label4->TabIndex = 5;
@@ -207,7 +182,7 @@ namespace LibraryManagementSystem {
 			this->label5->AutoSize = true;
 			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label5->Location = System::Drawing::Point(296, 228);
+			this->label5->Location = System::Drawing::Point(296, 171);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(62, 18);
 			this->label5->TabIndex = 7;
@@ -218,7 +193,7 @@ namespace LibraryManagementSystem {
 			this->author->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->author->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->author->Location = System::Drawing::Point(431, 267);
+			this->author->Location = System::Drawing::Point(431, 210);
 			this->author->Name = L"author";
 			this->author->Size = System::Drawing::Size(334, 23);
 			this->author->TabIndex = 10;
@@ -229,7 +204,7 @@ namespace LibraryManagementSystem {
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label6->Location = System::Drawing::Point(296, 272);
+			this->label6->Location = System::Drawing::Point(296, 215);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(51, 18);
 			this->label6->TabIndex = 9;
@@ -242,7 +217,7 @@ namespace LibraryManagementSystem {
 			this->add->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->add->ForeColor = System::Drawing::Color::White;
-			this->add->Location = System::Drawing::Point(431, 330);
+			this->add->Location = System::Drawing::Point(431, 273);
 			this->add->Name = L"add";
 			this->add->Size = System::Drawing::Size(139, 37);
 			this->add->TabIndex = 11;
@@ -257,7 +232,7 @@ namespace LibraryManagementSystem {
 			this->save->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->save->ForeColor = System::Drawing::Color::White;
-			this->save->Location = System::Drawing::Point(626, 330);
+			this->save->Location = System::Drawing::Point(626, 273);
 			this->save->Name = L"save";
 			this->save->Size = System::Drawing::Size(139, 37);
 			this->save->TabIndex = 16;
@@ -270,7 +245,7 @@ namespace LibraryManagementSystem {
 			this->pages->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->pages->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->pages->Location = System::Drawing::Point(431, 179);
+			this->pages->Location = System::Drawing::Point(431, 122);
 			this->pages->Name = L"pages";
 			this->pages->Size = System::Drawing::Size(334, 23);
 			this->pages->TabIndex = 17;
@@ -281,7 +256,7 @@ namespace LibraryManagementSystem {
 			this->qty->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->qty->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->qty->Location = System::Drawing::Point(431, 228);
+			this->qty->Location = System::Drawing::Point(431, 171);
 			this->qty->Name = L"qty";
 			this->qty->Size = System::Drawing::Size(334, 23);
 			this->qty->TabIndex = 18;
@@ -290,14 +265,14 @@ namespace LibraryManagementSystem {
 			// listView1
 			// 
 			this->listView1->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(5) {
-				this->ListViewBookID, this->ListViewTitle,
-					this->ListViewPages, this->ListViewQty, this->ListViewAuthor
+			this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
+				this->ListViewTitle, this->ListViewPages,
+					this->ListViewQty, this->ListViewAuthor
 			});
 			this->listView1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->listView1->HideSelection = false;
-			this->listView1->Location = System::Drawing::Point(239, 400);
+			this->listView1->Location = System::Drawing::Point(242, 359);
 			this->listView1->Name = L"listView1";
 			this->listView1->Size = System::Drawing::Size(705, 233);
 			this->listView1->TabIndex = 19;
@@ -305,15 +280,10 @@ namespace LibraryManagementSystem {
 			this->listView1->View = System::Windows::Forms::View::Details;
 			this->listView1->SelectedIndexChanged += gcnew System::EventHandler(this, &add_book::listView1_SelectedIndexChanged);
 			// 
-			// ListViewBookID
-			// 
-			this->ListViewBookID->Text = L"Book ID";
-			this->ListViewBookID->Width = 99;
-			// 
 			// ListViewTitle
 			// 
 			this->ListViewTitle->Text = L"Title";
-			this->ListViewTitle->Width = 250;
+			this->ListViewTitle->Width = 285;
 			// 
 			// ListViewPages
 			// 
@@ -328,7 +298,7 @@ namespace LibraryManagementSystem {
 			// ListViewAuthor
 			// 
 			this->ListViewAuthor->Text = L"Author";
-			this->ListViewAuthor->Width = 212;
+			this->ListViewAuthor->Width = 276;
 			// 
 			// add_book
 			// 
@@ -345,8 +315,6 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->BookTitle);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->BookID);
-			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -382,7 +350,7 @@ namespace LibraryManagementSystem {
 		private: System::Void add_Click_1(System::Object^ sender, System::EventArgs^ e) {
 
 			// Validate textbox input
-			if (String::IsNullOrEmpty(this->BookID->Text) || String::IsNullOrEmpty(this->BookTitle->Text) || String::IsNullOrEmpty(this->author->Text)) {
+			if (String::IsNullOrEmpty(this->BookTitle->Text) || String::IsNullOrEmpty(this->author->Text)) {
 				MessageBox::Show("Please fill the input");
 				return;
 			}
@@ -394,7 +362,6 @@ namespace LibraryManagementSystem {
 
 			// Retrive input
 			Book book;
-			book.book_id = msclr::interop::marshal_as<std::string>(this->BookID->Text);
 			book.title = msclr::interop::marshal_as<std::string>(this->BookTitle->Text);
 			book.pages_num = (int)(this->pages->Value);
 			book.qty = (int)(this->qty->Value);
@@ -421,8 +388,7 @@ namespace LibraryManagementSystem {
 				item->SubItems->Clear();
 
 				// Set text for each subitem 
-				item->Text = msclr::interop::marshal_as<System::String^>(current->data.book_id); // First column
-				item->SubItems->Add(msclr::interop::marshal_as<System::String^>(current->data.title));
+				item->Text = msclr::interop::marshal_as<System::String^>(current->data.title); // First column
 				
 				System::String^ pages = System::Convert::ToString(current->data.pages_num);
 				System::String^ qty = System::Convert::ToString(current->data.qty);
@@ -438,7 +404,6 @@ namespace LibraryManagementSystem {
 			}
 
 			// Clear textbox
-			this->BookID->Text = "";
 			this->BookTitle->Text = "";
 			this->pages->Value = 1;
 			this->qty->Value = 1;

@@ -220,7 +220,7 @@ namespace LibraryManagementSystem {
 			current = BookList;
 			while (current != nullptr) {
 				// Set text for each columns in row
-				dataGridView1->Rows->Add(msclr::interop::marshal_as<System::String^>(current->data.book_id), msclr::interop::marshal_as<System::String^>(current->data.title), current->data.pages_num, current->data.qty ,msclr::interop::marshal_as<System::String^>(current->data.author));
+				dataGridView1->Rows->Add(current->data.book_id, msclr::interop::marshal_as<System::String^>(current->data.title), current->data.pages_num, current->data.qty ,msclr::interop::marshal_as<System::String^>(current->data.author));
 				current = current->next;
 			}
 		}

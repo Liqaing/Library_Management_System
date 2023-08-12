@@ -22,7 +22,7 @@ void InitializeDatabase() {
 	}
 
 	// Create book table
-	const char *createBookTableQuery = "CREATE TABLE IF NOT EXISTS Books (Id INTEGER PRIMARY KEY AUTOINCREMENT, Book_ID TEXT NOT NULL UNIQUE, Title TEXT NOT NULL, Pages INTEGER, QTY INTEGEER NOT NULL, Author TEXT)";
+	const char *createBookTableQuery = "CREATE TABLE IF NOT EXISTS Books (Id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT NOT NULL, Pages INTEGER, QTY INTEGEER NOT NULL, Author TEXT)";
 	result = sqlite3_exec(db, createBookTableQuery, 0, 0, 0);
 	if (result != SQLITE_OK) {
 		return;
@@ -41,7 +41,7 @@ void InsertBookDB(Book book) {
 	}
 
 	// Insert query for compiling into sql query
-	const char* InsertBookQuery = "INSERT INTO Books (Book_ID, Title, Pages, QTY, Author) VALUES (?, ?, ?, ?, ?)";
+	const char* InsertBookQuery = "INSERT INTO Books (Title, Pages, QTY, Author) VALUES (?, ?, ?, ?)";
 	
 	// Pointer to the compiled prepare statement (InsertBookQuery), can be use to bind value, executing...
 	sqlite3_stmt* InsertStmt = NULL;
@@ -53,11 +53,10 @@ void InsertBookDB(Book book) {
 	}
 	
 	// Binding value into sql parameter for Insert Query
-	sqlite3_bind_text(InsertStmt, 1, book.book_id.c_str(), -1, SQLITE_STATIC);
-	sqlite3_bind_text(InsertStmt, 2, book.title.c_str(), -1, SQLITE_STATIC);
-	sqlite3_bind_int(InsertStmt, 3, book.pages_num);
-	sqlite3_bind_int(InsertStmt, 4, book.qty);
-	sqlite3_bind_text(InsertStmt, 5, book.author.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_text(InsertStmt, 1, book.title.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_int(InsertStmt, 2, book.pages_num);
+	sqlite3_bind_int(InsertStmt, 3, book.qty);
+	sqlite3_bind_text(InsertStmt, 4, book.author.c_str(), -1, SQLITE_STATIC);
 
 	// Execute the query
 	result = sqlite3_step(InsertStmt);
@@ -96,11 +95,11 @@ Node<Book> *ReadBooksDataFromDB() {
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
 		Book book;
 		// Retrive data from the return row and convert it from "const unsigned char *" to 
-		book.book_id = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-		book.title = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 2));
-		book.pages_num = sqlite3_column_int(stmt, 3);
-		book.qty = sqlite3_column_int(stmt, 4);
-		book.author = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
+		book.book_id = sqlite3_column_int(stmt, 0);
+		book.title = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+		book.pages_num = sqlite3_column_int(stmt, 2);
+		book.qty = sqlite3_column_int(stmt, 3);
+		book.author = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
 
 		head = InsertLinkedList(head, book);
 	}
