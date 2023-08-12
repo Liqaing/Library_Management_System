@@ -138,7 +138,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(471, 9);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(186, 29);
+			this->label1->Size = System::Drawing::Size(394, 63);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Add New Book";
 			// 
@@ -149,7 +149,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->BookTitle->Location = System::Drawing::Point(431, 70);
 			this->BookTitle->Name = L"BookTitle";
-			this->BookTitle->Size = System::Drawing::Size(334, 23);
+			this->BookTitle->Size = System::Drawing::Size(334, 41);
 			this->BookTitle->TabIndex = 4;
 			// 
 			// label3
@@ -160,7 +160,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label3->Location = System::Drawing::Point(296, 75);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(75, 18);
+			this->label3->Size = System::Drawing::Size(162, 38);
 			this->label3->TabIndex = 3;
 			this->label3->Text = L"Book Title";
 			// 
@@ -172,7 +172,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label4->Location = System::Drawing::Point(296, 122);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(122, 18);
+			this->label4->Size = System::Drawing::Size(267, 38);
 			this->label4->TabIndex = 5;
 			this->label4->Text = L"Number of pages";
 			// 
@@ -184,7 +184,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label5->Location = System::Drawing::Point(296, 171);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(62, 18);
+			this->label5->Size = System::Drawing::Size(139, 38);
 			this->label5->TabIndex = 7;
 			this->label5->Text = L"Quantity";
 			// 
@@ -195,7 +195,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->author->Location = System::Drawing::Point(431, 210);
 			this->author->Name = L"author";
-			this->author->Size = System::Drawing::Size(334, 23);
+			this->author->Size = System::Drawing::Size(334, 41);
 			this->author->TabIndex = 10;
 			// 
 			// label6
@@ -206,7 +206,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label6->Location = System::Drawing::Point(296, 215);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(51, 18);
+			this->label6->Size = System::Drawing::Size(113, 38);
 			this->label6->TabIndex = 9;
 			this->label6->Text = L"Author";
 			// 
@@ -246,8 +246,10 @@ namespace LibraryManagementSystem {
 			this->pages->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->pages->Location = System::Drawing::Point(431, 122);
+			this->pages->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
+			this->pages->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			this->pages->Name = L"pages";
-			this->pages->Size = System::Drawing::Size(334, 23);
+			this->pages->Size = System::Drawing::Size(334, 41);
 			this->pages->TabIndex = 17;
 			this->pages->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			// 
@@ -257,8 +259,9 @@ namespace LibraryManagementSystem {
 			this->qty->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->qty->Location = System::Drawing::Point(431, 171);
+			this->qty->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			this->qty->Name = L"qty";
-			this->qty->Size = System::Drawing::Size(334, 23);
+			this->qty->Size = System::Drawing::Size(334, 41);
 			this->qty->TabIndex = 18;
 			this->qty->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			// 
