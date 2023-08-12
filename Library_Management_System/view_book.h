@@ -216,6 +216,8 @@ namespace LibraryManagementSystem {
 			// Read data from db into linked list
 			BookList = ReadBooksDataFromDB();
 
+			dataGridView1->
+
 			// Travese, Display data from linked list into datagridview
 			current = BookList;
 			while (current != nullptr) {
