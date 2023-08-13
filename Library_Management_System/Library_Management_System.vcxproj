@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="Add_Book.cpp" />
     <ClCompile Include="Dashboard.cpp" />
+    <ClCompile Include="Update_Delete_Book.cpp" />
     <ClCompile Include="Linked_List.cpp" />
     <ClCompile Include="Login_Form.cpp" />
     <ClCompile Include="Database.cpp" />
@@ -137,6 +138,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Dashboard.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Update_Delete_Book.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Linked_List.h" />
@@ -156,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Update_Delete_Book.resx">
+      <DependentUpon>Update_Delete_Book.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login_Form.resx">
       <DependentUpon>Login_Form.h</DependentUpon>

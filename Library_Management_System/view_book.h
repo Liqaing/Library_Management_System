@@ -3,6 +3,8 @@
 #include "Linked_List.h"
 #include <msclr/marshal_cppstd.h>
 
+#include "Update_Delete_Book.h"
+
 // Forward Declaration
 Node<Book> *ReadBooksDataFromDB();
 
@@ -37,6 +39,7 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::Button^ Refresh;
 	private: System::Windows::Forms::ComboBox^ Sort;
 	private: System::Windows::Forms::Label^ label3;
+
 
 
 	public:
@@ -114,11 +117,12 @@ namespace LibraryManagementSystem {
 				this->BookID,
 					this->Title, this->pages, this->qty, this->Author
 			});
-			this->dataGridView1->Location = System::Drawing::Point(21, 85);
+			this->dataGridView1->Location = System::Drawing::Point(21, 86);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
-			this->dataGridView1->Size = System::Drawing::Size(1013, 544);
+			this->dataGridView1->Size = System::Drawing::Size(1013, 468);
 			this->dataGridView1->TabIndex = 2;
+			this->dataGridView1->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &view_book::dataGridView1_CellDoubleClick);
 			// 
 			// BookID
 			// 
@@ -161,7 +165,7 @@ namespace LibraryManagementSystem {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(481, 7);
+			this->label1->Location = System::Drawing::Point(489, 7);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(110, 29);
 			this->label1->TabIndex = 3;
@@ -179,7 +183,7 @@ namespace LibraryManagementSystem {
 			// SearchTitle
 			// 
 			this->SearchTitle->BackColor = System::Drawing::Color::DeepSkyBlue;
-			this->SearchTitle->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->SearchTitle->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->SearchTitle->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->SearchTitle->ForeColor = System::Drawing::Color::White;
@@ -206,7 +210,7 @@ namespace LibraryManagementSystem {
 			// SearchAuthor
 			// 
 			this->SearchAuthor->BackColor = System::Drawing::Color::DeepSkyBlue;
-			this->SearchAuthor->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->SearchAuthor->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->SearchAuthor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->SearchAuthor->ForeColor = System::Drawing::Color::White;
@@ -221,7 +225,7 @@ namespace LibraryManagementSystem {
 			// Refresh
 			// 
 			this->Refresh->BackColor = System::Drawing::Color::DeepSkyBlue;
-			this->Refresh->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->Refresh->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->Refresh->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Refresh->ForeColor = System::Drawing::Color::White;
@@ -235,7 +239,6 @@ namespace LibraryManagementSystem {
 			// 
 			// Sort
 			// 
-			this->Sort->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->Sort->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->Sort->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -256,7 +259,7 @@ namespace LibraryManagementSystem {
 			this->label3->BackColor = System::Drawing::Color::Transparent;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(871, 53);
+			this->label3->Location = System::Drawing::Point(871, 51);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(36, 18);
 			this->label3->TabIndex = 10;
@@ -265,7 +268,8 @@ namespace LibraryManagementSystem {
 			// view_book
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
-			this->ClientSize = System::Drawing::Size(1064, 681);
+			this->AutoScroll = true;
+			this->ClientSize = System::Drawing::Size(1080, 720);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->Sort);
 			this->Controls->Add(this->Refresh);
@@ -304,18 +308,19 @@ namespace LibraryManagementSystem {
 			// Cleare data gird view
 			dataGridView1->Rows->Clear();
 			
-			SearchBookTitle(dataGridView1, BookList, SearchData);
+			SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchTitle);
 		}
 
 		// Search for authour
 		private: System::Void SearchAuthor_Click(System::Object^ sender, System::EventArgs^ e) {
+
 			// Retrive the input
 			std::string SearchData = msclr::interop::marshal_as<std::string>(UserInput->Text);
 
 			// Cleare data gird view
 			dataGridView1->Rows->Clear();
 
-			SearchBookAuthor(dataGridView1, BookList, SearchData);
+			SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchAuthor);
 		}
 		
 		// Display all book
@@ -332,20 +337,17 @@ namespace LibraryManagementSystem {
 			
 			// Check for item to sort by
 			if (SelectedItem == "By ID") {
-				
 				// Sort
 				BookList = SortBookLinkedList(BookList, CompareBookID);
 				
 				// Display again
 				dataGridView1->Rows->Clear();
 				TraverseBookLinkedList(dataGridView1, BookList);
-					
 			}
 			else if (SelectedItem == "By Title") {
 				BookList = SortBookLinkedList(BookList, CompareBookTitle);
 				dataGridView1->Rows->Clear();
 				TraverseBookLinkedList(dataGridView1, BookList);
-
 			}
 			else if (SelectedItem == "By Pages") {
 				BookList = SortBookLinkedList(BookList, CompareBookPages);
@@ -361,6 +363,30 @@ namespace LibraryManagementSystem {
 				BookList = SortBookLinkedList(BookList, CompareBookAuthor);
 				dataGridView1->Rows->Clear();
 				TraverseBookLinkedList(dataGridView1, BookList);
+			}
+		}
+		
+		// Cell click handler
+		private: System::Void dataGridView1_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+			// Check if a valid row is click (exclude header row)
+
+			if (e->RowIndex >= 0 && e->ColumnIndex >= 0) {
+				// Retirve the selected row
+				DataGridViewRow^ SelectedRow = dataGridView1->Rows[e->RowIndex];
+				String^ id = SelectedRow->Cells[0]->Value->ToString();
+				MessageBox::Show("Clicked row data: " + id);
+				
+				// Open edit and delete form
+				//Update_Delete_Book^ update_delete_form = gcnew Update_Delete_Book;
+				Update_Delete_Book^ update_delete_form = gcnew Update_Delete_Book(
+					SelectedRow->Cells[0]->Value->ToString(),
+					SelectedRow->Cells[1]->Value->ToString(),
+					SelectedRow->Cells[2]->Value->ToString(),
+					SelectedRow->Cells[3]->Value->ToString(),
+					SelectedRow->Cells[4]->Value->ToString()
+				);
+				update_delete_form->ShowDialog();
+
 			}
 		}
 	};

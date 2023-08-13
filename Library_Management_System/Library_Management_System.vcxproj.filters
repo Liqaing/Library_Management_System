@@ -36,6 +36,9 @@
     <ClCompile Include="Linked_List.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Update_Delete_Book.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Login_Form.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Struct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Update_Delete_Book.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

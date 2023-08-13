@@ -85,7 +85,8 @@ void TraverseBookLinkedList(System::Windows::Forms::DataGridView^ dataGridview, 
 		dataGridview->Rows->Add(
 			current->data.book_id,
 			msclr::interop::marshal_as<System::String^>(current->data.title),
-			current->data.pages_num, current->data.qty,
+			current->data.pages_num,
+			current->data.qty,
 			msclr::interop::marshal_as<System::String^>(current->data.author)
 		);
 		current = current->next;
@@ -120,42 +121,32 @@ Node<T> *SearchLinkedList(Node<T> *head, std::string SearchData) {
 */
 
 // Search for book title in linked list and display it to data grid view
+
 template <typename T>
-void SearchBookTitle(System::Windows::Forms::DataGridView^ dataGridView, Node<T> *head, std::string SearchTitle) {
+bool CompareSearchTitle(T book, std::string SearchTitle) {
+	return (book.title == SearchTitle);
+}
+
+template <typename T>
+bool CompareSearchAuthor(T book, std::string SearchAuthor) {
+	return (book.author == SearchAuthor);
+}
+
+template <typename T>
+void SearchBookLinkedList(System::Windows::Forms::DataGridView^ dataGridView, Node<T> *head, std::string SearchData, bool (*comp)(T, std::string)) {
 	
 	Node<T> *current = head;
 
 	while (current != nullptr) {
-		// if found
-		if (current->data.title == SearchTitle) {
+
+		// Call function to compare data
+		if (comp(current->data, SearchData)) {
+		
 			// add row to data grid view
 			dataGridView->Rows->Add(
 				current->data.book_id,
 				msclr::interop::marshal_as<System::String^>(current->data.title),
 				current->data.pages_num, current->data.qty,
-				msclr::interop::marshal_as<System::String^>(current->data.author)
-			);
-		}
-		current = current->next;
-	}
-	return;
-}
-
-// Search for book author
-template <typename T>
-void SearchBookAuthor(System::Windows::Forms::DataGridView^ dataGridView, Node<T>* head, std::string SearchTitle) {
-
-	Node<T>* current = head;
-
-	while (current != nullptr) {
-		// if found
-		if (current->data.author == SearchTitle) {
-			// add row to data grid view
-			dataGridView->Rows->Add(
-				current->data.book_id,
-				msclr::interop::marshal_as<System::String^>(current->data.title),
-				current->data.pages_num,
-				current->data.qty,
 				msclr::interop::marshal_as<System::String^>(current->data.author)
 			);
 		}
@@ -214,32 +205,3 @@ Node<T>* SortBookLinkedList(Node<T>* head, bool (*comp)(T, T)) {
 	}
 	return head;
 }
-
-/*
-template <typename T>
-void SortBookLinkedList(Node<T>* head, bool (*func)(T, T)) {
-	if (head == nullptr || head->next == nullptr) {
-		return; // Nothing to sort
-	}
-
-	bool swapped;
-	Node<T>* current;
-	Node<T>* last = nullptr;
-
-	do {
-		swapped = false;
-		current = head;
-
-		while (current->next != last) {
-			if (func(current->data, current->next->data)) {
-				// Swap data between current and next nodes
-				T temp = current->data;
-				current->data = current->next->data;
-				current->next->data = temp;
-				swapped = true;
-			}
-			current = current->next;
-		}
-		last = current;
-	} while (swapped);
-} */
