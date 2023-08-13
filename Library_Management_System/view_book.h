@@ -36,6 +36,7 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::Button^ SearchAuthor;
 	private: System::Windows::Forms::Button^ Refresh;
 	private: System::Windows::Forms::ComboBox^ Sort;
+	private: System::Windows::Forms::Label^ label3;
 
 
 	public:
@@ -100,6 +101,7 @@ namespace LibraryManagementSystem {
 			this->SearchAuthor = (gcnew System::Windows::Forms::Button());
 			this->Refresh = (gcnew System::Windows::Forms::Button());
 			this->Sort = (gcnew System::Windows::Forms::ComboBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -248,10 +250,23 @@ namespace LibraryManagementSystem {
 			this->Sort->TabIndex = 9;
 			this->Sort->SelectedIndexChanged += gcnew System::EventHandler(this, &view_book::Sort_SelectedIndexChanged);
 			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->BackColor = System::Drawing::Color::Transparent;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label3->Location = System::Drawing::Point(871, 53);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(36, 18);
+			this->label3->TabIndex = 10;
+			this->label3->Text = L"Sort";
+			// 
 			// view_book
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(1064, 681);
+			this->Controls->Add(this->label3);
 			this->Controls->Add(this->Sort);
 			this->Controls->Add(this->Refresh);
 			this->Controls->Add(this->SearchAuthor);
@@ -313,15 +328,37 @@ namespace LibraryManagementSystem {
 		private: System::Void Sort_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 
 			// Retrive select item from combo box
-			std::string selectedItem = msclr::interop::marshal_as<std::string>(Sort->SelectedItem->ToString());
+			std::string SelectedItem = msclr::interop::marshal_as<std::string>(Sort->SelectedItem->ToString());
 			
 			// Check for item to sort by
-			if (selectedItem == "By ID") {
+			if (SelectedItem == "By ID") {
 				
 				// Sort
-				BookList = SortBookLinkedList(BookList);
+				BookList = SortBookLinkedList(BookList, CompareBookID);
 				
 				// Display again
+				dataGridView1->Rows->Clear();
+				TraverseBookLinkedList(dataGridView1, BookList);
+					
+			}
+			else if (SelectedItem == "By Title") {
+				BookList = SortBookLinkedList(BookList, CompareBookTitle);
+				dataGridView1->Rows->Clear();
+				TraverseBookLinkedList(dataGridView1, BookList);
+
+			}
+			else if (SelectedItem == "By Pages") {
+				BookList = SortBookLinkedList(BookList, CompareBookPages);
+				dataGridView1->Rows->Clear();
+				TraverseBookLinkedList(dataGridView1, BookList);
+			}
+			else if (SelectedItem == "By Quantity") {
+				BookList = SortBookLinkedList(BookList, CompareBookQty);
+				dataGridView1->Rows->Clear();
+				TraverseBookLinkedList(dataGridView1, BookList);
+			}
+			else if (SelectedItem == "By Author") {
+				BookList = SortBookLinkedList(BookList, CompareBookAuthor);
 				dataGridView1->Rows->Clear();
 				TraverseBookLinkedList(dataGridView1, BookList);
 			}

@@ -165,16 +165,35 @@ void SearchBookAuthor(System::Windows::Forms::DataGridView^ dataGridView, Node<T
 }
 
 // Sort Books linked list
-/*
+
 template <typename T>
 bool CompareBookID(T book1, T book2) {
 	return (book1.book_id > book2.book_id);
-} */
-
-// Bubble sort
+}
 
 template <typename T>
-Node<T> *SortBookLinkedList(Node<T>* head) {
+bool CompareBookTitle(T book1, T book2) {
+	return (book1.title > book2.title);
+}
+
+template <typename T>
+bool CompareBookPages(T book1, T book2) {
+	return (book1.pages_num > book2.pages_num);
+}
+
+template <typename T>
+bool CompareBookQty(T book1, T book2) {
+	return (book1.qty > book2.qty);
+}
+
+template <typename T>
+bool CompareBookAuthor(T book1, T book2) {
+	return (book1.author > book2.author);
+}
+
+// Bubble sort
+template <typename T>
+Node<T>* SortBookLinkedList(Node<T>* head, bool (*comp)(T, T)) {
 	
 	Node<T>* current = nullptr;
 	Node<T>* next_node = nullptr;
@@ -184,7 +203,7 @@ Node<T> *SortBookLinkedList(Node<T>* head) {
 		for (next_node = current->next; next_node != nullptr; next_node = next_node->next) {
 			
 			// Pass data into function for comparison
-			if (current->data.book_id > next_node->data.book_id) {
+			if (comp(current->data, next_node->data)) {
 
 				// Swap data between current and next nodes
 				temp.data = current->data;
