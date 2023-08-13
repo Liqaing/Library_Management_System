@@ -83,7 +83,7 @@ void TraverseBookLinkedList(System::Windows::Forms::DataGridView^ dataGridview, 
 	while (current != nullptr) {
 		// Set text for each columns in row
 		dataGridview->Rows->Add(
-			current->data.book_id,
+			current->data.id,
 			msclr::interop::marshal_as<System::String^>(current->data.title),
 			current->data.pages_num,
 			current->data.qty,
@@ -92,7 +92,24 @@ void TraverseBookLinkedList(System::Windows::Forms::DataGridView^ dataGridview, 
 		current = current->next;
 	}
 	return;
-}	
+}
+
+// Display book in add_book.h
+template <typename T>
+void TraverseBookLinkedListInAddBook(System::Windows::Forms::DataGridView^ dataGridview, Node<T>* head) {
+	Node<T>* current = head;
+	while (current != nullptr) {
+		// Set text for each columns in row
+		dataGridview->Rows->Add(
+			msclr::interop::marshal_as<System::String^>(current->data.title),
+			current->data.pages_num,
+			current->data.qty,
+			msclr::interop::marshal_as<System::String^>(current->data.author)
+		);
+		current = current->next;
+	}
+	return;
+}
 
 
 // Search Book linked list
@@ -120,7 +137,7 @@ Node<T> *SearchLinkedList(Node<T> *head, std::string SearchData) {
 }
 */
 
-// Search for book title in linked list and display it to data grid view
+// Search
 
 template <typename T>
 bool CompareSearchTitle(T book, std::string SearchTitle) {
@@ -132,6 +149,7 @@ bool CompareSearchAuthor(T book, std::string SearchAuthor) {
 	return (book.author == SearchAuthor);
 }
 
+// Search linked list and display value to datagridview
 template <typename T>
 void SearchBookLinkedList(System::Windows::Forms::DataGridView^ dataGridView, Node<T> *head, std::string SearchData, bool (*comp)(T, std::string)) {
 	
@@ -144,7 +162,7 @@ void SearchBookLinkedList(System::Windows::Forms::DataGridView^ dataGridView, No
 		
 			// add row to data grid view
 			dataGridView->Rows->Add(
-				current->data.book_id,
+				current->data.id,
 				msclr::interop::marshal_as<System::String^>(current->data.title),
 				current->data.pages_num, current->data.qty,
 				msclr::interop::marshal_as<System::String^>(current->data.author)
@@ -155,11 +173,31 @@ void SearchBookLinkedList(System::Windows::Forms::DataGridView^ dataGridView, No
 	return;
 }
 
+// Search linked list and return value
+template <typename T>
+Node<T>* SearchNodeLinkedList(Node<T>* head, int SearchID) {
+	
+	Node<T>* current = head;
+
+	while (current != nullptr) {
+
+		// Call funtion to compare data
+		if (current->data.id == SearchID) {
+		
+			// Return founded node
+			return current;
+		}
+		current = current->next;
+	}
+	return nullptr;
+}
+
+
 // Sort Books linked list
 
 template <typename T>
 bool CompareBookID(T book1, T book2) {
-	return (book1.book_id > book2.book_id);
+	return (book1.id > book2.id);
 }
 
 template <typename T>
@@ -182,9 +220,9 @@ bool CompareBookAuthor(T book1, T book2) {
 	return (book1.author > book2.author);
 }
 
-// Bubble sort
+// Sort
 template <typename T>
-Node<T>* SortBookLinkedList(Node<T>* head, bool (*comp)(T, T)) {
+Node<T>* SortLinkedList(Node<T>* head, bool (*comp)(T, T)) {
 	
 	Node<T>* current = nullptr;
 	Node<T>* next_node = nullptr;
@@ -204,4 +242,56 @@ Node<T>* SortBookLinkedList(Node<T>* head, bool (*comp)(T, T)) {
 		}
 	}
 	return head;
+}
+
+
+// Delete node from linked list
+template <typename T>
+Node<T> *DeleteNodeFromLinkedList(Node<T>* head, int DeleteID) {
+
+	Node<T>* current = head;
+
+	// Get pointer to element for deletiom
+	Node<T> *Node = SearchNodeLinkedList(head, DeleteID);
+
+	if (Node == nullptr) {
+		return head;
+	}
+
+	// Delete at beginning
+	if (Node == head) {
+
+		// move head
+		head = head->next;
+		// free temp
+		FreeNode(Node);
+		
+		return head;
+	}
+
+	// Delete at the end
+	else if (Node->next == nullptr) {
+
+		// loop to before the delete node
+		while (current->next != Node) {
+			current = current->next;
+		}
+
+		current->next = nullptr;
+		FreeNode(Node);
+		return head;
+	}
+	
+	// Delete somewhere in linked list
+	else {
+		// loop to before the delete node
+		while (current->next != Node) {
+			current = current->next;
+		}
+
+		// current point to where node point to
+		current->next = Node->next;
+		FreeNode(Node);
+		return head;
+	}
 }

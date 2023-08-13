@@ -29,6 +29,11 @@ namespace LibraryManagementSystem {
 	private:
 		Node<Book> *BookList = nullptr;
 	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Title;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn3;
 		   Node<Book>* current = nullptr;
 
 	public:
@@ -76,12 +81,12 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::Button^ save;
 	private: System::Windows::Forms::NumericUpDown^ pages;
 	private: System::Windows::Forms::NumericUpDown^ qty;
-	private: System::Windows::Forms::ListView^ listView1;
 
-	private: System::Windows::Forms::ColumnHeader^ ListViewTitle;
-	private: System::Windows::Forms::ColumnHeader^ ListViewPages;
-	private: System::Windows::Forms::ColumnHeader^ ListViewQty;
-	private: System::Windows::Forms::ColumnHeader^ ListViewAuthor;
+
+
+
+
+
 
 
 
@@ -121,14 +126,15 @@ namespace LibraryManagementSystem {
 			this->save = (gcnew System::Windows::Forms::Button());
 			this->pages = (gcnew System::Windows::Forms::NumericUpDown());
 			this->qty = (gcnew System::Windows::Forms::NumericUpDown());
-			this->listView1 = (gcnew System::Windows::Forms::ListView());
-			this->ListViewTitle = (gcnew System::Windows::Forms::ColumnHeader());
-			this->ListViewPages = (gcnew System::Windows::Forms::ColumnHeader());
-			this->ListViewQty = (gcnew System::Windows::Forms::ColumnHeader());
-			this->ListViewAuthor = (gcnew System::Windows::Forms::ColumnHeader());
 			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->Title = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dataGridViewTextBoxColumn1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dataGridViewTextBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dataGridViewTextBoxColumn3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pages))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->qty))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -256,44 +262,6 @@ namespace LibraryManagementSystem {
 			this->qty->TabIndex = 18;
 			this->qty->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			// 
-			// listView1
-			// 
-			this->listView1->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
-				this->ListViewTitle, this->ListViewPages,
-					this->ListViewQty, this->ListViewAuthor
-			});
-			this->listView1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->listView1->HideSelection = false;
-			this->listView1->Location = System::Drawing::Point(242, 359);
-			this->listView1->Name = L"listView1";
-			this->listView1->Size = System::Drawing::Size(705, 233);
-			this->listView1->TabIndex = 19;
-			this->listView1->UseCompatibleStateImageBehavior = false;
-			this->listView1->View = System::Windows::Forms::View::Details;
-			this->listView1->SelectedIndexChanged += gcnew System::EventHandler(this, &add_book::listView1_SelectedIndexChanged);
-			// 
-			// ListViewTitle
-			// 
-			this->ListViewTitle->Text = L"Title";
-			this->ListViewTitle->Width = 285;
-			// 
-			// ListViewPages
-			// 
-			this->ListViewPages->Text = L"Pages";
-			this->ListViewPages->Width = 73;
-			// 
-			// ListViewQty
-			// 
-			this->ListViewQty->Text = L"Qty";
-			this->ListViewQty->Width = 67;
-			// 
-			// ListViewAuthor
-			// 
-			this->ListViewAuthor->Text = L"Author";
-			this->ListViewAuthor->Width = 276;
-			// 
 			// label6
 			// 
 			this->label6->Anchor = System::Windows::Forms::AnchorStyles::Top;
@@ -306,11 +274,56 @@ namespace LibraryManagementSystem {
 			this->label6->TabIndex = 9;
 			this->label6->Text = L"Author";
 			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->AllowUserToAddRows = false;
+			this->dataGridView1->AllowUserToDeleteRows = false;
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+				this->Title,
+					this->dataGridViewTextBoxColumn1, this->dataGridViewTextBoxColumn2, this->dataGridViewTextBoxColumn3
+			});
+			this->dataGridView1->Location = System::Drawing::Point(185, 343);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->ReadOnly = true;
+			this->dataGridView1->Size = System::Drawing::Size(840, 193);
+			this->dataGridView1->TabIndex = 19;
+			// 
+			// Title
+			// 
+			this->Title->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Title->HeaderText = L"Title";
+			this->Title->Name = L"Title";
+			this->Title->ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn1
+			// 
+			this->dataGridViewTextBoxColumn1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::None;
+			this->dataGridViewTextBoxColumn1->HeaderText = L"Pages";
+			this->dataGridViewTextBoxColumn1->Name = L"dataGridViewTextBoxColumn1";
+			this->dataGridViewTextBoxColumn1->ReadOnly = true;
+			this->dataGridViewTextBoxColumn1->Width = 194;
+			// 
+			// dataGridViewTextBoxColumn2
+			// 
+			this->dataGridViewTextBoxColumn2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::None;
+			this->dataGridViewTextBoxColumn2->HeaderText = L"Quantity";
+			this->dataGridViewTextBoxColumn2->Name = L"dataGridViewTextBoxColumn2";
+			this->dataGridViewTextBoxColumn2->ReadOnly = true;
+			this->dataGridViewTextBoxColumn2->Width = 194;
+			// 
+			// dataGridViewTextBoxColumn3
+			// 
+			this->dataGridViewTextBoxColumn3->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->dataGridViewTextBoxColumn3->HeaderText = L"Author";
+			this->dataGridViewTextBoxColumn3->Name = L"dataGridViewTextBoxColumn3";
+			this->dataGridViewTextBoxColumn3->ReadOnly = true;
+			// 
 			// add_book
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(1080, 720);
-			this->Controls->Add(this->listView1);
+			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->qty);
 			this->Controls->Add(this->pages);
 			this->Controls->Add(this->save);
@@ -329,6 +342,7 @@ namespace LibraryManagementSystem {
 			this->Text = L"add_book";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pages))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->qty))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -344,7 +358,7 @@ namespace LibraryManagementSystem {
 				// Insert booklist to database
 				InsertBookLinkedListIntoDB(this->BookList);
 				
-				listView1->Items->Clear();
+				dataGridView1->Rows->Clear();
 				
 				// Free all node in booklist after using it
 				ClearLinkedList(this->BookList);
@@ -384,33 +398,11 @@ namespace LibraryManagementSystem {
 			// Add book into linked list
 			this->BookList = InsertLinkedList(this->BookList, book);
 			
-			// Clear linked list view subitem
-			listView1->Items->Clear();
+			// Clear datagridview
+			dataGridView1->Rows->Clear();
 
 			// Display data in linked list
-			this->current = this->BookList;
-			while (this->current != nullptr)
-			{
-				// Create list view item
-				ListViewItem^ item = gcnew ListViewItem();
-				
-				item->SubItems->Clear();
-
-				// Set text for each subitem 
-				item->Text = msclr::interop::marshal_as<System::String^>(current->data.title); // First column
-				
-				System::String^ pages = System::Convert::ToString(current->data.pages_num);
-				System::String^ qty = System::Convert::ToString(current->data.qty);
-				item->SubItems->Add(pages);
-				item->SubItems->Add(qty);
-
-				item->SubItems->Add(msclr::interop::marshal_as<System::String^>(current->data.author));
-				
-				// Add item into list view
-				listView1->Items->Add(item);
-
-				current = current->next;
-			}
+			TraverseBookLinkedListInAddBook(dataGridView1, BookList);
 
 			// Clear textbox
 			this->BookTitle->Text = "";

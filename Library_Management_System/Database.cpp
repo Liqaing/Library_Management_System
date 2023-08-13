@@ -70,6 +70,7 @@ void InsertBookDB(Book book) {
 	sqlite3_close(db);
 }
 
+// Read book data from DB, return linked list head
 Node<Book> *ReadBooksDataFromDB() {
 	sqlite3* db;
 	int result = sqlite3_open(LibraryDB, &db);
@@ -80,8 +81,10 @@ Node<Book> *ReadBooksDataFromDB() {
 
 	// Select query
 	const char* SelectBooksQuery = "SELECT * FROM Books";
+
 	// Pointer to compiled query
 	sqlite3_stmt *stmt = NULL;
+	
 	// Compile Query
 	result = sqlite3_prepare_v2(db, SelectBooksQuery, -1, &stmt, NULL);
 	if (result != SQLITE_OK) {
@@ -95,7 +98,7 @@ Node<Book> *ReadBooksDataFromDB() {
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
 		Book book;
 		// Retrive data from the return row and convert it from "const unsigned char *" to 
-		book.book_id = sqlite3_column_int(stmt, 0);
+		book.id = sqlite3_column_int(stmt, 0);
 		book.title = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
 		book.pages_num = sqlite3_column_int(stmt, 2);
 		book.qty = sqlite3_column_int(stmt, 3);
@@ -107,4 +110,41 @@ Node<Book> *ReadBooksDataFromDB() {
 	sqlite3_close(db);
 
 	return head;
+}
+
+// Delete Book from db
+void DeleteBookFromDB(int id) {
+	sqlite3* db;
+	int result = sqlite3_open(LibraryDB, &db);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+	
+	// Delete query
+	const char* DeleteBookQuery = "DELETE FROM Books WHERE id = ?";
+
+	// Pointer to compiled query
+	sqlite3_stmt* DeleteStmt = NULL;
+
+	// Compile Query
+	result = sqlite3_prepare_v2(db, DeleteBookQuery, -1, &DeleteStmt, NULL);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Binding value into sql parameter for Insert Query
+	sqlite3_bind_int(DeleteStmt, 1, id);
+
+	// Execute the query
+	result = sqlite3_step(DeleteStmt);
+	if (result != SQLITE_DONE) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Clean up memory after prepare statement is done
+	sqlite3_finalize(DeleteStmt);
+	sqlite3_close(db);
 }

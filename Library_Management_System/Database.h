@@ -4,3 +4,4 @@
 void InitializeDatabase();
 void InsertBookDB(Book book);
 Node<Book>* ReadBooksDataFromDB();
+void DeleteBookFromDB(int id);

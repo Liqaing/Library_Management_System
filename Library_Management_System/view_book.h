@@ -338,29 +338,29 @@ namespace LibraryManagementSystem {
 			// Check for item to sort by
 			if (SelectedItem == "By ID") {
 				// Sort
-				BookList = SortBookLinkedList(BookList, CompareBookID);
+				BookList = SortLinkedList(BookList, CompareBookID);
 				
 				// Display again
 				dataGridView1->Rows->Clear();
 				TraverseBookLinkedList(dataGridView1, BookList);
 			}
 			else if (SelectedItem == "By Title") {
-				BookList = SortBookLinkedList(BookList, CompareBookTitle);
+				BookList = SortLinkedList(BookList, CompareBookTitle);
 				dataGridView1->Rows->Clear();
 				TraverseBookLinkedList(dataGridView1, BookList);
 			}
 			else if (SelectedItem == "By Pages") {
-				BookList = SortBookLinkedList(BookList, CompareBookPages);
+				BookList = SortLinkedList(BookList, CompareBookPages);
 				dataGridView1->Rows->Clear();
 				TraverseBookLinkedList(dataGridView1, BookList);
 			}
 			else if (SelectedItem == "By Quantity") {
-				BookList = SortBookLinkedList(BookList, CompareBookQty);
+				BookList = SortLinkedList(BookList, CompareBookQty);
 				dataGridView1->Rows->Clear();
 				TraverseBookLinkedList(dataGridView1, BookList);
 			}
 			else if (SelectedItem == "By Author") {
-				BookList = SortBookLinkedList(BookList, CompareBookAuthor);
+				BookList = SortLinkedList(BookList, CompareBookAuthor);
 				dataGridView1->Rows->Clear();
 				TraverseBookLinkedList(dataGridView1, BookList);
 			}
@@ -368,25 +368,35 @@ namespace LibraryManagementSystem {
 		
 		// Cell click handler
 		private: System::Void dataGridView1_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+			
 			// Check if a valid row is click (exclude header row)
-
 			if (e->RowIndex >= 0 && e->ColumnIndex >= 0) {
+
 				// Retirve the selected row
 				DataGridViewRow^ SelectedRow = dataGridView1->Rows[e->RowIndex];
-				String^ id = SelectedRow->Cells[0]->Value->ToString();
-				MessageBox::Show("Clicked row data: " + id);
 				
-				// Open edit and delete form
-				//Update_Delete_Book^ update_delete_form = gcnew Update_Delete_Book;
+				// Open edit_delete form
 				Update_Delete_Book^ update_delete_form = gcnew Update_Delete_Book(
+					
+					// Pass pointer to book linked list
+					BookList,
+		
 					SelectedRow->Cells[0]->Value->ToString(),
 					SelectedRow->Cells[1]->Value->ToString(),
 					SelectedRow->Cells[2]->Value->ToString(),
 					SelectedRow->Cells[3]->Value->ToString(),
 					SelectedRow->Cells[4]->Value->ToString()
 				);
+
+				// Show list
 				update_delete_form->ShowDialog();
 
+				// Retrive booklist pointer back
+				this->BookList = update_delete_form->GetBookLinkedList();
+
+				// Cleare data gird view
+				dataGridView1->Rows->Clear();
+				TraverseBookLinkedList(dataGridView1, BookList);
 			}
 		}
 	};

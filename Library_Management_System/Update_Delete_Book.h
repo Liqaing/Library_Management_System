@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Struct.h"
+#include "Linked_List.h"
+
 namespace LibraryManagementSystem {
 
 	using namespace System;
@@ -14,7 +17,13 @@ namespace LibraryManagementSystem {
 	/// </summary>
 	public ref class Update_Delete_Book : public System::Windows::Forms::Form
 	{
+
+	// Declare variable
+	private:
+		Node<Book>* BookList = nullptr;
+
 	public:
+
 		Update_Delete_Book(void)
 		{
 			InitializeComponent();
@@ -23,16 +32,19 @@ namespace LibraryManagementSystem {
 			//
 		}
 		
-		Update_Delete_Book(String^ book_id, String^ title, String^ pages, String^ qty, String^ author)
+		//
+		Update_Delete_Book(Node<Book>* booklist, String^ book_id, String^ title, String^ pages, String^ qty, String^ author)
 		{
 			InitializeComponent();
+
+			// Get pointer to book linked list
+			this->BookList = booklist;
+			
 			this->BookID->Text = book_id;
 			this->BookTitle->Text = title;
 			this->pages->Text = pages;
 			this->qty->Text = qty;
 			this->author->Text = author;
-
-			
 			//
 			//TODO: Add the constructor code here
 			//
@@ -245,6 +257,7 @@ namespace LibraryManagementSystem {
 			this->button2->TabIndex = 25;
 			this->button2->Text = L"Delete";
 			this->button2->UseVisualStyleBackColor = false;
+			this->button2->Click += gcnew System::EventHandler(this, &Update_Delete_Book::button2_Click);
 			// 
 			// BookID
 			// 
@@ -297,8 +310,27 @@ namespace LibraryManagementSystem {
 
 		}
 #pragma endregion
+
+		// Function to retrive booklist pointer
+		public: Node<Book>* GetBookLinkedList() {
+			return BookList;
+		}
+
 		// Close form
 		private: System::Void add_Click1(System::Object^ sender, System::EventArgs^ e) {
+			this->Close();
+		}
+
+		// Delete Node
+		private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+			// Delete node form Book linked list
+			int id = System::Convert::ToInt32(BookID->Text);
+			this->BookList = DeleteNodeFromLinkedList(BookList, id);
+			
+			// Delete data from data base
+			DeleteBookFromDB(id);
+
 			this->Close();
 		}
 	};
