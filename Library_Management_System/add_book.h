@@ -335,10 +335,14 @@ namespace LibraryManagementSystem {
 		// Note: Can't add item with same book id into database
 
 		private: System::Void save_Click_1(System::Object^ sender, System::EventArgs^ e) {
+			// If booklist is not null
 			if (this->BookList != nullptr) {
+			
 				// Insert booklist to database
 				InsertBookLinkedListIntoDB(this->BookList);
+				
 				listView1->Items->Clear();
+				
 				// Free all node in booklist after using it
 				ClearLinkedList(this->BookList);
 				this->BookList = nullptr;
@@ -347,7 +351,6 @@ namespace LibraryManagementSystem {
 				MessageBox::Show("Linked List is empty, Nothing to save");
 				return;
 			}
-			//this->label8->Text = msclr::interop::marshal_as<System::String^>(BookListHead->data.author);
 		}
 
 		private: System::Void add_Click_1(System::Object^ sender, System::EventArgs^ e) {

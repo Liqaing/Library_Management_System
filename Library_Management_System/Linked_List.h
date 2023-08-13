@@ -8,11 +8,6 @@
 // Forward Declaration
 //void InsertBookDB(Book book);
 
-/*
-	Note:
-	- head = header of linked list
-*/
-
 // Initialize node
 template <typename T>
 Node<T>* InitializeLinkedList() {
@@ -46,7 +41,6 @@ Node<T>* CreateLinkedList(Node<T> *head, T data) {
 }
 */
 
-
 // Insert node into linked list
 template <typename T>
 Node<T> *InsertLinkedList(Node<T> *head, T data) {
@@ -57,7 +51,6 @@ Node<T> *InsertLinkedList(Node<T> *head, T data) {
 	head = NewNode;
 	return head;
 }
-
 
 // Insert linked list of books into database
 template <typename T>
@@ -81,6 +74,25 @@ void ClearLinkedList(Node<T> *head) {
 		free(Node);
 	}
 }
+
+
+// Display book in view_book.h
+template <typename T>
+void TraverseBookLinkedList(System::Windows::Forms::DataGridView^ dataGridview, Node<T>* head) {
+	Node<T> *current = head;
+	while (current != nullptr) {
+		// Set text for each columns in row
+		dataGridview->Rows->Add(
+			current->data.book_id,
+			msclr::interop::marshal_as<System::String^>(current->data.title),
+			current->data.pages_num, current->data.qty,
+			msclr::interop::marshal_as<System::String^>(current->data.author)
+		);
+		current = current->next;
+	}
+	return;
+}	
+
 
 // Search Book linked list
 /* Take one input but search for in both title and author column
@@ -142,7 +154,8 @@ void SearchBookAuthor(System::Windows::Forms::DataGridView^ dataGridView, Node<T
 			dataGridView->Rows->Add(
 				current->data.book_id,
 				msclr::interop::marshal_as<System::String^>(current->data.title),
-				current->data.pages_num, current->data.qty,
+				current->data.pages_num,
+				current->data.qty,
 				msclr::interop::marshal_as<System::String^>(current->data.author)
 			);
 		}
@@ -150,3 +163,64 @@ void SearchBookAuthor(System::Windows::Forms::DataGridView^ dataGridView, Node<T
 	}
 	return;
 }
+
+// Sort Books linked list
+/*
+template <typename T>
+bool CompareBookID(T book1, T book2) {
+	return (book1.book_id > book2.book_id);
+} */
+
+// Bubble sort
+
+template <typename T>
+Node<T> *SortBookLinkedList(Node<T>* head) {
+	
+	Node<T>* current = nullptr;
+	Node<T>* next_node = nullptr;
+	Node<T> temp;
+
+	for (current = head; current != nullptr; current = current->next) {
+		for (next_node = current->next; next_node != nullptr; next_node = next_node->next) {
+			
+			// Pass data into function for comparison
+			if (current->data.book_id > next_node->data.book_id) {
+
+				// Swap data between current and next nodes
+				temp.data = current->data;
+				current->data = next_node->data;
+				next_node->data = temp.data;
+			}
+		}
+	}
+	return head;
+}
+
+/*
+template <typename T>
+void SortBookLinkedList(Node<T>* head, bool (*func)(T, T)) {
+	if (head == nullptr || head->next == nullptr) {
+		return; // Nothing to sort
+	}
+
+	bool swapped;
+	Node<T>* current;
+	Node<T>* last = nullptr;
+
+	do {
+		swapped = false;
+		current = head;
+
+		while (current->next != last) {
+			if (func(current->data, current->next->data)) {
+				// Swap data between current and next nodes
+				T temp = current->data;
+				current->data = current->next->data;
+				current->next->data = temp;
+				swapped = true;
+			}
+			current = current->next;
+		}
+		last = current;
+	} while (swapped);
+} */
