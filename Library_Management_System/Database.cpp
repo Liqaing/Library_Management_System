@@ -148,3 +148,46 @@ void DeleteBookFromDB(int id) {
 	sqlite3_finalize(DeleteStmt);
 	sqlite3_close(db);
 }
+
+// Update data in book
+void UpdateBookInDB(Book book) {
+
+	// Open Database Connection
+	sqlite3* db;
+	int result = sqlite3_open(LibraryDB, &db);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Insert query for compiling into sql query
+	const char* UpdateBookQuery = "UPDATE Books SET Title = ?, Pages = ?, QTY = ?, Author = ? WHERE Id = ?";
+
+	// Pointer to the compiled prepare statement (UpdateBookQuery)
+	sqlite3_stmt* UpdateStmt = NULL;
+
+	// Compiled query into prepared statement or byte-code
+	result = sqlite3_prepare_v2(db, UpdateBookQuery, -1, &UpdateStmt, NULL);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Binding value into sql parameter for Update Query
+	sqlite3_bind_text(UpdateStmt, 1, book.title.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_int(UpdateStmt, 2, book.pages_num);
+	sqlite3_bind_int(UpdateStmt, 3, book.qty);
+	sqlite3_bind_text(UpdateStmt, 4, book.author.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_int(UpdateStmt, 5, book.id);
+
+	// Execute the query
+	result = sqlite3_step(UpdateStmt);
+	if (result != SQLITE_DONE) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Clean up memory after prepare statement is done
+	sqlite3_finalize(UpdateStmt);
+	sqlite3_close(db);
+}

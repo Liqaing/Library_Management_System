@@ -10,6 +10,7 @@ typedef struct Book {
 } Book;
 
 typedef struct Student {
+	int id;
 	std::string first_name;
 	std::string last_name;
 	std::string student_id;

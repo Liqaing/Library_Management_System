@@ -73,8 +73,9 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::Button^ add;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button2;
-	private: System::Windows::Forms::TextBox^ BookID;
+
 	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::TextBox^ BookID;
 	protected:
 
 	private:
@@ -102,8 +103,8 @@ namespace LibraryManagementSystem {
 			this->add = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->BookID = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->BookID = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pages))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->qty))->BeginInit();
 			this->SuspendLayout();
@@ -242,6 +243,7 @@ namespace LibraryManagementSystem {
 			this->button1->TabIndex = 24;
 			this->button1->Text = L"Update";
 			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &Update_Delete_Book::button1_Click);
 			// 
 			// button2
 			// 
@@ -259,17 +261,6 @@ namespace LibraryManagementSystem {
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &Update_Delete_Book::button2_Click);
 			// 
-			// BookID
-			// 
-			this->BookID->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->BookID->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->BookID->Location = System::Drawing::Point(182, 56);
-			this->BookID->Name = L"BookID";
-			this->BookID->ReadOnly = true;
-			this->BookID->Size = System::Drawing::Size(334, 23);
-			this->BookID->TabIndex = 27;
-			// 
 			// label2
 			// 
 			this->label2->Anchor = System::Windows::Forms::AnchorStyles::Top;
@@ -281,6 +272,17 @@ namespace LibraryManagementSystem {
 			this->label2->Size = System::Drawing::Size(62, 18);
 			this->label2->TabIndex = 26;
 			this->label2->Text = L"Book ID";
+			// 
+			// BookID
+			// 
+			this->BookID->Anchor = System::Windows::Forms::AnchorStyles::Top;
+			this->BookID->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->BookID->Location = System::Drawing::Point(182, 56);
+			this->BookID->Name = L"BookID";
+			this->BookID->ReadOnly = true;
+			this->BookID->Size = System::Drawing::Size(334, 23);
+			this->BookID->TabIndex = 27;
 			// 
 			// Update_Delete_Book
 			// 
@@ -325,11 +327,30 @@ namespace LibraryManagementSystem {
 		private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		
 			// Delete node form Book linked list
-			int id = System::Convert::ToInt32(BookID->Text);
+			int id = System::Convert::ToInt32(BookID->Text); // use system convert not (int) becuase it is from text box not number box
 			this->BookList = DeleteNodeFromLinkedList(BookList, id);
 			
 			// Delete data from data base
 			DeleteBookFromDB(id);
+
+			this->Close();
+		}
+
+		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+			
+			// Retrive input
+			Book book;
+			book.id = System::Convert::ToInt32(BookID->Text);
+			book.title = msclr::interop::marshal_as<std::string>(this->BookTitle->Text);
+			book.pages_num = (int)(this->pages->Value);
+			book.qty = (int)(this->qty->Value);
+			book.author = msclr::interop::marshal_as<std::string>(this->author->Text);
+
+			// Update data in linked list;
+			this->BookList = UpdateLinkedList(this->BookList, book);
+			
+			// Update data in DB
+			UpdateBookInDB(book);
 
 			this->Close();
 		}

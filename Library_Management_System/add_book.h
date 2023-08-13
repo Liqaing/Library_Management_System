@@ -283,10 +283,10 @@ namespace LibraryManagementSystem {
 				this->Title,
 					this->dataGridViewTextBoxColumn1, this->dataGridViewTextBoxColumn2, this->dataGridViewTextBoxColumn3
 			});
-			this->dataGridView1->Location = System::Drawing::Point(185, 343);
+			this->dataGridView1->Location = System::Drawing::Point(198, 344);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
-			this->dataGridView1->Size = System::Drawing::Size(840, 193);
+			this->dataGridView1->Size = System::Drawing::Size(763, 193);
 			this->dataGridView1->TabIndex = 19;
 			// 
 			// Title

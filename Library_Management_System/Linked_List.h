@@ -295,3 +295,25 @@ Node<T> *DeleteNodeFromLinkedList(Node<T>* head, int DeleteID) {
 		return head;
 	}
 }
+
+// Update linked list book
+template <typename T>
+Node<T>* UpdateLinkedList(Node<T> *head, T UpdateData) {
+
+	Node<T>* current = head;
+
+	// Get pointer to element for update
+	Node<T>* Node = SearchNodeLinkedList(head, UpdateData.id);
+
+	// Loop to the update node location
+	while (current != Node) {
+		current = current->next;
+	}
+	// When arrive at location of update node
+	if (current == Node) {
+
+		// Update the data
+		Node->data = UpdateData;
+	}
+	return head;
+}
