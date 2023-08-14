@@ -149,6 +149,40 @@ bool CompareSearchAuthor(T book, std::string SearchAuthor) {
 	return (book.author == SearchAuthor);
 }
 
+template <typename T>
+bool CompareSearchID(T book, std::string SearchID) {
+	// in case search id is charater not integer return false
+	try {
+		int id = std::stoi(SearchID);
+		return (book.id == id);
+	}
+	catch (...) {
+		return false;
+	}
+}
+
+template <typename T>
+bool CompareSearchPages(T book, std::string SearchPages) {
+	try {
+		int pages = std::stoi(SearchPages);
+		return (book.pages_num == pages);
+	}
+	catch (...) {
+		return false;
+	}
+}
+
+template <typename T>
+bool CompareSearchQty(T book, std::string SearchQty) {
+	try {
+		int qty = std::stoi(SearchQty);
+		return (book.qty == qty);
+	}
+	catch (...) {
+		return false;
+	}
+}
+
 // Search linked list and display value to datagridview
 template <typename T>
 void SearchBookLinkedList(System::Windows::Forms::DataGridView^ dataGridView, Node<T> *head, std::string SearchData, bool (*comp)(T, std::string)) {

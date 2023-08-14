@@ -34,11 +34,15 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ qty;
 	public: System::Windows::Forms::DataGridViewTextBoxColumn^ Author;
 	private: System::Windows::Forms::TextBox^ UserInput;
-	private: System::Windows::Forms::Button^ SearchTitle;
-	private: System::Windows::Forms::Button^ SearchAuthor;
+	private: System::Windows::Forms::Button^ Search;
+
+
 	private: System::Windows::Forms::Button^ Refresh;
 	private: System::Windows::Forms::ComboBox^ Sort;
 	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::ComboBox^ SearchType;
+
+	private: System::Windows::Forms::Label^ label4;
 
 
 
@@ -99,12 +103,13 @@ namespace LibraryManagementSystem {
 			this->Author = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->UserInput = (gcnew System::Windows::Forms::TextBox());
-			this->SearchTitle = (gcnew System::Windows::Forms::Button());
+			this->Search = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->SearchAuthor = (gcnew System::Windows::Forms::Button());
 			this->Refresh = (gcnew System::Windows::Forms::Button());
 			this->Sort = (gcnew System::Windows::Forms::ComboBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->SearchType = (gcnew System::Windows::Forms::ComboBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -175,25 +180,25 @@ namespace LibraryManagementSystem {
 			// 
 			this->UserInput->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->UserInput->Location = System::Drawing::Point(81, 50);
+			this->UserInput->Location = System::Drawing::Point(79, 50);
 			this->UserInput->Name = L"UserInput";
-			this->UserInput->Size = System::Drawing::Size(190, 24);
+			this->UserInput->Size = System::Drawing::Size(150, 24);
 			this->UserInput->TabIndex = 4;
 			// 
-			// SearchTitle
+			// Search
 			// 
-			this->SearchTitle->BackColor = System::Drawing::Color::DeepSkyBlue;
-			this->SearchTitle->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->SearchTitle->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->Search->BackColor = System::Drawing::Color::DeepSkyBlue;
+			this->Search->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->Search->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->SearchTitle->ForeColor = System::Drawing::Color::White;
-			this->SearchTitle->Location = System::Drawing::Point(277, 50);
-			this->SearchTitle->Name = L"SearchTitle";
-			this->SearchTitle->Size = System::Drawing::Size(101, 24);
-			this->SearchTitle->TabIndex = 5;
-			this->SearchTitle->Text = L"Search Title";
-			this->SearchTitle->UseVisualStyleBackColor = false;
-			this->SearchTitle->Click += gcnew System::EventHandler(this, &view_book::Search_Click);
+			this->Search->ForeColor = System::Drawing::Color::White;
+			this->Search->Location = System::Drawing::Point(347, 50);
+			this->Search->Name = L"Search";
+			this->Search->Size = System::Drawing::Size(72, 24);
+			this->Search->TabIndex = 5;
+			this->Search->Text = L"Search";
+			this->Search->UseVisualStyleBackColor = false;
+			this->Search->Click += gcnew System::EventHandler(this, &view_book::Search_Click);
 			// 
 			// label2
 			// 
@@ -201,26 +206,11 @@ namespace LibraryManagementSystem {
 			this->label2->BackColor = System::Drawing::Color::Transparent;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(18, 52);
+			this->label2->Location = System::Drawing::Point(18, 51);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(55, 18);
 			this->label2->TabIndex = 6;
 			this->label2->Text = L"Search";
-			// 
-			// SearchAuthor
-			// 
-			this->SearchAuthor->BackColor = System::Drawing::Color::DeepSkyBlue;
-			this->SearchAuthor->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->SearchAuthor->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->SearchAuthor->ForeColor = System::Drawing::Color::White;
-			this->SearchAuthor->Location = System::Drawing::Point(384, 50);
-			this->SearchAuthor->Name = L"SearchAuthor";
-			this->SearchAuthor->Size = System::Drawing::Size(101, 25);
-			this->SearchAuthor->TabIndex = 7;
-			this->SearchAuthor->Text = L"Search Author";
-			this->SearchAuthor->UseVisualStyleBackColor = false;
-			this->SearchAuthor->Click += gcnew System::EventHandler(this, &view_book::SearchAuthor_Click);
 			// 
 			// Refresh
 			// 
@@ -229,9 +219,9 @@ namespace LibraryManagementSystem {
 			this->Refresh->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Refresh->ForeColor = System::Drawing::Color::White;
-			this->Refresh->Location = System::Drawing::Point(491, 50);
+			this->Refresh->Location = System::Drawing::Point(425, 50);
 			this->Refresh->Name = L"Refresh";
-			this->Refresh->Size = System::Drawing::Size(101, 25);
+			this->Refresh->Size = System::Drawing::Size(71, 24);
 			this->Refresh->TabIndex = 8;
 			this->Refresh->Text = L"Refresh";
 			this->Refresh->UseVisualStyleBackColor = false;
@@ -265,17 +255,44 @@ namespace LibraryManagementSystem {
 			this->label3->TabIndex = 10;
 			this->label3->Text = L"Sort";
 			// 
+			// SearchType
+			// 
+			this->SearchType->Anchor = System::Windows::Forms::AnchorStyles::Top;
+			this->SearchType->DisplayMember = L"(none)";
+			this->SearchType->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->SearchType->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->SearchType->FormattingEnabled = true;
+			this->SearchType->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"Book ID", L"Title", L"Pages", L"Quantity", L"Author" });
+			this->SearchType->Location = System::Drawing::Point(260, 50);
+			this->SearchType->Name = L"SearchType";
+			this->SearchType->Size = System::Drawing::Size(81, 24);
+			this->SearchType->TabIndex = 11;
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->BackColor = System::Drawing::Color::Transparent;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->Location = System::Drawing::Point(235, 52);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(19, 18);
+			this->label4->TabIndex = 12;
+			this->label4->Text = L"In";
+			// 
 			// view_book
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->AutoScroll = true;
 			this->ClientSize = System::Drawing::Size(1080, 720);
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->SearchType);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->Sort);
 			this->Controls->Add(this->Refresh);
-			this->Controls->Add(this->SearchAuthor);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->SearchTitle);
+			this->Controls->Add(this->Search);
 			this->Controls->Add(this->UserInput);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->dataGridView1);
@@ -297,6 +314,9 @@ namespace LibraryManagementSystem {
 
 			// Travese, Display data from linked list into datagridview
 			TraverseBookLinkedList(dataGridView1, BookList);
+
+			// Set defualt value to combobox for search to "title"
+			SearchType->SelectedIndex = 1;
 		}
 
 		// Search Linked List for book title
@@ -305,22 +325,38 @@ namespace LibraryManagementSystem {
 			// Retrive the input
 			std::string SearchData = msclr::interop::marshal_as<std::string>(UserInput->Text);
 			
-			// Cleare data gird view
-			dataGridView1->Rows->Clear();
-			
-			SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchTitle);
-		}
+			// Retrive select item from combo box
+			std::string SelectedItem = msclr::interop::marshal_as<std::string>(SearchType->SelectedItem->ToString());
 
-		// Search for authour
-		private: System::Void SearchAuthor_Click(System::Object^ sender, System::EventArgs^ e) {
+			// Check for data type to search for
+			if (SelectedItem == "Book ID") {
+				
+				// Cleare data gird view
+				dataGridView1->Rows->Clear();
 
-			// Retrive the input
-			std::string SearchData = msclr::interop::marshal_as<std::string>(UserInput->Text);
+				// Search
+				SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchID);
+			}
+			else if (SelectedItem == "Title") {
+				dataGridView1->Rows->Clear();
+				SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchTitle);
+			}
+			else if (SelectedItem == "Pages") {
+				dataGridView1->Rows->Clear();
+				SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchPages);
+			}
+			else if (SelectedItem == "Quantity") {
+				dataGridView1->Rows->Clear();
+				SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchQty);
+			}
+			else if (SelectedItem == "Author") {
+				dataGridView1->Rows->Clear();
+				SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchAuthor);
 
-			// Cleare data gird view
-			dataGridView1->Rows->Clear();
-
-			SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchAuthor);
+			}
+			else {
+				dataGridView1->Rows->Clear();
+			}
 		}
 		
 		// Display all book
