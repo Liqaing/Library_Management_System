@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Add_Book.cpp" />
+    <ClCompile Include="add_student.cpp" />
     <ClCompile Include="Dashboard.cpp" />
     <ClCompile Include="Update_Delete_Book.cpp" />
     <ClCompile Include="Linked_List.cpp" />
@@ -135,6 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="add_book.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="add_student.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Dashboard.h">
@@ -157,6 +161,9 @@
   <ItemGroup>
     <EmbeddedResource Include="add_book.resx">
       <DependentUpon>add_book.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="add_student.resx">
+      <DependentUpon>add_student.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.h</DependentUpon>

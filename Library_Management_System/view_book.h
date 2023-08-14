@@ -117,6 +117,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->dataGridView1->AllowUserToAddRows = false;
 			this->dataGridView1->AllowUserToDeleteRows = false;
+			this->dataGridView1->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				this->BookID,
@@ -178,6 +179,7 @@ namespace LibraryManagementSystem {
 			// 
 			// UserInput
 			// 
+			this->UserInput->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->UserInput->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->UserInput->Location = System::Drawing::Point(79, 50);
@@ -187,12 +189,13 @@ namespace LibraryManagementSystem {
 			// 
 			// Search
 			// 
+			this->Search->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->Search->BackColor = System::Drawing::Color::DeepSkyBlue;
 			this->Search->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->Search->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Search->ForeColor = System::Drawing::Color::White;
-			this->Search->Location = System::Drawing::Point(347, 50);
+			this->Search->Location = System::Drawing::Point(343, 50);
 			this->Search->Name = L"Search";
 			this->Search->Size = System::Drawing::Size(72, 24);
 			this->Search->TabIndex = 5;
@@ -202,6 +205,7 @@ namespace LibraryManagementSystem {
 			// 
 			// label2
 			// 
+			this->label2->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::Color::Transparent;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -214,12 +218,13 @@ namespace LibraryManagementSystem {
 			// 
 			// Refresh
 			// 
+			this->Refresh->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->Refresh->BackColor = System::Drawing::Color::DeepSkyBlue;
 			this->Refresh->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->Refresh->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Refresh->ForeColor = System::Drawing::Color::White;
-			this->Refresh->Location = System::Drawing::Point(425, 50);
+			this->Refresh->Location = System::Drawing::Point(421, 50);
 			this->Refresh->Name = L"Refresh";
 			this->Refresh->Size = System::Drawing::Size(71, 24);
 			this->Refresh->TabIndex = 8;
@@ -229,6 +234,7 @@ namespace LibraryManagementSystem {
 			// 
 			// Sort
 			// 
+			this->Sort->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->Sort->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->Sort->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -245,6 +251,7 @@ namespace LibraryManagementSystem {
 			// 
 			// label3
 			// 
+			this->label3->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label3->AutoSize = true;
 			this->label3->BackColor = System::Drawing::Color::Transparent;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -264,13 +271,14 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->SearchType->FormattingEnabled = true;
 			this->SearchType->Items->AddRange(gcnew cli::array< System::Object^  >(5) { L"Book ID", L"Title", L"Pages", L"Quantity", L"Author" });
-			this->SearchType->Location = System::Drawing::Point(260, 50);
+			this->SearchType->Location = System::Drawing::Point(256, 50);
 			this->SearchType->Name = L"SearchType";
 			this->SearchType->Size = System::Drawing::Size(81, 24);
 			this->SearchType->TabIndex = 11;
 			// 
 			// label4
 			// 
+			this->label4->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label4->AutoSize = true;
 			this->label4->BackColor = System::Drawing::Color::Transparent;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,

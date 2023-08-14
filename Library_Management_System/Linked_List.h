@@ -94,18 +94,49 @@ void TraverseBookLinkedList(System::Windows::Forms::DataGridView^ dataGridview, 
 	return;
 }
 
-// Display book in add_book.h
+
+
+// Display book
 template <typename T>
-void TraverseBookLinkedListInAddBook(System::Windows::Forms::DataGridView^ dataGridview, Node<T>* head) {
-	Node<T>* current = head;
-	while (current != nullptr) {
+void DisplayBookIntoDatagrid(System::Windows::Forms::DataGridView^ dataGridview, T Data) {
+
+	// add book data into DataGridView
+	dataGridview->Rows->Add(
+
 		// Set text for each columns in row
-		dataGridview->Rows->Add(
-			msclr::interop::marshal_as<System::String^>(current->data.title),
-			current->data.pages_num,
-			current->data.qty,
-			msclr::interop::marshal_as<System::String^>(current->data.author)
-		);
+		msclr::interop::marshal_as<System::String^>(Data.title),
+		Data.pages_num,
+		Data.qty,
+		msclr::interop::marshal_as<System::String^>(Data.author)
+	);
+}
+
+// Display Student
+template <typename T>
+void DisplayStudentIntoDatagrid(System::Windows::Forms::DataGridView^ dataGridview, T Data) {
+
+	// add student data into DataGridView
+	dataGridview->Rows->Add(
+
+		// Set text for each columns in row
+		msclr::interop::marshal_as<System::String^>(Data.name),
+		Data.age,
+		msclr::interop::marshal_as<System::String^>(Data.gender), // Datagrid will display char as number if i dont use sting
+		msclr::interop::marshal_as<System::String^>(Data.department),
+		msclr::interop::marshal_as<System::String^>(Data.telephone)
+	);
+}
+
+// Display data in book or student linked list into datagridview
+template <typename T>
+void TraverseLinkedList(System::Windows::Forms::DataGridView^ dataGridview, Node<T>* head, void (*DisplayDataIntoDatagrid) (System::Windows::Forms::DataGridView^ dataGridview, T Data)) {
+	Node<T>* current = head;
+
+	while (current != nullptr) {
+		
+		// Call function to fill data into datagridview
+		DisplayDataIntoDatagrid(dataGridview, current->data);
+		
 		current = current->next;
 	}
 	return;

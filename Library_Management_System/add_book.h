@@ -28,13 +28,14 @@ namespace LibraryManagementSystem {
 	// Variable Declaration
 	private:
 		Node<Book> *BookList = nullptr;
+		Node<Book>* current = nullptr;
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Title;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn3;
-		   Node<Book>* current = nullptr;
+
 
 	public:
 		add_book(void)
@@ -283,10 +284,10 @@ namespace LibraryManagementSystem {
 				this->Title,
 					this->dataGridViewTextBoxColumn1, this->dataGridViewTextBoxColumn2, this->dataGridViewTextBoxColumn3
 			});
-			this->dataGridView1->Location = System::Drawing::Point(198, 344);
+			this->dataGridView1->Location = System::Drawing::Point(30, 360);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
-			this->dataGridView1->Size = System::Drawing::Size(763, 193);
+			this->dataGridView1->Size = System::Drawing::Size(1013, 255);
 			this->dataGridView1->TabIndex = 19;
 			// 
 			// Title
@@ -302,7 +303,7 @@ namespace LibraryManagementSystem {
 			this->dataGridViewTextBoxColumn1->HeaderText = L"Pages";
 			this->dataGridViewTextBoxColumn1->Name = L"dataGridViewTextBoxColumn1";
 			this->dataGridViewTextBoxColumn1->ReadOnly = true;
-			this->dataGridViewTextBoxColumn1->Width = 194;
+			this->dataGridViewTextBoxColumn1->Width = 150;
 			// 
 			// dataGridViewTextBoxColumn2
 			// 
@@ -310,7 +311,7 @@ namespace LibraryManagementSystem {
 			this->dataGridViewTextBoxColumn2->HeaderText = L"Quantity";
 			this->dataGridViewTextBoxColumn2->Name = L"dataGridViewTextBoxColumn2";
 			this->dataGridViewTextBoxColumn2->ReadOnly = true;
-			this->dataGridViewTextBoxColumn2->Width = 194;
+			this->dataGridViewTextBoxColumn2->Width = 150;
 			// 
 			// dataGridViewTextBoxColumn3
 			// 
@@ -402,7 +403,7 @@ namespace LibraryManagementSystem {
 			dataGridView1->Rows->Clear();
 
 			// Display data in linked list
-			TraverseBookLinkedListInAddBook(dataGridView1, BookList);
+			TraverseLinkedList(dataGridView1, BookList, DisplayBookIntoDatagrid);
 
 			// Clear textbox
 			this->BookTitle->Text = "";

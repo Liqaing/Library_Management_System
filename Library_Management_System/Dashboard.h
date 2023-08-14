@@ -3,6 +3,7 @@
 #include "sqlite3.h"
 #include "view_book.h"
 #include "add_book.h"
+#include "add_student.h"
 
 namespace LibraryManagementSystem {
 
@@ -42,12 +43,12 @@ namespace LibraryManagementSystem {
 	protected:
 	private: System::Windows::Forms::ToolStripMenuItem^ booksToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ viewBooksToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ searchBookToolStripMenuItem;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ addNewBookToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ deleteBookToolStripMenuItem;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ studentToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ registerNewStudentToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ deleteStudentToolStripMenuItem;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ issueAndReturnToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ issueBookToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ returnBookToolStripMenuItem;
@@ -58,6 +59,7 @@ namespace LibraryManagementSystem {
 
 	private: System::Windows::Forms::Panel^ mainpanel;
 	private: System::Windows::Forms::ToolStripMenuItem^ hiToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ registerNewStudentToolStripMenuItem1;
 	private: System::ComponentModel::IContainer^ components;
 
 	private:
@@ -77,12 +79,10 @@ namespace LibraryManagementSystem {
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->booksToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->viewBooksToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->searchBookToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->addNewBookToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->deleteBookToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->studentToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->registerNewStudentToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->deleteStudentToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->registerNewStudentToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->issueAndReturnToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->issueBookToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->returnBookToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -113,9 +113,9 @@ namespace LibraryManagementSystem {
 			// 
 			// booksToolStripMenuItem
 			// 
-			this->booksToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+			this->booksToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
 				this->viewBooksToolStripMenuItem,
-					this->searchBookToolStripMenuItem, this->addNewBookToolStripMenuItem, this->deleteBookToolStripMenuItem
+					this->addNewBookToolStripMenuItem
 			});
 			this->booksToolStripMenuItem->Name = L"booksToolStripMenuItem";
 			this->booksToolStripMenuItem->Size = System::Drawing::Size(74, 28);
@@ -124,34 +124,22 @@ namespace LibraryManagementSystem {
 			// viewBooksToolStripMenuItem
 			// 
 			this->viewBooksToolStripMenuItem->Name = L"viewBooksToolStripMenuItem";
-			this->viewBooksToolStripMenuItem->Size = System::Drawing::Size(207, 28);
-			this->viewBooksToolStripMenuItem->Text = L"View Books";
+			this->viewBooksToolStripMenuItem->Size = System::Drawing::Size(238, 28);
+			this->viewBooksToolStripMenuItem->Text = L"Books Informations";
 			this->viewBooksToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::viewBooksToolStripMenuItem_Click);
-			// 
-			// searchBookToolStripMenuItem
-			// 
-			this->searchBookToolStripMenuItem->Name = L"searchBookToolStripMenuItem";
-			this->searchBookToolStripMenuItem->Size = System::Drawing::Size(207, 28);
-			this->searchBookToolStripMenuItem->Text = L"Search Book";
 			// 
 			// addNewBookToolStripMenuItem
 			// 
 			this->addNewBookToolStripMenuItem->Name = L"addNewBookToolStripMenuItem";
-			this->addNewBookToolStripMenuItem->Size = System::Drawing::Size(207, 28);
+			this->addNewBookToolStripMenuItem->Size = System::Drawing::Size(238, 28);
 			this->addNewBookToolStripMenuItem->Text = L"Add New Book";
 			this->addNewBookToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::addNewBookToolStripMenuItem_Click);
-			// 
-			// deleteBookToolStripMenuItem
-			// 
-			this->deleteBookToolStripMenuItem->Name = L"deleteBookToolStripMenuItem";
-			this->deleteBookToolStripMenuItem->Size = System::Drawing::Size(207, 28);
-			this->deleteBookToolStripMenuItem->Text = L"Delete Book";
 			// 
 			// studentToolStripMenuItem
 			// 
 			this->studentToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
 				this->registerNewStudentToolStripMenuItem,
-					this->deleteStudentToolStripMenuItem
+					this->registerNewStudentToolStripMenuItem1
 			});
 			this->studentToolStripMenuItem->Name = L"studentToolStripMenuItem";
 			this->studentToolStripMenuItem->Size = System::Drawing::Size(86, 28);
@@ -161,13 +149,14 @@ namespace LibraryManagementSystem {
 			// 
 			this->registerNewStudentToolStripMenuItem->Name = L"registerNewStudentToolStripMenuItem";
 			this->registerNewStudentToolStripMenuItem->Size = System::Drawing::Size(262, 28);
-			this->registerNewStudentToolStripMenuItem->Text = L"Register New Student";
+			this->registerNewStudentToolStripMenuItem->Text = L"Student Informations";
 			// 
-			// deleteStudentToolStripMenuItem
+			// registerNewStudentToolStripMenuItem1
 			// 
-			this->deleteStudentToolStripMenuItem->Name = L"deleteStudentToolStripMenuItem";
-			this->deleteStudentToolStripMenuItem->Size = System::Drawing::Size(262, 28);
-			this->deleteStudentToolStripMenuItem->Text = L"Delete Student";
+			this->registerNewStudentToolStripMenuItem1->Name = L"registerNewStudentToolStripMenuItem1";
+			this->registerNewStudentToolStripMenuItem1->Size = System::Drawing::Size(262, 28);
+			this->registerNewStudentToolStripMenuItem1->Text = L"Register New Student";
+			this->registerNewStudentToolStripMenuItem1->Click += gcnew System::EventHandler(this, &Dashboard::registerNewStudentToolStripMenuItem1_Click);
 			// 
 			// issueAndReturnToolStripMenuItem
 			// 
@@ -269,14 +258,21 @@ namespace LibraryManagementSystem {
 		private: System::Void exitToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 			Application::Exit();
 		}
+
 		private: System::Void viewBooksToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 			view_book^ f = gcnew view_book;
 			loadform(f);
 		}
+
 		private: System::Void addNewBookToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 			add_book^ f = gcnew add_book;
 			loadform(f);
 		}
 
+		// Register new student form
+		private: System::Void registerNewStudentToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
+			add_student^ f = gcnew add_student;
+			loadform(f);
+		}
 	};
 }

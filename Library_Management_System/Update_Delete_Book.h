@@ -288,7 +288,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(572, 552);
+			this->ClientSize = System::Drawing::Size(572, 461);
 			this->Controls->Add(this->BookID);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button2);
@@ -304,6 +304,7 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label1);
 			this->Name = L"Update_Delete_Book";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Edit_Delete_Book";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pages))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->qty))->EndInit();

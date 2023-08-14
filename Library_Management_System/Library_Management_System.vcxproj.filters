@@ -39,6 +39,9 @@
     <ClCompile Include="Update_Delete_Book.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="add_student.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Login_Form.h">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Update_Delete_Book.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="add_student.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
