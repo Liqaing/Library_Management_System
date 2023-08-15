@@ -55,10 +55,23 @@ Node<T> *InsertLinkedList(Node<T> *head, T data) {
 // Insert linked list of books into database
 template <typename T>
 void InsertBookLinkedListIntoDB(Node<T> *head) {
+	
 	// Current pointer point to head of linked list
 	Node<T> *current = head;
 	while (current != nullptr) {
 		InsertBookDB(current->data);
+		current = current->next;
+	}
+}
+
+// Insert linked list of students into database
+template <typename T>
+void InsertStudentLinkedListIntoDB(Node<T>* head) {
+
+	// Current pointer point to head of linked list
+	Node<T>* current = head;
+	while (current != nullptr) {
+		InsertStudentDB(current->data);
 		current = current->next;
 	}
 }

@@ -182,7 +182,7 @@ namespace LibraryManagementSystem {
 			this->age->Name = L"age";
 			this->age->Size = System::Drawing::Size(334, 23);
 			this->age->TabIndex = 29;
-			this->age->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			this->age->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 16, 0, 0, 0 });
 			// 
 			// save
 			// 
@@ -198,6 +198,7 @@ namespace LibraryManagementSystem {
 			this->save->TabIndex = 28;
 			this->save->Text = L"Save";
 			this->save->UseVisualStyleBackColor = false;
+			this->save->Click += gcnew System::EventHandler(this, &add_student::save_Click);
 			// 
 			// add
 			// 
@@ -433,6 +434,27 @@ namespace LibraryManagementSystem {
 			
 			this->Department->Text = "";
 			this->Telephone->Text = "";
+		}
+
+		// Save student into data
+		private: System::Void save_Click(System::Object^ sender, System::EventArgs^ e) {
+			
+			// If student list is not null
+			if (this->StudentList != nullptr) {
+
+				// Insert booklist to database
+				InsertStudentLinkedListIntoDB(this->StudentList);
+
+				dataGridView1->Rows->Clear();
+
+				// Free all node in booklist after using it
+				ClearLinkedList(this->StudentList);
+				this->StudentList = nullptr;
+			}
+			else {
+				MessageBox::Show("Linked List is empty, Nothing to save");
+				return;
+			}
 		}
 	};
 }

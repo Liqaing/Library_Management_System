@@ -28,9 +28,17 @@ void InitializeDatabase() {
 		return;
 	}
 
+	// Create Student table
+	const char* createStudentTableQuery = "CREATE TABLE IF NOT EXISTS Students (Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Age INTEGER NOT NULL, Gender CHAR NOT NULL, Department TEXT NOT NULL, Telephone TEXT NOT NULL)";
+	result = sqlite3_exec(db, createStudentTableQuery, 0, 0, 0);
+	if (result != SQLITE_OK) {
+		return;
+	}
+
 	sqlite3_close(db);
 }
 
+// Insert Book into DB
 void InsertBookDB(Book book) {
 	// Open Database Connection
 	sqlite3	*db;
@@ -189,5 +197,48 @@ void UpdateBookInDB(Book book) {
 
 	// Clean up memory after prepare statement is done
 	sqlite3_finalize(UpdateStmt);
+	sqlite3_close(db);
+}
+
+
+// Insert Student into DB
+void InsertStudentDB(Student student) {
+	// Open Database Connection
+	sqlite3* db;
+	int result = sqlite3_open(LibraryDB, &db);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Insert query for compiling into sql query
+	const char* InsertStudentQuery = "INSERT INTO Students (Name, Age, Gender, Department, Telephone) VALUES (?, ?, ?, ?, ?)";
+
+	// Pointer to the compiled prepare statement (InsertStudentQuery), can be use to bind value, executing...
+	sqlite3_stmt* InsertStmt = NULL;
+
+	// Compiled query into prepared statement or byte-code
+	result = sqlite3_prepare_v2(db, InsertStudentQuery, -1, &InsertStmt, NULL);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Binding value into sql parameter for Insert Query
+	sqlite3_bind_text(InsertStmt, 1, student.name.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_int(InsertStmt, 2, student.age);
+	sqlite3_bind_text(InsertStmt, 3, student.gender.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_text(InsertStmt, 4, student.department.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_text(InsertStmt, 5, student.telephone.c_str(), -1, SQLITE_STATIC);
+
+	// Execute the query
+	result = sqlite3_step(InsertStmt);
+	if (result != SQLITE_DONE) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Clean up memory after prepare statement is done
+	sqlite3_finalize(InsertStmt);
 	sqlite3_close(db);
 }
