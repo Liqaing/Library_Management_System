@@ -32,9 +32,9 @@ namespace LibraryManagementSystem {
 			//
 		}
 		
-		//
+		// Constructor to receive data from other form
 		Update_Delete_Book(Node<Book>* booklist, String^ book_id, String^ title, String^ pages, String^ qty, String^ author)
-		{
+		{	
 			InitializeComponent();
 
 			// Get pointer to book linked list
@@ -111,6 +111,7 @@ namespace LibraryManagementSystem {
 			// 
 			// label1
 			// 
+			this->label1->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -328,7 +329,7 @@ namespace LibraryManagementSystem {
 		private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		
 			// Delete node form Book linked list
-			int id = System::Convert::ToInt32(BookID->Text); // use system convert not (int) becuase it is from text box not number box
+			int id = System::Convert::ToInt32(this->BookID->Text); // use system convert not (int) becuase it is from text box not number box
 			this->BookList = DeleteNodeFromLinkedList(BookList, id);
 			
 			// Delete data from data base
@@ -337,6 +338,7 @@ namespace LibraryManagementSystem {
 			this->Close();
 		}
 
+		// Update
 		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 			
 			// Retrive input

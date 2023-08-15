@@ -3,6 +3,8 @@
 #include "Struct.h"
 #include "Linked_List.h"
 
+#include "Update_Delete_Student.h"
+
 // Forward Declaration
 Node<Student>* ReadStudentsDataFromDB();
 
@@ -25,14 +27,14 @@ namespace LibraryManagementSystem {
 	// Declare variable
 	private:
 		Node<Student>* StudentList = nullptr;
+		Node<Student>* current = nullptr;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ StudentID;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Name;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ age;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ gender;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Department;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Telephone;
-		   Node<Student>* current = nullptr;
-
+		   
 	public:
 		view_student(void)
 		{
@@ -55,11 +57,6 @@ namespace LibraryManagementSystem {
 		}
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	protected:
-
-
-
-
-
 
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::ComboBox^ SearchType;
@@ -118,13 +115,13 @@ namespace LibraryManagementSystem {
 			this->dataGridView1->ReadOnly = true;
 			this->dataGridView1->Size = System::Drawing::Size(1013, 468);
 			this->dataGridView1->TabIndex = 13;
+			this->dataGridView1->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &view_student::dataGridView1_CellDoubleClick);
 			// 
 			// StudentID
 			// 
 			this->StudentID->HeaderText = L"Student ID";
 			this->StudentID->Name = L"StudentID";
 			this->StudentID->ReadOnly = true;
-			this->StudentID->Width = 90;
 			// 
 			// Name
 			// 
@@ -145,7 +142,7 @@ namespace LibraryManagementSystem {
 			this->gender->HeaderText = L"Gender";
 			this->gender->Name = L"gender";
 			this->gender->ReadOnly = true;
-			this->gender->Width = 80;
+			this->gender->Width = 90;
 			// 
 			// Department
 			// 
@@ -186,7 +183,7 @@ namespace LibraryManagementSystem {
 				L"Student ID", L"Student Name", L"Age", L"Gender",
 					L"Department", L"Telephone"
 			});
-			this->SearchType->Location = System::Drawing::Point(258, 52);
+			this->SearchType->Location = System::Drawing::Point(257, 52);
 			this->SearchType->Name = L"SearchType";
 			this->SearchType->Size = System::Drawing::Size(116, 24);
 			this->SearchType->TabIndex = 21;
@@ -198,7 +195,7 @@ namespace LibraryManagementSystem {
 			this->label3->BackColor = System::Drawing::Color::Transparent;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(873, 53);
+			this->label3->Location = System::Drawing::Point(873, 58);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(36, 18);
 			this->label3->TabIndex = 20;
@@ -215,7 +212,7 @@ namespace LibraryManagementSystem {
 				L"By ID", L"By Name", L"By Age", L"By Gender", L"By Department",
 					L"By Telephone"
 			});
-			this->Sort->Location = System::Drawing::Point(915, 52);
+			this->Sort->Location = System::Drawing::Point(915, 54);
 			this->Sort->Name = L"Sort";
 			this->Sort->Size = System::Drawing::Size(121, 24);
 			this->Sort->TabIndex = 19;
@@ -235,6 +232,7 @@ namespace LibraryManagementSystem {
 			this->Refresh->TabIndex = 18;
 			this->Refresh->Text = L"Refresh";
 			this->Refresh->UseVisualStyleBackColor = false;
+			this->Refresh->Click += gcnew System::EventHandler(this, &view_student::Refresh_Click);
 			// 
 			// label2
 			// 
@@ -303,7 +301,7 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->label1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Margin = System::Windows::Forms::Padding(1);
-			this->Text = L"view_student";
+			
 			this->Load += gcnew System::EventHandler(this, &view_student::view_student_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
@@ -384,7 +382,69 @@ namespace LibraryManagementSystem {
 				dataGridView1->Rows->Clear();
 
 				// Search
-				//SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchID);
+				SearchNodeLinkedList(dataGridView1, this->StudentList, SearchData, SearchStudentID);
+			}
+			else if (SelectedItem == "Student Name") {
+				dataGridView1->Rows->Clear();
+				SearchNodeLinkedList(dataGridView1, this->StudentList, SearchData, SearchStudentName);
+			}
+			else if (SelectedItem == "Age") {
+				dataGridView1->Rows->Clear();
+				SearchNodeLinkedList(dataGridView1, this->StudentList, SearchData, SearchStudentAge);
+			}
+			else if (SelectedItem == "Gender") {
+				dataGridView1->Rows->Clear();
+				SearchNodeLinkedList(dataGridView1, this->StudentList, SearchData, SearchStudentGender);
+			}
+			else if (SelectedItem == "Department") {
+				dataGridView1->Rows->Clear();
+				SearchNodeLinkedList(dataGridView1, this->StudentList, SearchData, SearchStudentDepartment);
+			}
+			else if (SelectedItem == "Telephone") {
+				dataGridView1->Rows->Clear();
+				SearchNodeLinkedList(dataGridView1, this->StudentList, SearchData, SearchStudentTelephone);
+			}
+		}
+		
+		// Refresh
+		private: System::Void Refresh_Click(System::Object^ sender, System::EventArgs^ e) {
+			dataGridView1->Rows->Clear();
+			TraverseLinkedList(dataGridView1, StudentList, DisplayStudentIntoDatagridWithID);
+		}
+
+		// Cell double click handler
+		private: System::Void dataGridView1_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+			
+			// Check if a valid row is click (exclude header row)
+			if (e->RowIndex >= 0 && e->ColumnIndex >= 0) {
+
+				// Retirve the selected row
+				DataGridViewRow^ SelectedRow = dataGridView1->Rows[e->RowIndex];
+
+				// Open edit_delete form
+				Update_Delete_Student^ update_delete_form = gcnew Update_Delete_Student(
+
+					// Pass pointer to student linked list
+					this->StudentList,
+
+					// data from datagirdview
+					SelectedRow->Cells[0]->Value->ToString(),
+					SelectedRow->Cells[1]->Value->ToString(),
+					SelectedRow->Cells[2]->Value->ToString(),
+					SelectedRow->Cells[3]->Value->ToString(),
+					SelectedRow->Cells[4]->Value->ToString(),
+					SelectedRow->Cells[5]->Value->ToString()
+				);
+
+				// Show form
+				update_delete_form->ShowDialog();
+
+				// Retrive booklist pointer back
+				this->StudentList = update_delete_form->GetStudentLinkedList();
+
+				// Clear data gird view
+				dataGridView1->Rows->Clear();
+				TraverseLinkedList(dataGridView1, this->StudentList, DisplayStudentIntoDatagridWithID);
 			}
 		}
 	};

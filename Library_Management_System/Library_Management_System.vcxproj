@@ -132,6 +132,7 @@
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
     </ClCompile>
+    <ClCompile Include="Update_Delete_Student.cpp" />
     <ClCompile Include="View_Book.cpp" />
     <ClCompile Include="view_student.cpp" />
   </ItemGroup>
@@ -155,10 +156,13 @@
     <ClInclude Include="Database.h" />
     <ClInclude Include="sqlite3.h" />
     <ClInclude Include="Struct.h" />
+    <ClInclude Include="Update_Delete_Student.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="view_book.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="view_student.h">
+    <ClInclude Include="view_students.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
@@ -178,11 +182,14 @@
     <EmbeddedResource Include="Login_Form.resx">
       <DependentUpon>Login_Form.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Update_Delete_Student.resx">
+      <DependentUpon>Update_Delete_Student.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view_book.resx">
       <DependentUpon>view_book.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view_student.resx">
-      <DependentUpon>view_student.h</DependentUpon>
+    <EmbeddedResource Include="view_students.resx">
+      <DependentUpon>view_students.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

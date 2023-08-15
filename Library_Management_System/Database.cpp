@@ -29,7 +29,7 @@ void InitializeDatabase() {
 	}
 
 	// Create Student table
-	const char* createStudentTableQuery = "CREATE TABLE IF NOT EXISTS Students (Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Age INTEGER NOT NULL, Gender CHAR NOT NULL, Department TEXT NOT NULL, Telephone TEXT NOT NULL)";
+	const char* createStudentTableQuery = "CREATE TABLE IF NOT EXISTS Students (Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Age INTEGER NOT NULL, Gender TEXT NOT NULL, Department TEXT NOT NULL, Telephone TEXT NOT NULL)";
 	result = sqlite3_exec(db, createStudentTableQuery, 0, 0, 0);
 	if (result != SQLITE_OK) {
 		return;
@@ -291,4 +291,87 @@ Node<Student>* ReadStudentsDataFromDB() {
 	sqlite3_close(db);
 
 	return head;
+}
+
+
+// Delete Student from db
+void DeleteStudentFromDB(int id) {
+	
+	sqlite3* db;
+	int result = sqlite3_open(LibraryDB, &db);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Delete query
+	const char* DeleteStudentQuery = "DELETE FROM Students WHERE id = ?";
+
+	// Pointer to compiled query
+	sqlite3_stmt* DeleteStmt = NULL;
+
+	// Compile Query
+	result = sqlite3_prepare_v2(db, DeleteStudentQuery, -1, &DeleteStmt, NULL);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Binding id value into sql parameter for Insert Query
+	sqlite3_bind_int(DeleteStmt, 1, id);
+
+	// Execute the query
+	result = sqlite3_step(DeleteStmt);
+	if (result != SQLITE_DONE) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Clean up memory after prepare statement is done
+	sqlite3_finalize(DeleteStmt);
+	sqlite3_close(db);
+}
+
+// Update data in student
+void UpdateStudentInDB(Student student) {
+
+	// Open Database Connection
+	sqlite3* db;
+	int result = sqlite3_open(LibraryDB, &db);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Insert query for compiling into sql query
+	const char* UpdateStudentQuery = "UPDATE Students SET Name = ?, Age = ?, Gender = ?, Department = ?, Telephone = ? WHERE Id = ?";
+
+	// Pointer to the compiled prepare statement (UpdateBookQuery)
+	sqlite3_stmt* UpdateStmt = NULL;
+
+	// Compiled query into prepared statement or byte-code
+	result = sqlite3_prepare_v2(db, UpdateStudentQuery, -1, &UpdateStmt, NULL);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Binding value into sql parameter for Update Query
+	sqlite3_bind_text(UpdateStmt, 1, student.name.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_int(UpdateStmt, 2, student.age);
+	sqlite3_bind_text(UpdateStmt, 3, student.gender.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_text(UpdateStmt, 4, student.department.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_text(UpdateStmt, 5, student.telephone.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_int(UpdateStmt, 6, student.id);
+
+	// Execute the query
+	result = sqlite3_step(UpdateStmt);
+	if (result != SQLITE_DONE) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Clean up memory after prepare statement is done
+	sqlite3_finalize(UpdateStmt);
+	sqlite3_close(db);
 }

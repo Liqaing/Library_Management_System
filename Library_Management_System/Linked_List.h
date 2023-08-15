@@ -169,70 +169,118 @@ void TraverseLinkedList(System::Windows::Forms::DataGridView^ dataGridview, Node
 
 // Search
 
+// Search Book
 template <typename T>
-bool CompareSearchTitle(T book, std::string SearchTitle) {
-	return (book.title == SearchTitle);
+void SearchBookTitle(System::Windows::Forms::DataGridView^ dataGridview, T book, std::string SearchTitle) {
+	
+	// compare book title
+	if (book.title == SearchTitle) {
+		// Display data
+		DisplayBookIntoDatagridWithID(dataGridview, book);
+	}	
 }
 
 template <typename T>
-bool CompareSearchAuthor(T book, std::string SearchAuthor) {
-	return (book.author == SearchAuthor);
-}
-
-template <typename T>
-bool CompareSearchID(T book, std::string SearchID) {
-	// in case search id is charater not integer return false
-	try {
-		int id = std::stoi(SearchID);
-		return (book.id == id);
-	}
-	catch (...) {
-		return false;
-	}
-}
-
-template <typename T>
-bool CompareSearchPages(T book, std::string SearchPages) {
-	try {
-		int pages = std::stoi(SearchPages);
-		return (book.pages_num == pages);
-	}
-	catch (...) {
-		return false;
+void SearchBookAuthor(System::Windows::Forms::DataGridView^ dataGridview, T book, std::string SearchAuthor) {
+	
+	// compare book author
+	if (book.author == SearchAuthor) {
+		DisplayBookIntoDatagridWithID(dataGridview, book);
 	}
 }
 
 template <typename T>
-bool CompareSearchQty(T book, std::string SearchQty) {
-	try {
-		int qty = std::stoi(SearchQty);
-		return (book.qty == qty);
+void SearchBookID(System::Windows::Forms::DataGridView^ dataGridview, T book, std::string SearchID) {
+	
+	// compare book id
+	if (std::to_string(book.id) == SearchID) {
+		DisplayBookIntoDatagridWithID(dataGridview, book);
 	}
-	catch (...) {
-		return false;
+}
+
+template <typename T>
+void SearchBookPages(System::Windows::Forms::DataGridView^ dataGridview, T book, std::string SearchPages) {
+	
+	// compare book pages
+	if (std::to_string(book.pages_num) == SearchPages) {
+		DisplayBookIntoDatagridWithID(dataGridview, book);
+	}
+}
+
+template <typename T>
+void SearchBookQty(System::Windows::Forms::DataGridView^ dataGridview, T book, std::string SearchQty) {
+	
+	// compare book qty
+	if (std::to_string(book.qty) == SearchQty) {
+		DisplayBookIntoDatagridWithID(dataGridview, book);
+	}
+}
+
+// Search Student
+template <typename T>
+void SearchStudentID(System::Windows::Forms::DataGridView^ dataGridview, T student, std::string SearchID) {
+
+	// compare student id
+	if (std::to_string(student.id) == SearchID) {
+		DisplayStudentIntoDatagridWithID(dataGridview, student);
+	}
+}
+
+template <typename T>
+void SearchStudentName(System::Windows::Forms::DataGridView^ dataGridview, T student, std::string SearchName) {
+
+	// compare student name
+	if (student.name == SearchName) {
+		DisplayStudentIntoDatagridWithID(dataGridview, student);
+	}
+}
+
+template <typename T>
+void SearchStudentAge(System::Windows::Forms::DataGridView^ dataGridview, T student, std::string SearchAge) {
+
+	// compare student age
+	if (std::to_string(student.age) == SearchAge) {
+		DisplayStudentIntoDatagridWithID(dataGridview, student);
+	}
+}
+
+template <typename T>
+void SearchStudentGender(System::Windows::Forms::DataGridView^ dataGridview, T student, std::string SearchGender) {
+
+	// compare student gender
+	if (student.gender == SearchGender) {
+		DisplayStudentIntoDatagridWithID(dataGridview, student);
+	}
+}
+
+template <typename T>
+void SearchStudentDepartment(System::Windows::Forms::DataGridView^ dataGridview, T student, std::string SearchDepartment) {
+
+	// compare student department
+	if (student.department == SearchDepartment) {
+		DisplayStudentIntoDatagridWithID(dataGridview, student);
+	}
+}
+
+template <typename T>
+void SearchStudentTelephone(System::Windows::Forms::DataGridView^ dataGridview, T student, std::string SearchTelephone) {
+
+	// compare student department
+	if (student.telephone == SearchTelephone) {
+		DisplayStudentIntoDatagridWithID(dataGridview, student);
 	}
 }
 
 // Search linked list and display value to datagridview
 template <typename T>
-void SearchBookLinkedList(System::Windows::Forms::DataGridView^ dataGridView, Node<T> *head, std::string SearchData, bool (*comp)(T, std::string)) {
+void SearchNodeLinkedList(System::Windows::Forms::DataGridView^ dataGridView, Node<T> *head, std::string SearchData, void (*Search) (System::Windows::Forms::DataGridView^ dataGridview, T book, std::string SearchTitle)) {
 	
 	Node<T> *current = head;
 
 	while (current != nullptr) {
 
-		// Call function to compare data
-		if (comp(current->data, SearchData)) {
-		
-			// add row to data grid view
-			dataGridView->Rows->Add(
-				current->data.id,
-				//System::Convert::ToString(current->data.title),
-				msclr::interop::marshal_as<System::String^>(current->data.title),
-				current->data.pages_num, current->data.qty,
-				msclr::interop::marshal_as<System::String^>(current->data.author)
-			);
-		}
+		// Search (compare data and display if data is match)
+		Search(dataGridView, current->data, SearchData);
 		current = current->next;
 	}
 	return;
@@ -246,7 +294,7 @@ Node<T>* SearchNodeLinkedList(Node<T>* head, int SearchID) {
 
 	while (current != nullptr) {
 
-		// Call funtion to compare data
+		// compare id data
 		if (current->data.id == SearchID) {
 		
 			// Return founded node
@@ -348,9 +396,10 @@ Node<T> *DeleteNodeFromLinkedList(Node<T>* head, int DeleteID) {
 
 	Node<T>* current = head;
 
-	// Get pointer to element for deletiom
+	// Get pointer to element for deletion
 	Node<T> *Node = SearchNodeLinkedList(head, DeleteID);
-
+	
+	// if node is not found
 	if (Node == nullptr) {
 		return head;
 	}
@@ -406,6 +455,7 @@ Node<T>* UpdateLinkedList(Node<T> *head, T UpdateData) {
 	while (current != Node) {
 		current = current->next;
 	}
+
 	// When arrive at location of update node
 	if (current == Node) {
 

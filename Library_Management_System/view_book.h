@@ -344,31 +344,30 @@ namespace LibraryManagementSystem {
 				dataGridView1->Rows->Clear();
 
 				// Search
-				SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchID);
+				SearchNodeLinkedList(dataGridView1, BookList, SearchData, SearchBookID);
 			}
 			else if (SelectedItem == "Title") {
 				dataGridView1->Rows->Clear();
-				SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchTitle);
+				SearchNodeLinkedList(dataGridView1, BookList, SearchData, SearchBookTitle);
 			}
 			else if (SelectedItem == "Pages") {
 				dataGridView1->Rows->Clear();
-				SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchPages);
+				SearchNodeLinkedList(dataGridView1, BookList, SearchData, SearchBookPages);
 			}
 			else if (SelectedItem == "Quantity") {
 				dataGridView1->Rows->Clear();
-				SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchQty);
+				SearchNodeLinkedList(dataGridView1, BookList, SearchData, SearchBookQty);
 			}
 			else if (SelectedItem == "Author") {
 				dataGridView1->Rows->Clear();
-				SearchBookLinkedList(dataGridView1, BookList, SearchData, CompareSearchAuthor);
-
+				SearchNodeLinkedList(dataGridView1, BookList, SearchData, SearchBookAuthor);
 			}
 			else {
 				dataGridView1->Rows->Clear();
 			}
 		}
 		
-		// Display all book
+		// Refresh, display all book
 		private: System::Void Refresh_Click(System::Object^ sender, System::EventArgs^ e) {
 			dataGridView1->Rows->Clear();
 			TraverseLinkedList(dataGridView1, BookList, DisplayBookIntoDatagridWithID);
@@ -424,8 +423,9 @@ namespace LibraryManagementSystem {
 				Update_Delete_Book^ update_delete_form = gcnew Update_Delete_Book(
 					
 					// Pass pointer to book linked list
-					BookList,
+					this->BookList,
 		
+					// data from datagridview
 					SelectedRow->Cells[0]->Value->ToString(),
 					SelectedRow->Cells[1]->Value->ToString(),
 					SelectedRow->Cells[2]->Value->ToString(),
@@ -433,7 +433,7 @@ namespace LibraryManagementSystem {
 					SelectedRow->Cells[4]->Value->ToString()
 				);
 
-				// Show list
+				// Show form
 				update_delete_form->ShowDialog();
 
 				// Retrive booklist pointer back
@@ -441,7 +441,7 @@ namespace LibraryManagementSystem {
 
 				// Clear data gird view
 				dataGridView1->Rows->Clear();
-				TraverseLinkedList(dataGridView1, BookList, DisplayBookIntoDatagridWithID);
+				TraverseLinkedList(dataGridView1, this->BookList, DisplayBookIntoDatagridWithID);
 			}
 		}
 	};

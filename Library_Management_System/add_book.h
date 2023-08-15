@@ -279,6 +279,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->dataGridView1->AllowUserToAddRows = false;
 			this->dataGridView1->AllowUserToDeleteRows = false;
+			this->dataGridView1->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
 				this->Title,
@@ -410,9 +411,6 @@ namespace LibraryManagementSystem {
 			this->pages->Value = 1;
 			this->qty->Value = 1;
 			this->author->Text = "";
-		}
-	
-		private: System::Void listView1_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 		}
 	};
 }

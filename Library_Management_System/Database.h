@@ -7,3 +7,5 @@ Node<Book>* ReadBooksDataFromDB();
 void DeleteBookFromDB(int id);
 void UpdateBookInDB(Book book);
 void InsertStudentDB(Student student);
+void DeleteStudentFromDB(int id);
+void UpdateStudentInDB(Student student);
