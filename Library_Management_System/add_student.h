@@ -422,11 +422,11 @@ namespace LibraryManagementSystem {
 			dataGridView1->Rows->Clear();
 			
 			// Display data in linked list
-			TraverseLinkedList(dataGridView1, StudentList, DisplayStudentIntoDatagrid);
+			TraverseLinkedList(dataGridView1, StudentList, DisplayStudentIntoDatagridWithoutID);
 
 			// Clear textbox
 			this->StudentName->Text = "";
-			this->age->Value = 1;
+			this->age->Value = 16;
 
 			// Uncheck both radio box
 			this->Male->Checked = false;

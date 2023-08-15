@@ -403,7 +403,7 @@ namespace LibraryManagementSystem {
 			dataGridView1->Rows->Clear();
 
 			// Display data in linked list
-			TraverseLinkedList(dataGridView1, BookList, DisplayBookIntoDatagrid);
+			TraverseLinkedList(dataGridView1, BookList, DisplayBookIntoDatagridWithoutID);
 
 			// Clear textbox
 			this->BookTitle->Text = "";

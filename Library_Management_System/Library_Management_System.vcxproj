@@ -133,6 +133,7 @@
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
     </ClCompile>
     <ClCompile Include="View_Book.cpp" />
+    <ClCompile Include="view_student.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="add_book.h">
@@ -157,6 +158,9 @@
     <ClInclude Include="view_book.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="view_student.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="add_book.resx">
@@ -176,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view_book.resx">
       <DependentUpon>view_book.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view_student.resx">
+      <DependentUpon>view_student.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -88,30 +88,9 @@ void ClearLinkedList(Node<T> *head) {
 	}
 }
 
-
-// Display book in view_book.h
+// Display book in add book, without id
 template <typename T>
-void TraverseBookLinkedList(System::Windows::Forms::DataGridView^ dataGridview, Node<T>* head) {
-	Node<T> *current = head;
-	while (current != nullptr) {
-		// Set text for each columns in row
-		dataGridview->Rows->Add(
-			current->data.id,
-			msclr::interop::marshal_as<System::String^>(current->data.title),
-			current->data.pages_num,
-			current->data.qty,
-			msclr::interop::marshal_as<System::String^>(current->data.author)
-		);
-		current = current->next;
-	}
-	return;
-}
-
-
-
-// Display book
-template <typename T>
-void DisplayBookIntoDatagrid(System::Windows::Forms::DataGridView^ dataGridview, T Data) {
+void DisplayBookIntoDatagridWithoutID(System::Windows::Forms::DataGridView^ dataGridview, T Data) {
 
 	// add book data into DataGridView
 	dataGridview->Rows->Add(
@@ -124,14 +103,47 @@ void DisplayBookIntoDatagrid(System::Windows::Forms::DataGridView^ dataGridview,
 	);
 }
 
-// Display Student
+// Display book in view book, with id
 template <typename T>
-void DisplayStudentIntoDatagrid(System::Windows::Forms::DataGridView^ dataGridview, T Data) {
+void DisplayBookIntoDatagridWithID(System::Windows::Forms::DataGridView^ dataGridview, T Data) {
+
+	// add book data into DataGridView
+	dataGridview->Rows->Add(
+
+		// Set text for each columns in row
+		Data.id,
+		msclr::interop::marshal_as<System::String^>(Data.title),
+		Data.pages_num,
+		Data.qty,
+		msclr::interop::marshal_as<System::String^>(Data.author)
+	);
+}
+
+// Display Student in add student, without id
+template <typename T>
+void DisplayStudentIntoDatagridWithoutID(System::Windows::Forms::DataGridView^ dataGridview, T Data) {
 
 	// add student data into DataGridView
 	dataGridview->Rows->Add(
 
 		// Set text for each columns in row
+		msclr::interop::marshal_as<System::String^>(Data.name),
+		Data.age,
+		msclr::interop::marshal_as<System::String^>(Data.gender), // Datagrid will display char as number if i dont use sting
+		msclr::interop::marshal_as<System::String^>(Data.department),
+		msclr::interop::marshal_as<System::String^>(Data.telephone)
+	);
+}
+
+// Display Student in view student, with id
+template <typename T>
+void DisplayStudentIntoDatagridWithID(System::Windows::Forms::DataGridView^ dataGridview, T Data) {
+
+	// add student data into DataGridView
+	dataGridview->Rows->Add(
+
+		// Set text for each columns in row
+		Data.id,
 		msclr::interop::marshal_as<System::String^>(Data.name),
 		Data.age,
 		msclr::interop::marshal_as<System::String^>(Data.gender), // Datagrid will display char as number if i dont use sting
@@ -154,32 +166,6 @@ void TraverseLinkedList(System::Windows::Forms::DataGridView^ dataGridview, Node
 	}
 	return;
 }
-
-
-// Search Book linked list
-/* Take one input but search for in both title and author column
-template <typename T>
-Node<T> *SearchLinkedList(Node<T> *head, std::string SearchData) {
-	
-	Node<T> *current = head;
-
-	// Split linked list
-	Node<T> *NewHead = nullptr;
-	
-	while (current != nullptr) {
-		if (current->data.title == SearchData) {
-			NewHead = InsertLinkedList(NewHead, current->data);
-			//return current; // Found a match
-		}
-		else if (current->data.author == SearchData) {
-			NewHead = InsertLinkedList(NewHead, current->data);
-		}
-		current = current->next;
-		
-	}
-	return NewHead; // Not found
-}
-*/
 
 // Search
 
@@ -241,6 +227,7 @@ void SearchBookLinkedList(System::Windows::Forms::DataGridView^ dataGridView, No
 			// add row to data grid view
 			dataGridView->Rows->Add(
 				current->data.id,
+				//System::Convert::ToString(current->data.title),
 				msclr::interop::marshal_as<System::String^>(current->data.title),
 				current->data.pages_num, current->data.qty,
 				msclr::interop::marshal_as<System::String^>(current->data.author)
@@ -298,7 +285,39 @@ bool CompareBookAuthor(T book1, T book2) {
 	return (book1.author > book2.author);
 }
 
-// Sort
+// Sort Student Linked list
+
+template <typename T>
+bool CompareStudentID(T student1, T student2) {
+	return (student1.id > student2.id);
+}
+
+template <typename T>
+bool CompareStudentName(T student1, T student2) {
+	return (student1.name > student2.name);
+}
+
+template <typename T>
+bool CompareStudentAge(T student1, T student2) {
+	return (student1.age > student2.age);
+}
+
+template <typename T>
+bool CompareStudentGender(T student1, T student2) {
+	return (student1.gender > student2.gender);
+}
+
+template <typename T>
+bool CompareStudentDepartment(T student1, T student2) {
+	return (student1.department > student2.department);
+}
+
+template <typename T>
+bool CompareStudentTelephone(T student1, T student2) {
+	return (student1.telephone > student2.telephone);
+}
+
+// Sort Algorithm
 template <typename T>
 Node<T>* SortLinkedList(Node<T>* head, bool (*comp)(T, T)) {
 	

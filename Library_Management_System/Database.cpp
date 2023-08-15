@@ -242,3 +242,53 @@ void InsertStudentDB(Student student) {
 	sqlite3_finalize(InsertStmt);
 	sqlite3_close(db);
 }
+
+
+// Read Student data from DB, return linked list head
+Node<Student>* ReadStudentsDataFromDB() {
+	sqlite3* db;
+	int result = sqlite3_open(LibraryDB, &db);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return 0;
+	}
+
+	// Select query
+	const char* SelectStudentQuery = "SELECT * FROM Students";
+
+	// Pointer to compiled query
+	sqlite3_stmt* stmt = NULL;
+
+	// Compile Query
+	result = sqlite3_prepare_v2(db, SelectStudentQuery, -1, &stmt, NULL);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return 0;
+	}
+
+	// Initialize linked list
+	Node<Student>* head = InitializeLinkedList<Student>();
+
+	// Execute the query, and while there are rows return, insert into linked list
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+		
+		Student student;
+		
+		// Retrive data from the return row and convert it from "const unsigned char *" to 
+		student.id = sqlite3_column_int(stmt, 0);
+		student.name = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+		student.age = sqlite3_column_int(stmt, 2);
+		student.gender = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
+		student.department = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
+		student.telephone = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
+
+		head = InsertLinkedList(head, student);
+	}
+
+	// clean up and free memory
+	sqlite3_finalize(stmt);
+
+	sqlite3_close(db);
+
+	return head;
+}

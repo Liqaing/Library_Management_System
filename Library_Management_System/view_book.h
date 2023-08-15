@@ -317,11 +317,12 @@ namespace LibraryManagementSystem {
 	
 		// When form load
 		private: System::Void view_book_Load(System::Object^ sender, System::EventArgs^ e) {
+			
 			// Read data from db into linked list
-			BookList = ReadBooksDataFromDB();
+			this->BookList = ReadBooksDataFromDB();
 
 			// Travese, Display data from linked list into datagridview
-			TraverseBookLinkedList(dataGridView1, BookList);
+			TraverseLinkedList(this->dataGridView1, this->BookList, DisplayBookIntoDatagridWithID);
 
 			// Set defualt value to combobox for search to "title"
 			SearchType->SelectedIndex = 1;
@@ -370,7 +371,7 @@ namespace LibraryManagementSystem {
 		// Display all book
 		private: System::Void Refresh_Click(System::Object^ sender, System::EventArgs^ e) {
 			dataGridView1->Rows->Clear();
-			TraverseBookLinkedList(dataGridView1, BookList);
+			TraverseLinkedList(dataGridView1, BookList, DisplayBookIntoDatagridWithID);
 		}
 
 		// Sort Linked List
@@ -386,27 +387,27 @@ namespace LibraryManagementSystem {
 				
 				// Display again
 				dataGridView1->Rows->Clear();
-				TraverseBookLinkedList(dataGridView1, BookList);
+				TraverseLinkedList(dataGridView1, BookList, DisplayBookIntoDatagridWithID);
 			}
 			else if (SelectedItem == "By Title") {
 				BookList = SortLinkedList(BookList, CompareBookTitle);
 				dataGridView1->Rows->Clear();
-				TraverseBookLinkedList(dataGridView1, BookList);
+				TraverseLinkedList(dataGridView1, BookList, DisplayBookIntoDatagridWithID);
 			}
 			else if (SelectedItem == "By Pages") {
 				BookList = SortLinkedList(BookList, CompareBookPages);
 				dataGridView1->Rows->Clear();
-				TraverseBookLinkedList(dataGridView1, BookList);
+				TraverseLinkedList(dataGridView1, BookList, DisplayBookIntoDatagridWithID);
 			}
 			else if (SelectedItem == "By Quantity") {
 				BookList = SortLinkedList(BookList, CompareBookQty);
 				dataGridView1->Rows->Clear();
-				TraverseBookLinkedList(dataGridView1, BookList);
+				TraverseLinkedList(dataGridView1, BookList, DisplayBookIntoDatagridWithID);
 			}
 			else if (SelectedItem == "By Author") {
 				BookList = SortLinkedList(BookList, CompareBookAuthor);
 				dataGridView1->Rows->Clear();
-				TraverseBookLinkedList(dataGridView1, BookList);
+				TraverseLinkedList(dataGridView1, BookList, DisplayBookIntoDatagridWithID);
 			}
 		}
 		
@@ -438,9 +439,9 @@ namespace LibraryManagementSystem {
 				// Retrive booklist pointer back
 				this->BookList = update_delete_form->GetBookLinkedList();
 
-				// Cleare data gird view
+				// Clear data gird view
 				dataGridView1->Rows->Clear();
-				TraverseBookLinkedList(dataGridView1, BookList);
+				TraverseLinkedList(dataGridView1, BookList, DisplayBookIntoDatagridWithID);
 			}
 		}
 	};

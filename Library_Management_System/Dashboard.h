@@ -4,6 +4,7 @@
 #include "view_book.h"
 #include "add_book.h"
 #include "add_student.h"
+#include "view_student.h"
 
 namespace LibraryManagementSystem {
 
@@ -150,6 +151,7 @@ namespace LibraryManagementSystem {
 			this->registerNewStudentToolStripMenuItem->Name = L"registerNewStudentToolStripMenuItem";
 			this->registerNewStudentToolStripMenuItem->Size = System::Drawing::Size(262, 28);
 			this->registerNewStudentToolStripMenuItem->Text = L"Student Informations";
+			this->registerNewStudentToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::registerNewStudentToolStripMenuItem_Click);
 			// 
 			// registerNewStudentToolStripMenuItem1
 			// 
@@ -273,6 +275,14 @@ namespace LibraryManagementSystem {
 		private: System::Void registerNewStudentToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
 			add_student^ f = gcnew add_student;
 			loadform(f);
+		}
+
+
+		// View student form
+		private: System::Void registerNewStudentToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+			view_student^ f = gcnew view_student;
+			loadform(f);
+
 		}
 	};
 }
