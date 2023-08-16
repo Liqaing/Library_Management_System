@@ -5,6 +5,7 @@
 #include "add_book.h"
 #include "add_student.h"
 #include "view_students.h"
+#include "Issue_Return_Book.h"
 
 namespace LibraryManagementSystem {
 
@@ -50,9 +51,9 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::ToolStripMenuItem^ studentToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ registerNewStudentToolStripMenuItem;
 
-	private: System::Windows::Forms::ToolStripMenuItem^ issueAndReturnToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ issueBookToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ returnBookToolStripMenuItem;
+
+
+
 	private: System::Windows::Forms::ToolStripMenuItem^ historyToolStripMenuItem;
 	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ exitToolStripMenuItem;
@@ -61,6 +62,8 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::Panel^ mainpanel;
 	private: System::Windows::Forms::ToolStripMenuItem^ hiToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ registerNewStudentToolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripMenuItem^ issueAndReturnToolStripMenuItem;
+
 	private: System::ComponentModel::IContainer^ components;
 
 	private:
@@ -84,14 +87,12 @@ namespace LibraryManagementSystem {
 			this->studentToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->registerNewStudentToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->registerNewStudentToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->issueAndReturnToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->issueBookToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->returnBookToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->historyToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->hiToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->mainpanel = (gcnew System::Windows::Forms::Panel());
+			this->issueAndReturnToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -160,28 +161,6 @@ namespace LibraryManagementSystem {
 			this->registerNewStudentToolStripMenuItem1->Text = L"Register New Student";
 			this->registerNewStudentToolStripMenuItem1->Click += gcnew System::EventHandler(this, &Dashboard::registerNewStudentToolStripMenuItem1_Click);
 			// 
-			// issueAndReturnToolStripMenuItem
-			// 
-			this->issueAndReturnToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->issueBookToolStripMenuItem,
-					this->returnBookToolStripMenuItem
-			});
-			this->issueAndReturnToolStripMenuItem->Name = L"issueAndReturnToolStripMenuItem";
-			this->issueAndReturnToolStripMenuItem->Size = System::Drawing::Size(164, 28);
-			this->issueAndReturnToolStripMenuItem->Text = L"Issue and Return";
-			// 
-			// issueBookToolStripMenuItem
-			// 
-			this->issueBookToolStripMenuItem->Name = L"issueBookToolStripMenuItem";
-			this->issueBookToolStripMenuItem->Size = System::Drawing::Size(184, 28);
-			this->issueBookToolStripMenuItem->Text = L"Issue Book";
-			// 
-			// returnBookToolStripMenuItem
-			// 
-			this->returnBookToolStripMenuItem->Name = L"returnBookToolStripMenuItem";
-			this->returnBookToolStripMenuItem->Size = System::Drawing::Size(184, 28);
-			this->returnBookToolStripMenuItem->Text = L"Return Book";
-			// 
 			// historyToolStripMenuItem
 			// 
 			this->historyToolStripMenuItem->Name = L"historyToolStripMenuItem";
@@ -214,6 +193,13 @@ namespace LibraryManagementSystem {
 			this->mainpanel->Name = L"mainpanel";
 			this->mainpanel->Size = System::Drawing::Size(1064, 649);
 			this->mainpanel->TabIndex = 1;
+			// 
+			// issueAndReturnToolStripMenuItem
+			// 
+			this->issueAndReturnToolStripMenuItem->Name = L"issueAndReturnToolStripMenuItem";
+			this->issueAndReturnToolStripMenuItem->Size = System::Drawing::Size(215, 28);
+			this->issueAndReturnToolStripMenuItem->Text = L"Issue And Return Book";
+			this->issueAndReturnToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::issueAndReturnToolStripMenuItem_Click);
 			// 
 			// Dashboard
 			// 
@@ -282,7 +268,12 @@ namespace LibraryManagementSystem {
 		private: System::Void registerNewStudentToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 			view_student^ f = gcnew view_student;
 			loadform(f);
-
+		}
+		
+		// Issue and return book
+		private: System::Void issueAndReturnToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+			Issue_Return_Book^ f = gcnew Issue_Return_Book;
+			loadform(f);
 		}
 	};
 }
