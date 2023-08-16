@@ -85,6 +85,7 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::TextBox^ Gender;
 	private: System::Windows::Forms::TextBox^ Telephone;
 	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::Panel^ panel1;
 
 	private:
 		/// <summary>
@@ -115,6 +116,7 @@ namespace LibraryManagementSystem {
 			this->Gender = (gcnew System::Windows::Forms::TextBox());
 			this->Telephone = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Age))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -313,10 +315,20 @@ namespace LibraryManagementSystem {
 			this->label7->TabIndex = 43;
 			this->label7->Text = L"Telephone";
 			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::Color::SkyBlue;
+			this->panel1->ForeColor = System::Drawing::Color::Transparent;
+			this->panel1->Location = System::Drawing::Point(544, 205);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(5, 147);
+			this->panel1->TabIndex = 45;
+			// 
 			// Update_Delete_Student
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(572, 461);
+			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->Telephone);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->Gender);

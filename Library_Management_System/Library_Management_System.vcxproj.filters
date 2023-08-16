@@ -42,6 +42,15 @@
     <ClCompile Include="add_student.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Update_Delete_Student.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="view_student.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Issue_Return_Book.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Login_Form.h">
@@ -72,6 +81,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="add_student.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Update_Delete_Student.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="view_students.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Issue_Return_Book.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
