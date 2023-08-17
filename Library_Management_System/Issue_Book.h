@@ -1,5 +1,12 @@
 #pragma once
 
+#include "Linked_List.h"
+#include <msclr/marshal_cppstd.h>
+
+// Forward declaration
+Node<Student>* ReadStudentsDataFromDB();
+Node<Book>* ReadBooksDataFromDB();
+
 namespace LibraryManagementSystem {
 
 	using namespace System;
@@ -12,10 +19,21 @@ namespace LibraryManagementSystem {
 	/// <summary>
 	/// Summary for Issue_Return_Book
 	/// </summary>
-	public ref class Issue_Return_Book : public System::Windows::Forms::Form
+	public ref class Issue_Book : public System::Windows::Forms::Form
 	{
+
+	// Declare variable
+	private:
+		Node<Book>* BookList = nullptr;
+		Node<Student>* StudentList = nullptr;
+
+		Node<Student>* StudentInfo = nullptr;
+
+
+	private: System::Windows::Forms::NumericUpDown^ StudentID;
+
 	public:
-		Issue_Return_Book(void)
+		Issue_Book(void)
 		{
 			InitializeComponent();
 			//
@@ -27,7 +45,7 @@ namespace LibraryManagementSystem {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~Issue_Return_Book()
+		~Issue_Book()
 		{
 			if (components)
 			{
@@ -38,14 +56,18 @@ namespace LibraryManagementSystem {
 	protected:
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::TextBox^ textBox1;
+
+
 	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::Windows::Forms::TextBox^ StudentName;
+
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::TextBox^ Department;
+
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::TextBox^ textBox4;
+	private: System::Windows::Forms::TextBox^ Telephone;
+
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::ComboBox^ comboBox1;
 	private: System::Windows::Forms::Label^ label6;
@@ -68,6 +90,8 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::TextBox^ textBox6;
 	private: System::Windows::Forms::TextBox^ textBox7;
 	private: System::Windows::Forms::Label^ label12;
+	private: System::Windows::Forms::ComboBox^ comboBox2;
+	private: System::Windows::Forms::Label^ label13;
 
 	private:
 		/// <summary>
@@ -85,14 +109,13 @@ namespace LibraryManagementSystem {
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->StudentName = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->Department = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->Telephone = (gcnew System::Windows::Forms::TextBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
@@ -115,7 +138,11 @@ namespace LibraryManagementSystem {
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
 			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->StudentID = (gcnew System::Windows::Forms::NumericUpDown());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->StudentID))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// dataGridView1
@@ -148,15 +175,6 @@ namespace LibraryManagementSystem {
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Student ID";
 			// 
-			// textBox1
-			// 
-			this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->textBox1->Location = System::Drawing::Point(21, 61);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(91, 22);
-			this->textBox1->TabIndex = 3;
-			// 
 			// panel1
 			// 
 			this->panel1->BackColor = System::Drawing::Color::SkyBlue;
@@ -178,15 +196,17 @@ namespace LibraryManagementSystem {
 			this->button1->TabIndex = 5;
 			this->button1->Text = L"Get";
 			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &Issue_Book::button1_Click);
 			// 
-			// textBox2
+			// StudentName
 			// 
-			this->textBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->StudentName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox2->Location = System::Drawing::Point(309, 61);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(125, 22);
-			this->textBox2->TabIndex = 7;
+			this->StudentName->Location = System::Drawing::Point(309, 61);
+			this->StudentName->Name = L"StudentName";
+			this->StudentName->ReadOnly = true;
+			this->StudentName->Size = System::Drawing::Size(125, 22);
+			this->StudentName->TabIndex = 7;
 			// 
 			// label3
 			// 
@@ -199,14 +219,15 @@ namespace LibraryManagementSystem {
 			this->label3->TabIndex = 6;
 			this->label3->Text = L"Student Name";
 			// 
-			// textBox3
+			// Department
 			// 
-			this->textBox3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->Department->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox3->Location = System::Drawing::Point(468, 61);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(148, 22);
-			this->textBox3->TabIndex = 9;
+			this->Department->Location = System::Drawing::Point(468, 61);
+			this->Department->Name = L"Department";
+			this->Department->ReadOnly = true;
+			this->Department->Size = System::Drawing::Size(148, 22);
+			this->Department->TabIndex = 9;
 			// 
 			// label4
 			// 
@@ -219,14 +240,15 @@ namespace LibraryManagementSystem {
 			this->label4->TabIndex = 8;
 			this->label4->Text = L"Department";
 			// 
-			// textBox4
+			// Telephone
 			// 
-			this->textBox4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->Telephone->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox4->Location = System::Drawing::Point(649, 61);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(144, 22);
-			this->textBox4->TabIndex = 11;
+			this->Telephone->Location = System::Drawing::Point(649, 61);
+			this->Telephone->Name = L"Telephone";
+			this->Telephone->ReadOnly = true;
+			this->Telephone->Size = System::Drawing::Size(144, 22);
+			this->Telephone->TabIndex = 11;
 			// 
 			// label5
 			// 
@@ -302,9 +324,9 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label7->Location = System::Drawing::Point(18, 111);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(76, 18);
+			this->label7->Size = System::Drawing::Size(62, 18);
 			this->label7->TabIndex = 16;
-			this->label7->Text = L"Student ID";
+			this->label7->Text = L"Book ID";
 			// 
 			// panel2
 			// 
@@ -489,10 +511,50 @@ namespace LibraryManagementSystem {
 			this->label12->TabIndex = 35;
 			this->label12->Text = L"Quantity";
 			// 
+			// comboBox2
+			// 
+			this->comboBox2->Anchor = System::Windows::Forms::AnchorStyles::Top;
+			this->comboBox2->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->comboBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->comboBox2->FormattingEnabled = true;
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"All", L"Borrow", L"Return" });
+			this->comboBox2->Location = System::Drawing::Point(733, 207);
+			this->comboBox2->Name = L"comboBox2";
+			this->comboBox2->Size = System::Drawing::Size(121, 24);
+			this->comboBox2->TabIndex = 37;
+			// 
+			// label13
+			// 
+			this->label13->Anchor = System::Windows::Forms::AnchorStyles::Top;
+			this->label13->AutoSize = true;
+			this->label13->BackColor = System::Drawing::Color::Transparent;
+			this->label13->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label13->Location = System::Drawing::Point(687, 211);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(40, 18);
+			this->label13->TabIndex = 38;
+			this->label13->Text = L"Filter";
+			// 
+			// StudentID
+			// 
+			this->StudentID->Anchor = System::Windows::Forms::AnchorStyles::Top;
+			this->StudentID->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->StudentID->Location = System::Drawing::Point(21, 61);
+			this->StudentID->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000, 0, 0, 0 });
+			this->StudentID->Name = L"StudentID";
+			this->StudentID->Size = System::Drawing::Size(91, 23);
+			this->StudentID->TabIndex = 39;
+			// 
 			// Issue_Return_Book
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(1064, 681);
+			this->Controls->Add(this->StudentID);
+			this->Controls->Add(this->label13);
+			this->Controls->Add(this->comboBox2);
 			this->Controls->Add(this->textBox7);
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->textBox6);
@@ -514,14 +576,13 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->comboBox1);
-			this->Controls->Add(this->textBox4);
+			this->Controls->Add(this->Telephone);
 			this->Controls->Add(this->label5);
-			this->Controls->Add(this->textBox3);
+			this->Controls->Add(this->Department);
 			this->Controls->Add(this->label4);
-			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->StudentName);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->button1);
-			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->dataGridView1);
@@ -529,11 +590,51 @@ namespace LibraryManagementSystem {
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"Issue_Return_Book";
 			this->Text = L"Issue_Return_Book";
+			this->Load += gcnew System::EventHandler(this, &Issue_Book::Issue_Return_Book_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->StudentID))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
+		
+		// When form load
+		private: System::Void Issue_Return_Book_Load(System::Object^ sender, System::EventArgs^ e) {
+			
+			// Read data from database into linked list
+			this->BookList = ReadBooksDataFromDB();
+			this->StudentList = ReadStudentsDataFromDB();
+
+		}
+
+		// Get student info by id
+		private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+			
+			// Validate student id input
+			if (this->StudentID->Value <= 0) {
+				MessageBox::Show("Invalid Student ID");
+				return;
+			}
+
+			// Retrive student id
+			int InputStudentID = (int) (this->StudentID->Value);
+
+			// Retrive student information by id
+			this->StudentInfo = SearchNodeLinkedList(this->StudentList, InputStudentID);
+			
+			// if not found
+			if (this->StudentInfo == nullptr) {
+				MessageBox::Show(String::Format("There is no student with ID of {0}", InputStudentID));
+				return;
+			}
+
+			// Display student info to text box
+			this->StudentName->Text = msclr::interop::marshal_as<System::String^>(this->StudentInfo->data.name);
+			this->Department->Text = msclr::interop::marshal_as<System::String^>(this->StudentInfo->data.department);
+			this->Telephone->Text = msclr::interop::marshal_as<System::String^>(this->StudentInfo->data.telephone);
+
+		}
+	
 	};
 }

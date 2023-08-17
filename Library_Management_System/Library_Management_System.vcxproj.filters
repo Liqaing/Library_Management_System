@@ -89,7 +89,7 @@
     <ClInclude Include="view_students.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Issue_Return_Book.h">
+    <ClInclude Include="Issue_Book.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

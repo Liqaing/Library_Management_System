@@ -147,7 +147,7 @@
     <ClInclude Include="Dashboard.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Issue_Return_Book.h">
+    <ClInclude Include="Issue_Book.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Update_Delete_Book.h">
@@ -180,8 +180,8 @@
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Issue_Return_Book.resx">
-      <DependentUpon>Issue_Return_Book.h</DependentUpon>
+    <EmbeddedResource Include="Issue_Book.resx">
+      <DependentUpon>Issue_Book.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Update_Delete_Book.resx">
       <DependentUpon>Update_Delete_Book.h</DependentUpon>

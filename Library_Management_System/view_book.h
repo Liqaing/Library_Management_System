@@ -314,7 +314,7 @@ namespace LibraryManagementSystem {
 
 		}
 #pragma endregion
-	
+
 		// When form load
 		private: System::Void view_book_Load(System::Object^ sender, System::EventArgs^ e) {
 			

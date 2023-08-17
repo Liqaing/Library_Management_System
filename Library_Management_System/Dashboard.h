@@ -5,7 +5,7 @@
 #include "add_book.h"
 #include "add_student.h"
 #include "view_students.h"
-#include "Issue_Return_Book.h"
+#include "Issue_Book.h"
 
 namespace LibraryManagementSystem {
 
@@ -21,6 +21,12 @@ namespace LibraryManagementSystem {
 	/// </summary>
 	public ref class Dashboard : public System::Windows::Forms::Form
 	{
+
+	// Declare variable
+	private:
+		Node<Book>* BookList = nullptr;
+		Node<Student>* StudentList = nullptr;
+
 	public:
 		Dashboard(void)
 		{
@@ -272,8 +278,11 @@ namespace LibraryManagementSystem {
 		
 		// Issue and return book
 		private: System::Void issueAndReturnToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-			Issue_Return_Book^ f = gcnew Issue_Return_Book;
+	
+			// Retrive book linked list from view_book.h
+			Issue_Book^ f = gcnew Issue_Book;
 			loadform(f);
+			
 		}
 	};
 }

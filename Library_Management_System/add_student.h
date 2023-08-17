@@ -364,6 +364,8 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->StudentName);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label1);
+			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"add_student";
 			this->Text = L"add_student";
@@ -374,6 +376,28 @@ namespace LibraryManagementSystem {
 
 		}
 #pragma endregion
+
+		// Save student into data
+		private: System::Void save_Click(System::Object^ sender, System::EventArgs^ e) {
+
+			// If student list is not null
+			if (this->StudentList != nullptr) {
+
+				// Insert booklist to database
+				InsertStudentLinkedListIntoDB(this->StudentList);
+
+				dataGridView1->Rows->Clear();
+
+				// Free all node in booklist after using it
+				ClearLinkedList(this->StudentList);
+				this->StudentList = nullptr;
+			}
+			else {
+				MessageBox::Show("Linked List is empty, Nothing to save");
+				return;
+			}
+		}
+
 		// Add student into Linked List
 		private: System::Void add1_Click(System::Object^ sender, System::EventArgs^ e) {
 			
@@ -437,25 +461,6 @@ namespace LibraryManagementSystem {
 			this->Telephone->Text = "";
 		}
 
-		// Save student into data
-		private: System::Void save_Click(System::Object^ sender, System::EventArgs^ e) {
-			
-			// If student list is not null
-			if (this->StudentList != nullptr) {
-
-				// Insert booklist to database
-				InsertStudentLinkedListIntoDB(this->StudentList);
-
-				dataGridView1->Rows->Clear();
-
-				// Free all node in booklist after using it
-				ClearLinkedList(this->StudentList);
-				this->StudentList = nullptr;
-			}
-			else {
-				MessageBox::Show("Linked List is empty, Nothing to save");
-				return;
-			}
-		}
+		
 	};
 }
