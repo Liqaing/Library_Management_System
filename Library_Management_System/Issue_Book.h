@@ -30,8 +30,27 @@ namespace LibraryManagementSystem {
 		Node<Student>* StudentInfo = nullptr;
 		Node<Book>* BookInfo = nullptr;
 
+		Node<IssueReturn>* IssueReturnList = nullptr;
+
 	private: System::Windows::Forms::ComboBox^ BookTitle;
 	private: System::Windows::Forms::NumericUpDown^ BookID;
+	private: System::Windows::Forms::DateTimePicker^ Issuedate;
+	private: System::Windows::Forms::Label^ label14;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ID;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Name;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Title;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ IDate;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ RDate;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Status;
+
+
+
+
+
+
+
+
+
 
 
 	private: System::Windows::Forms::NumericUpDown^ StudentID;
@@ -89,8 +108,8 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::Label^ label10;
 	private: System::Windows::Forms::Button^ Search;
 	private: System::Windows::Forms::TextBox^ UserInput;
-	private: System::Windows::Forms::Button^ button4;
-	private: System::Windows::Forms::Panel^ panel3;
+
+
 	private: System::Windows::Forms::Label^ label11;
 	private: System::Windows::Forms::TextBox^ Author;
 	private: System::Windows::Forms::TextBox^ Quantity;
@@ -114,6 +133,12 @@ namespace LibraryManagementSystem {
 		void InitializeComponent(void)
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->ID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Title = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->IDate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->RDate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Status = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
@@ -137,8 +162,6 @@ namespace LibraryManagementSystem {
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->Search = (gcnew System::Windows::Forms::Button());
 			this->UserInput = (gcnew System::Windows::Forms::TextBox());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->Author = (gcnew System::Windows::Forms::TextBox());
 			this->Quantity = (gcnew System::Windows::Forms::TextBox());
@@ -148,6 +171,8 @@ namespace LibraryManagementSystem {
 			this->StudentID = (gcnew System::Windows::Forms::NumericUpDown());
 			this->BookTitle = (gcnew System::Windows::Forms::ComboBox());
 			this->BookID = (gcnew System::Windows::Forms::NumericUpDown());
+			this->Issuedate = (gcnew System::Windows::Forms::DateTimePicker());
+			this->label14 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->StudentID))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BookID))->BeginInit();
@@ -156,10 +181,54 @@ namespace LibraryManagementSystem {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
+				this->ID, this->Name,
+					this->Title, this->IDate, this->RDate, this->Status
+			});
 			this->dataGridView1->Location = System::Drawing::Point(21, 237);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->Size = System::Drawing::Size(1011, 377);
 			this->dataGridView1->TabIndex = 0;
+			// 
+			// ID
+			// 
+			this->ID->HeaderText = L"ID";
+			this->ID->Name = L"ID";
+			this->ID->ReadOnly = true;
+			// 
+			// Name
+			// 
+			this->Name->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Name->HeaderText = L"Student Name";
+			this->Name->Name = L"Name";
+			this->Name->ReadOnly = true;
+			// 
+			// Title
+			// 
+			this->Title->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Title->HeaderText = L"Title";
+			this->Title->Name = L"Title";
+			this->Title->ReadOnly = true;
+			// 
+			// IDate
+			// 
+			this->IDate->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->IDate->HeaderText = L"Issue Date";
+			this->IDate->Name = L"IDate";
+			this->IDate->ReadOnly = true;
+			// 
+			// RDate
+			// 
+			this->RDate->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->RDate->HeaderText = L"Return Date";
+			this->RDate->Name = L"RDate";
+			this->RDate->ReadOnly = true;
+			// 
+			// Status
+			// 
+			this->Status->HeaderText = L"Status";
+			this->Status->Name = L"Status";
+			this->Status->ReadOnly = true;
 			// 
 			// label1
 			// 
@@ -210,7 +279,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->StudentName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->StudentName->Location = System::Drawing::Point(309, 61);
+			this->StudentName->Location = System::Drawing::Point(257, 61);
 			this->StudentName->Name = L"StudentName";
 			this->StudentName->ReadOnly = true;
 			this->StudentName->Size = System::Drawing::Size(125, 22);
@@ -221,7 +290,7 @@ namespace LibraryManagementSystem {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(306, 40);
+			this->label3->Location = System::Drawing::Point(254, 40);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(102, 18);
 			this->label3->TabIndex = 6;
@@ -231,7 +300,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->Department->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->Department->Location = System::Drawing::Point(468, 61);
+			this->Department->Location = System::Drawing::Point(416, 61);
 			this->Department->Name = L"Department";
 			this->Department->ReadOnly = true;
 			this->Department->Size = System::Drawing::Size(148, 22);
@@ -242,7 +311,7 @@ namespace LibraryManagementSystem {
 			this->label4->AutoSize = true;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label4->Location = System::Drawing::Point(465, 40);
+			this->label4->Location = System::Drawing::Point(413, 40);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(85, 18);
 			this->label4->TabIndex = 8;
@@ -252,7 +321,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->Telephone->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->Telephone->Location = System::Drawing::Point(649, 61);
+			this->Telephone->Location = System::Drawing::Point(597, 61);
 			this->Telephone->Name = L"Telephone";
 			this->Telephone->ReadOnly = true;
 			this->Telephone->Size = System::Drawing::Size(144, 22);
@@ -263,7 +332,7 @@ namespace LibraryManagementSystem {
 			this->label5->AutoSize = true;
 			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label5->Location = System::Drawing::Point(646, 40);
+			this->label5->Location = System::Drawing::Point(594, 40);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(77, 18);
 			this->label5->TabIndex = 10;
@@ -274,7 +343,7 @@ namespace LibraryManagementSystem {
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label6->Location = System::Drawing::Point(306, 109);
+			this->label6->Location = System::Drawing::Point(254, 109);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(75, 18);
 			this->label6->TabIndex = 13;
@@ -286,12 +355,13 @@ namespace LibraryManagementSystem {
 			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->Location = System::Drawing::Point(940, 60);
+			this->button2->Location = System::Drawing::Point(772, 129);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(94, 24);
 			this->button2->TabIndex = 15;
 			this->button2->Text = L"Issue Book";
 			this->button2->UseVisualStyleBackColor = false;
+			this->button2->Click += gcnew System::EventHandler(this, &Issue_Book::button2_Click);
 			// 
 			// button3
 			// 
@@ -400,6 +470,7 @@ namespace LibraryManagementSystem {
 			this->Refresh->TabIndex = 26;
 			this->Refresh->Text = L"Refresh";
 			this->Refresh->UseVisualStyleBackColor = false;
+			this->Refresh->Click += gcnew System::EventHandler(this, &Issue_Book::Refresh_Click);
 			// 
 			// label10
 			// 
@@ -439,34 +510,12 @@ namespace LibraryManagementSystem {
 			this->UserInput->Size = System::Drawing::Size(137, 24);
 			this->UserInput->TabIndex = 23;
 			// 
-			// button4
-			// 
-			this->button4->BackColor = System::Drawing::Color::SkyBlue;
-			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button4->Location = System::Drawing::Point(938, 132);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(94, 24);
-			this->button4->TabIndex = 31;
-			this->button4->Text = L"Return Book";
-			this->button4->UseVisualStyleBackColor = false;
-			// 
-			// panel3
-			// 
-			this->panel3->BackColor = System::Drawing::Color::SkyBlue;
-			this->panel3->ForeColor = System::Drawing::Color::Transparent;
-			this->panel3->Location = System::Drawing::Point(913, 41);
-			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(5, 147);
-			this->panel3->TabIndex = 5;
-			// 
 			// label11
 			// 
 			this->label11->AutoSize = true;
 			this->label11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label11->Location = System::Drawing::Point(465, 109);
+			this->label11->Location = System::Drawing::Point(413, 109);
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(51, 18);
 			this->label11->TabIndex = 33;
@@ -476,7 +525,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->Author->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->Author->Location = System::Drawing::Point(468, 131);
+			this->Author->Location = System::Drawing::Point(416, 131);
 			this->Author->Name = L"Author";
 			this->Author->ReadOnly = true;
 			this->Author->Size = System::Drawing::Size(148, 22);
@@ -486,7 +535,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->Quantity->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->Quantity->Location = System::Drawing::Point(649, 130);
+			this->Quantity->Location = System::Drawing::Point(597, 130);
 			this->Quantity->Name = L"Quantity";
 			this->Quantity->ReadOnly = true;
 			this->Quantity->Size = System::Drawing::Size(148, 22);
@@ -497,7 +546,7 @@ namespace LibraryManagementSystem {
 			this->label12->AutoSize = true;
 			this->label12->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label12->Location = System::Drawing::Point(646, 109);
+			this->label12->Location = System::Drawing::Point(594, 109);
 			this->label12->Name = L"label12";
 			this->label12->Size = System::Drawing::Size(62, 18);
 			this->label12->TabIndex = 35;
@@ -546,7 +595,7 @@ namespace LibraryManagementSystem {
 			this->BookTitle->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->BookTitle->FormattingEnabled = true;
-			this->BookTitle->Location = System::Drawing::Point(311, 133);
+			this->BookTitle->Location = System::Drawing::Point(257, 130);
 			this->BookTitle->Name = L"BookTitle";
 			this->BookTitle->Size = System::Drawing::Size(125, 24);
 			this->BookTitle->TabIndex = 12;
@@ -562,10 +611,32 @@ namespace LibraryManagementSystem {
 			this->BookID->Size = System::Drawing::Size(91, 23);
 			this->BookID->TabIndex = 40;
 			// 
+			// Issuedate
+			// 
+			this->Issuedate->CalendarFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->Issuedate->Location = System::Drawing::Point(772, 63);
+			this->Issuedate->Name = L"Issuedate";
+			this->Issuedate->Size = System::Drawing::Size(200, 20);
+			this->Issuedate->TabIndex = 41;
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label14->Location = System::Drawing::Point(769, 40);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(78, 18);
+			this->label14->TabIndex = 42;
+			this->label14->Text = L"Issue Date";
+			// 
 			// Issue_Book
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(1064, 681);
+			this->Controls->Add(this->label14);
+			this->Controls->Add(this->Issuedate);
 			this->Controls->Add(this->BookID);
 			this->Controls->Add(this->StudentID);
 			this->Controls->Add(this->label13);
@@ -574,8 +645,6 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->Author);
 			this->Controls->Add(this->label11);
-			this->Controls->Add(this->panel3);
-			this->Controls->Add(this->button4);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->SearchType);
 			this->Controls->Add(this->label9);
@@ -602,7 +671,6 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			this->Name = L"Issue_Book";
 			this->Text = L"Issue_Return_Book";
 			this->Load += gcnew System::EventHandler(this, &Issue_Book::Issue_Return_Book_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -620,6 +688,10 @@ namespace LibraryManagementSystem {
 			// Read data from database into linked list
 			this->BookList = ReadBooksDataFromDB();
 			this->StudentList = ReadStudentsDataFromDB();
+			this->IssueReturnList = ReadIssueReturnDataFromDB();
+
+			// Display Issue Return Data
+			TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
 
 		}
 
@@ -676,6 +748,67 @@ namespace LibraryManagementSystem {
 			this->BookTitle->Text = msclr::interop::marshal_as<System::String^>(this->BookInfo->data.title);
 			this->Author->Text = msclr::interop::marshal_as<System::String^>(this->BookInfo->data.author);
 			this->Quantity->Text = this->BookInfo->data.qty.ToString();
+		}
+	
+		// Issue book to student
+		private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+			// Check if student and book are filled
+			if (this->BookInfo == nullptr || this->StudentInfo == nullptr) {
+				MessageBox::Show("There is no Book or Student to issue");
+				return;
+			}
+
+			// Validate Book qty
+			if (this->BookInfo->data.qty == 0) {
+				MessageBox::Show("There is no Book left to issue");
+				return;
+			}
+
+			// Retrive book and student info and store it in issue book
+			IssueReturn issue_book;
+			issue_book.bookid = this->BookInfo->data.id;
+			issue_book.studentid = this->StudentInfo->data.id;
+			issue_book.issueDate = msclr::interop::marshal_as<std::string>(this->Issuedate->Text);
+			issue_book.returnDate = "";
+			issue_book.Status = "BORROWED";
+			issue_book.is_borrowing = 1; // 1, True to indicate that the student is still borrowing the book
+
+			// Cleare all textbox
+			this->StudentID->Value = 0;
+			this->BookID->Value = 0;
+			this->StudentName->Text = "";
+			this->Department->Text = "";
+			this->Telephone->Text = "";
+			this->BookTitle->Text = "";
+			this->Author->Text = "";
+			this->Quantity->Text = "";
+
+			// Update book qty -1 in linked list and database
+			this->BookInfo->data.qty -= 1;
+			UpdateBookInDB(this->BookInfo->data);
+
+			// Insert issue_book into database
+			InsertIssueDB(issue_book);
+		
+			/*
+			this->IssueReturnList = ReadIssueReturnDataFromDB();
+			
+			// Display Issue Return Data
+			this->dataGridView1->Rows->Clear();
+			TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
+			*/
+		}
+
+		// Refresh
+		private: System::Void Refresh_Click(System::Object^ sender, System::EventArgs^ e) {
+			
+			this->dataGridView1->Rows->Clear();
+		
+			// Read data from database
+			this->IssueReturnList = ReadIssueReturnDataFromDB();
+
+			TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
 		}
 	};
 }

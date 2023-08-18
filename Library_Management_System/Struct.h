@@ -19,6 +19,21 @@ typedef struct Student {
 } Student;
 
 
+typedef struct IssueReturn {
+	int id;
+	int bookid;
+	int studentid;
+
+	// To store name and title when read data from DB
+	std::string StudentName;
+	std::string BookTitle;
+
+	std::string issueDate;
+	std::string returnDate;
+	std::string Status;
+	int is_borrowing;
+} IssueReturn;
+
 template <typename T>
 struct Node {
 	T data;

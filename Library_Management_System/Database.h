@@ -9,3 +9,5 @@ void UpdateBookInDB(Book book);
 void InsertStudentDB(Student student);
 void DeleteStudentFromDB(int id);
 void UpdateStudentInDB(Student student);
+void InsertIssueDB(IssueReturn issue_book);
+Node<IssueReturn>* ReadIssueReturnDataFromDB();

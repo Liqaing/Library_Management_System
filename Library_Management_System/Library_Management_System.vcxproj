@@ -125,6 +125,7 @@
     <ClCompile Include="add_student.cpp" />
     <ClCompile Include="Dashboard.cpp" />
     <ClCompile Include="Issue_Return_Book.cpp" />
+    <ClCompile Include="return_book.cpp" />
     <ClCompile Include="Update_Delete_Book.cpp" />
     <ClCompile Include="Linked_List.cpp" />
     <ClCompile Include="Login_Form.cpp" />
@@ -148,6 +149,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Issue_Book.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="return_book.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Update_Delete_Book.h">

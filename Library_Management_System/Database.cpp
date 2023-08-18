@@ -35,6 +35,13 @@ void InitializeDatabase() {
 		return;
 	}
 
+	// IssueReturn Book table
+	const char* createIssueReturnTableQuery = "CREATE TABLE IF NOT EXISTS IssueReturn (Id INTEGER PRIMARY KEY AUTOINCREMENT, BookID INTEGER, StudentID INTEGER, IssueDate DATE NOT NULL, ReturnDate DATE, Status Text NOT NULL, Is_Borrowing INT NOT NULL, FOREIGN KEY (BookID) REFERENCES Books (Id) ON DELETE NO ACTION ON UPDATE CASCADE, FOREIGN KEY (StudentID) REFERENCES Student (Id) ON DELETE NO ACTION ON UPDATE CASCADE)";
+	result = sqlite3_exec(db, createIssueReturnTableQuery, 0, 0, 0);
+	if (result != SQLITE_OK) {
+		return;
+	}
+
 	sqlite3_close(db);
 }
 
@@ -374,4 +381,103 @@ void UpdateStudentInDB(Student student) {
 	// Clean up memory after prepare statement is done
 	sqlite3_finalize(UpdateStmt);
 	sqlite3_close(db);
+}
+
+// Insert Issue book into DB
+void InsertIssueDB(IssueReturn issue_book) {
+	
+	// Open Database Connection
+	sqlite3* db;
+	int result = sqlite3_open(LibraryDB, &db);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Insert query for compiling into sql query
+	const char* InsertQuery = "INSERT INTO IssueReturn (BookID, StudentID, IssueDate, ReturnDate, Status, Is_Borrowing) VALUES (?, ?, ?, ?, ?, ?)";
+
+	// Pointer to the compiled prepare statement (InsertBookQuery), can be use to bind value, executing...
+	sqlite3_stmt* InsertStmt = NULL;
+
+	// Compiled query into prepared statement or byte-code
+	result = sqlite3_prepare_v2(db, InsertQuery, -1, &InsertStmt, NULL);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Binding value into sql parameter for Insert Query
+	sqlite3_bind_int(InsertStmt, 1, issue_book.bookid);
+	sqlite3_bind_int(InsertStmt, 2, issue_book.studentid);
+	sqlite3_bind_text(InsertStmt, 3, issue_book.issueDate.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_text(InsertStmt, 4, issue_book.returnDate.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_text(InsertStmt, 5, issue_book.Status.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_int(InsertStmt, 6, issue_book.is_borrowing);
+
+	// Execute the query
+	result = sqlite3_step(InsertStmt);
+	if (result != SQLITE_DONE) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Clean up memory after prepare statement is done
+	sqlite3_finalize(InsertStmt);
+	sqlite3_close(db);
+}
+
+
+// Read Issue Return data from DB, return linked list head
+Node<IssueReturn>* ReadIssueReturnDataFromDB() {
+	
+	sqlite3* db;
+	int result = sqlite3_open(LibraryDB, &db);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return 0;
+	}
+
+	// Select query
+	const char* SelectQuery = "SELECT ir.Id, ir.BookID, ir.StudentID, ir.IssueDate, ir.ReturnDate, ir.Status, ir.Is_Borrowing, b.Title, s.Name FROM IssueReturn AS ir JOIN Books AS b ON ir.BookID == b.Id JOIN Students AS s ON ir.StudentID = s.Id";
+
+	// Pointer to compiled query
+	sqlite3_stmt* stmt = NULL;
+
+	// Compile Query
+	result = sqlite3_prepare_v2(db, SelectQuery, -1, &stmt, NULL);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return 0;
+	}
+
+	// Initialize linked list
+	Node<IssueReturn>* head = InitializeLinkedList<IssueReturn>();
+
+	// Execute the query, and while there are rows return, insert into linked list
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+
+		IssueReturn issue_return;
+
+		// Retrive data from the return row and convert it from "const unsigned char *" to 
+		issue_return.id = sqlite3_column_int(stmt, 0);
+		issue_return.bookid = sqlite3_column_int(stmt, 1);
+		issue_return.studentid = sqlite3_column_int(stmt, 2);
+
+		issue_return.issueDate= reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
+		issue_return.returnDate = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
+		issue_return.Status = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
+		issue_return.is_borrowing = sqlite3_column_int(stmt, 6);
+		issue_return.BookTitle = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7));
+		issue_return.StudentName = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 8));
+
+		head = InsertLinkedList(head, issue_return);
+	}
+
+	// clean up and free memory
+	sqlite3_finalize(stmt);
+
+	sqlite3_close(db);
+
+	return head;
 }

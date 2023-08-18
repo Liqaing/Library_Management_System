@@ -30,17 +30,6 @@ void FreeNode(Node<T> *Node) {
 	delete Node;
 }
 
-// Create Linked List
-/*
-template <typename T>
-Node<T>* CreateLinkedList(Node<T> *head, T data) {
-	// If this is the first node
-	if (head == nullptr) {
-		InsertAtBeginning(head, data);
-	}
-}
-*/
-
 // Insert node into linked list
 template <typename T>
 Node<T> *InsertLinkedList(Node<T> *head, T data) {
@@ -149,6 +138,23 @@ void DisplayStudentIntoDatagridWithID(System::Windows::Forms::DataGridView^ data
 		msclr::interop::marshal_as<System::String^>(Data.gender), // Datagrid will display char as number if i dont use sting
 		msclr::interop::marshal_as<System::String^>(Data.department),
 		msclr::interop::marshal_as<System::String^>(Data.telephone)
+	);
+}
+
+// Display IssueReturn data into datagrid with id
+template <typename T>
+void DisplayIssueReturnIntoDatagrid(System::Windows::Forms::DataGridView^ dataGridview, T Data) {
+
+	// add student data into DataGridView
+	dataGridview->Rows->Add(
+
+		// Set text for each columns in row
+		Data.id,
+		msclr::interop::marshal_as<System::String^>(Data.StudentName),
+		msclr::interop::marshal_as<System::String^>(Data.BookTitle),
+		msclr::interop::marshal_as<System::String^>(Data.issueDate),
+		msclr::interop::marshal_as<System::String^>(Data.returnDate),
+		msclr::interop::marshal_as<System::String^>(Data.Status)
 	);
 }
 

@@ -186,11 +186,9 @@ namespace LibraryManagementSystem {
 			this->qty->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->qty->Location = System::Drawing::Point(182, 184);
-			this->qty->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			this->qty->Name = L"qty";
 			this->qty->Size = System::Drawing::Size(334, 23);
 			this->qty->TabIndex = 20;
-			this->qty->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			// 
 			// label6
 			// 
