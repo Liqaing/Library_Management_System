@@ -3,6 +3,8 @@
 #include "Linked_List.h"
 #include <msclr/marshal_cppstd.h>
 
+#include "return_book.h";
+
 // Forward declaration
 Node<Student>* ReadStudentsDataFromDB();
 Node<Book>* ReadBooksDataFromDB();
@@ -116,7 +118,8 @@ namespace LibraryManagementSystem {
 
 
 	private: System::Windows::Forms::Label^ label12;
-	private: System::Windows::Forms::ComboBox^ comboBox2;
+	private: System::Windows::Forms::ComboBox^ Filter;
+
 	private: System::Windows::Forms::Label^ label13;
 
 	private:
@@ -166,7 +169,7 @@ namespace LibraryManagementSystem {
 			this->Author = (gcnew System::Windows::Forms::TextBox());
 			this->Quantity = (gcnew System::Windows::Forms::TextBox());
 			this->label12 = (gcnew System::Windows::Forms::Label());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->Filter = (gcnew System::Windows::Forms::ComboBox());
 			this->label13 = (gcnew System::Windows::Forms::Label());
 			this->StudentID = (gcnew System::Windows::Forms::NumericUpDown());
 			this->BookTitle = (gcnew System::Windows::Forms::ComboBox());
@@ -189,6 +192,7 @@ namespace LibraryManagementSystem {
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->Size = System::Drawing::Size(1011, 377);
 			this->dataGridView1->TabIndex = 0;
+			this->dataGridView1->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Issue_Book::dataGridView1_CellDoubleClick);
 			// 
 			// ID
 			// 
@@ -419,8 +423,8 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->SearchType->FormattingEnabled = true;
 			this->SearchType->Items->AddRange(gcnew cli::array< System::Object^  >(6) {
-				L"Student ID", L"Student Name", L"Age", L"Gender",
-					L"Department", L"Telephone"
+				L"By ID", L"By Student Name", L"By Title", L"By Issue Date",
+					L"By Return Date", L"By Status"
 			});
 			this->SearchType->Location = System::Drawing::Point(242, 205);
 			this->SearchType->Name = L"SearchType";
@@ -448,13 +452,14 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->Sort->FormattingEnabled = true;
 			this->Sort->Items->AddRange(gcnew cli::array< System::Object^  >(6) {
-				L"By ID", L"By Name", L"By Age", L"By Gender", L"By Department",
-					L"By Telephone"
+				L"By ID", L"By Student Name", L"By Title", L"By Issue Date",
+					L"By Return Date", L"By Status"
 			});
 			this->Sort->Location = System::Drawing::Point(913, 207);
 			this->Sort->Name = L"Sort";
 			this->Sort->Size = System::Drawing::Size(121, 24);
 			this->Sort->TabIndex = 27;
+			this->Sort->SelectedIndexChanged += gcnew System::EventHandler(this, &Issue_Book::Sort_SelectedIndexChanged);
 			// 
 			// Refresh
 			// 
@@ -499,6 +504,7 @@ namespace LibraryManagementSystem {
 			this->Search->TabIndex = 24;
 			this->Search->Text = L"Search";
 			this->Search->UseVisualStyleBackColor = false;
+			this->Search->Click += gcnew System::EventHandler(this, &Issue_Book::Search_Click);
 			// 
 			// UserInput
 			// 
@@ -552,18 +558,19 @@ namespace LibraryManagementSystem {
 			this->label12->TabIndex = 35;
 			this->label12->Text = L"Quantity";
 			// 
-			// comboBox2
+			// Filter
 			// 
-			this->comboBox2->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->comboBox2->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->comboBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->Filter->Anchor = System::Windows::Forms::AnchorStyles::Top;
+			this->Filter->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->Filter->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"All", L"Borrow", L"Return" });
-			this->comboBox2->Location = System::Drawing::Point(733, 207);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(121, 24);
-			this->comboBox2->TabIndex = 37;
+			this->Filter->FormattingEnabled = true;
+			this->Filter->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"Borrowing", L"Returned" });
+			this->Filter->Location = System::Drawing::Point(733, 207);
+			this->Filter->Name = L"Filter";
+			this->Filter->Size = System::Drawing::Size(121, 24);
+			this->Filter->TabIndex = 37;
+			this->Filter->SelectedIndexChanged += gcnew System::EventHandler(this, &Issue_Book::comboBox2_SelectedIndexChanged);
 			// 
 			// label13
 			// 
@@ -640,7 +647,7 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->BookID);
 			this->Controls->Add(this->StudentID);
 			this->Controls->Add(this->label13);
-			this->Controls->Add(this->comboBox2);
+			this->Controls->Add(this->Filter);
 			this->Controls->Add(this->Quantity);
 			this->Controls->Add(this->label12);
 			this->Controls->Add(this->Author);
@@ -771,7 +778,7 @@ namespace LibraryManagementSystem {
 			issue_book.studentid = this->StudentInfo->data.id;
 			issue_book.issueDate = msclr::interop::marshal_as<std::string>(this->Issuedate->Text);
 			issue_book.returnDate = "";
-			issue_book.Status = "BORROWED";
+			issue_book.Status = "BORROWING";
 			issue_book.is_borrowing = 1; // 1, True to indicate that the student is still borrowing the book
 
 			// Cleare all textbox
@@ -809,6 +816,179 @@ namespace LibraryManagementSystem {
 			this->IssueReturnList = ReadIssueReturnDataFromDB();
 
 			TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
+		}
+	
+		// Open return book form
+		private: System::Void dataGridView1_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+			
+			// Check if a valid row is click (exclude header row)
+			if (e->RowIndex >= 0 && e->ColumnIndex >= 0) {
+
+				// Retirve the selected row
+				DataGridViewRow^ SelectedRow = dataGridView1->Rows[e->RowIndex];
+
+				// Open edit_delete form
+				return_book^ return_form = gcnew return_book(
+
+					// Pass pointer to book linked list
+					this->IssueReturnList,
+
+					// data from datagridview
+					SelectedRow->Cells[0]->Value->ToString(),
+					SelectedRow->Cells[1]->Value->ToString(),
+					SelectedRow->Cells[2]->Value->ToString(),
+					SelectedRow->Cells[3]->Value->ToString(),
+					SelectedRow->Cells[4]->Value->ToString(),
+					SelectedRow->Cells[5]->Value->ToString()
+				);
+
+				// Show form
+				return_form->ShowDialog();
+
+				// Retrive booklist pointer back
+				//this->BookList = update_delete_form->GetBookLinkedList();
+
+				// Clear data gird view
+				dataGridView1->Rows->Clear();
+				TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
+			}
+
+		}
+
+		// Sort
+		private: System::Void Sort_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+			
+			// Retrive select item from combo box
+			std::string SelectedItem = msclr::interop::marshal_as<std::string>(Sort->SelectedItem->ToString());
+
+			// Check for item to sort by
+			if (SelectedItem == "By ID") {
+				// Sort
+				this->IssueReturnList = SortLinkedList(this->IssueReturnList, CompareIRID);
+
+				// Display again
+				dataGridView1->Rows->Clear();
+				TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
+			}
+			else if (SelectedItem == "By Student Name") {
+				// Sort
+				this->IssueReturnList = SortLinkedList(this->IssueReturnList, CompareIRStudentName);
+
+				// Display again
+				dataGridView1->Rows->Clear();
+				TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
+			}
+			else if (SelectedItem == "By Title") {
+				// Sort
+				this->IssueReturnList = SortLinkedList(this->IssueReturnList, CompareIRTitle);
+
+				// Display again
+				dataGridView1->Rows->Clear();
+				TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
+			}
+			else if (SelectedItem == "By Issue Date") {
+				// Sort
+				this->IssueReturnList = SortLinkedList(this->IssueReturnList, CompareIRIssueDate);
+
+				// Display again
+				dataGridView1->Rows->Clear();
+				TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
+			}
+			else if (SelectedItem == "By Return Date") {
+				// Sort
+				this->IssueReturnList = SortLinkedList(this->IssueReturnList, CompareIRReturnDate);
+
+				// Display again
+				dataGridView1->Rows->Clear();
+				TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
+			}
+			else if (SelectedItem == "By Status") {
+				// Sort
+				this->IssueReturnList = SortLinkedList(this->IssueReturnList, CompareIRStatus);
+
+				// Display again
+				dataGridView1->Rows->Clear();
+				TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
+			}
+
+		}
+
+		// Search
+		private: System::Void Search_Click(System::Object^ sender, System::EventArgs^ e) {
+		
+			// Retrive the input
+			std::string SearchData = msclr::interop::marshal_as<std::string>(UserInput->Text);
+
+			// Retrive select item from combo box
+			std::string SelectedItem = msclr::interop::marshal_as<std::string>(SearchType->SelectedItem->ToString());
+
+			if (SelectedItem == "By ID") {
+				
+				// Clear data gird view
+				dataGridView1->Rows->Clear();
+
+				// Search
+				SearchNodeLinkedList(dataGridView1, this->IssueReturnList, SearchData, SearchIRID);
+			}
+			else if (SelectedItem == "By Student Name") {
+
+				// Clear data gird view
+				dataGridView1->Rows->Clear();
+
+				// Search
+				SearchNodeLinkedList(dataGridView1, this->IssueReturnList, SearchData, SearchIRStudentName);
+			}
+			else if (SelectedItem == "By Title") {
+
+				// Clear data gird view
+				dataGridView1->Rows->Clear();
+
+				// Search
+				SearchNodeLinkedList(dataGridView1, this->IssueReturnList, SearchData, SearchIRTitle);
+			}
+			else if (SelectedItem == "By Issue Date") {
+
+				// Clear data gird view
+				dataGridView1->Rows->Clear();
+
+				// Search
+				SearchNodeLinkedList(dataGridView1, this->IssueReturnList, SearchData, SearchIRIssueDate);
+			}
+			else if (SelectedItem == "By Return Date") {
+
+				// Clear data gird view
+				dataGridView1->Rows->Clear();
+
+				// Search
+				SearchNodeLinkedList(dataGridView1, this->IssueReturnList, SearchData, SearchIRReturnDate);
+			}
+			else if (SelectedItem == "By Status") {
+
+				// Clear data gird view
+				dataGridView1->Rows->Clear();
+
+				// Search
+				SearchNodeLinkedList(dataGridView1, this->IssueReturnList, SearchData, SearchIRStatus);
+			}
+
+		}
+
+		// Filter table to borrowing, returned 
+		private: System::Void comboBox2_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+			
+			// Retrive select item from combo box
+			std::string SelectedItem = msclr::interop::marshal_as<std::string>(Filter->SelectedItem->ToString());
+		
+			if (SelectedItem == "Borrowing") {
+				dataGridView1->Rows->Clear();
+				// 1 for borrowing book
+				FilterIR(dataGridView1, this->IssueReturnList, 1);
+			}
+			else if (SelectedItem == "Returned") {
+				dataGridView1->Rows->Clear();
+				// 0 for returned book
+				FilterIR(dataGridView1, this->IssueReturnList, 0);
+			}
 		}
 	};
 }

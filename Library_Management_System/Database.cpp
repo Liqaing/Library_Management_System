@@ -481,3 +481,45 @@ Node<IssueReturn>* ReadIssueReturnDataFromDB() {
 
 	return head;
 }
+
+// Update data in Issue Return
+void UpdateIssueReturnInDB(IssueReturn issue_return) {
+
+	// Open Database Connection
+	sqlite3* db;
+	int result = sqlite3_open(LibraryDB, &db);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Insert query for compiling into sql query
+	const char* UpdateQuery = "UPDATE IssueReturn SET ReturnDate = ?, Status = ?, Is_Borrowing = ? WHERE Id = ?";
+
+	// Pointer to the compiled prepare statement (UpdateBookQuery)
+	sqlite3_stmt* UpdateStmt = NULL;
+
+	// Compiled query into prepared statement or byte-code
+	result = sqlite3_prepare_v2(db, UpdateQuery, -1, &UpdateStmt, NULL);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Binding value into sql parameter for Update Query
+	sqlite3_bind_text(UpdateStmt, 1, issue_return.returnDate.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_text(UpdateStmt, 2, issue_return.Status.c_str(), -1, SQLITE_STATIC);
+	sqlite3_bind_int(UpdateStmt, 3, issue_return.is_borrowing);
+	sqlite3_bind_int(UpdateStmt, 4, issue_return.id);
+
+	// Execute the query
+	result = sqlite3_step(UpdateStmt);
+	if (result != SQLITE_DONE) {
+		sqlite3_close(db);
+		return;
+	}
+
+	// Clean up memory after prepare statement is done
+	sqlite3_finalize(UpdateStmt);
+	sqlite3_close(db);
+}

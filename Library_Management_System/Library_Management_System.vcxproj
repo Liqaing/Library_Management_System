@@ -187,6 +187,9 @@
     <EmbeddedResource Include="Issue_Book.resx">
       <DependentUpon>Issue_Book.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="return_book.resx">
+      <DependentUpon>return_book.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Update_Delete_Book.resx">
       <DependentUpon>Update_Delete_Book.h</DependentUpon>
     </EmbeddedResource>

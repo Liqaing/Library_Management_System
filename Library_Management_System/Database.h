@@ -11,3 +11,4 @@ void DeleteStudentFromDB(int id);
 void UpdateStudentInDB(Student student);
 void InsertIssueDB(IssueReturn issue_book);
 Node<IssueReturn>* ReadIssueReturnDataFromDB();
+void UpdateIssueReturnInDB(IssueReturn issue_return);

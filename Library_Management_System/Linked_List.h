@@ -277,6 +277,57 @@ void SearchStudentTelephone(System::Windows::Forms::DataGridView^ dataGridview, 
 	}
 }
 
+// Search IssueReturn
+
+template <typename T>
+void SearchIRID(System::Windows::Forms::DataGridView^ dataGridview, T IR, std::string SearchID) {
+
+	// compare Issue Return ID
+	if (std::to_string(IR.id) == SearchID) {
+		DisplayIssueReturnIntoDatagrid(dataGridview, IR);
+	}
+}
+
+template <typename T>
+void SearchIRStudentName(System::Windows::Forms::DataGridView^ dataGridview, T IR, std::string SearchName) {
+	
+	if (IR.StudentName == SearchName) {
+		DisplayIssueReturnIntoDatagrid(dataGridview, IR);
+	}
+}
+
+template <typename T>
+void SearchIRTitle(System::Windows::Forms::DataGridView^ dataGridview, T IR, std::string SearchTitle) {
+	
+	if (IR.BookTitle == SearchTitle) {
+		DisplayIssueReturnIntoDatagrid(dataGridview, IR);
+	}
+}
+
+template <typename T>
+void SearchIRIssueDate(System::Windows::Forms::DataGridView^ dataGridview, T IR, std::string SearchIssueDate) {
+	
+	if (IR.issueDate == SearchIssueDate) {
+		DisplayIssueReturnIntoDatagrid(dataGridview, IR);
+	}
+}
+
+template <typename T>
+void SearchIRReturnDate(System::Windows::Forms::DataGridView^ dataGridview, T IR, std::string SearchReturnDate) {
+	
+	if (IR.returnDate == SearchReturnDate) {
+		DisplayIssueReturnIntoDatagrid(dataGridview, IR);
+	}
+}
+
+template <typename T>
+void SearchIRStatus(System::Windows::Forms::DataGridView^ dataGridview, T IR, std::string SearchStatus) {
+
+	if (IR.Status == SearchStatus) {
+		DisplayIssueReturnIntoDatagrid(dataGridview, IR);
+	}
+}
+
 // Search linked list and display value to datagridview
 template <typename T>
 void SearchNodeLinkedList(System::Windows::Forms::DataGridView^ dataGridView, Node<T> *head, std::string SearchData, void (*Search) (System::Windows::Forms::DataGridView^ dataGridview, T book, std::string SearchTitle)) {
@@ -292,7 +343,8 @@ void SearchNodeLinkedList(System::Windows::Forms::DataGridView^ dataGridView, No
 	return;
 }
 
-// Search linked list and return value
+
+// Search linked list algorithms, return value
 template <typename T>
 Node<T>* SearchNodeLinkedList(Node<T>* head, int SearchID) {
 	
@@ -369,6 +421,38 @@ bool CompareStudentDepartment(T student1, T student2) {
 template <typename T>
 bool CompareStudentTelephone(T student1, T student2) {
 	return (student1.telephone > student2.telephone);
+}
+
+// Sort Issue Return Book
+
+template <typename T>
+bool CompareIRID(T IR1, T IR2) {
+	return (IR1.id > IR2.id);
+}
+
+template <typename T>
+bool CompareIRStudentName(T IR1, T IR2) {
+	return (IR1.StudentName > IR2.StudentName);
+}
+
+template <typename T>
+bool CompareIRTitle(T IR1, T IR2) {
+	return (IR1.BookTitle > IR2.BookTitle);
+}
+
+template <typename T>
+bool CompareIRIssueDate(T IR1, T IR2) {
+	return (IR1.issueDate > IR2.issueDate);
+}
+
+template <typename T>
+bool CompareIRReturnDate(T IR1, T IR2) {
+	return (IR1.returnDate > IR2.returnDate);
+}
+
+template <typename T>
+bool CompareIRStatus(T IR1, T IR2) {
+	return (IR1.Status > IR2.Status);
 }
 
 // Sort Algorithm
@@ -469,4 +553,22 @@ Node<T>* UpdateLinkedList(Node<T> *head, T UpdateData) {
 		Node->data = UpdateData;
 	}
 	return head;
+}
+
+// Filter data borrowing and return
+template <typename T>
+void FilterIR(System::Windows::Forms::DataGridView^ dataGridview, Node<T>* head, int is_borrowing) {
+
+	Node<T>* current = head;
+
+	while (current != nullptr) {
+
+		// is_borrwing = 0 for false, 1 for true
+		// if it match with data, diplay it
+		if (current->data.is_borrowing == is_borrowing) {
+			DisplayIssueReturnIntoDatagrid(dataGridview, current->data);
+		}
+		current = current->next;
+	}
+	return;
 }
