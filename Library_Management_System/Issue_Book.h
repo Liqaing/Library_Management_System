@@ -55,6 +55,12 @@ namespace LibraryManagementSystem {
 
 
 
+
+
+
+
+
+
 	private: System::Windows::Forms::NumericUpDown^ StudentID;
 
 	public:
@@ -136,12 +142,6 @@ namespace LibraryManagementSystem {
 		void InitializeComponent(void)
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->ID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Title = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->IDate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->RDate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Status = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
@@ -176,6 +176,12 @@ namespace LibraryManagementSystem {
 			this->BookID = (gcnew System::Windows::Forms::NumericUpDown());
 			this->Issuedate = (gcnew System::Windows::Forms::DateTimePicker());
 			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->ID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Title = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->IDate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->RDate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Status = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->StudentID))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BookID))->BeginInit();
@@ -193,46 +199,6 @@ namespace LibraryManagementSystem {
 			this->dataGridView1->Size = System::Drawing::Size(1011, 377);
 			this->dataGridView1->TabIndex = 0;
 			this->dataGridView1->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Issue_Book::dataGridView1_CellDoubleClick);
-			// 
-			// ID
-			// 
-			this->ID->HeaderText = L"ID";
-			this->ID->Name = L"ID";
-			this->ID->ReadOnly = true;
-			// 
-			// Name
-			// 
-			this->Name->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Name->HeaderText = L"Student Name";
-			this->Name->Name = L"Name";
-			this->Name->ReadOnly = true;
-			// 
-			// Title
-			// 
-			this->Title->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Title->HeaderText = L"Title";
-			this->Title->Name = L"Title";
-			this->Title->ReadOnly = true;
-			// 
-			// IDate
-			// 
-			this->IDate->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->IDate->HeaderText = L"Issue Date";
-			this->IDate->Name = L"IDate";
-			this->IDate->ReadOnly = true;
-			// 
-			// RDate
-			// 
-			this->RDate->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->RDate->HeaderText = L"Return Date";
-			this->RDate->Name = L"RDate";
-			this->RDate->ReadOnly = true;
-			// 
-			// Status
-			// 
-			this->Status->HeaderText = L"Status";
-			this->Status->Name = L"Status";
-			this->Status->ReadOnly = true;
 			// 
 			// label1
 			// 
@@ -638,6 +604,48 @@ namespace LibraryManagementSystem {
 			this->label14->TabIndex = 42;
 			this->label14->Text = L"Issue Date";
 			// 
+			// ID
+			// 
+			this->ID->HeaderText = L"ID";
+			this->ID->Name = L"ID";
+			this->ID->ReadOnly = true;
+			this->ID->Width = 50;
+			// 
+			// Name
+			// 
+			this->Name->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Name->HeaderText = L"Student Name";
+			this->Name->Name = L"Name";
+			this->Name->ReadOnly = true;
+			// 
+			// Title
+			// 
+			this->Title->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Title->HeaderText = L"Title";
+			this->Title->Name = L"Title";
+			this->Title->ReadOnly = true;
+			// 
+			// IDate
+			// 
+			this->IDate->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->IDate->HeaderText = L"Issue Date";
+			this->IDate->Name = L"IDate";
+			this->IDate->ReadOnly = true;
+			// 
+			// RDate
+			// 
+			this->RDate->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->RDate->HeaderText = L"Return Date";
+			this->RDate->Name = L"RDate";
+			this->RDate->ReadOnly = true;
+			// 
+			// Status
+			// 
+			this->Status->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Status->HeaderText = L"Status";
+			this->Status->Name = L"Status";
+			this->Status->ReadOnly = true;
+			// 
 			// Issue_Book
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
@@ -678,6 +686,7 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->Name = L"Issue_Book";
 			this->Text = L"Issue_Return_Book";
 			this->Load += gcnew System::EventHandler(this, &Issue_Book::Issue_Return_Book_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
