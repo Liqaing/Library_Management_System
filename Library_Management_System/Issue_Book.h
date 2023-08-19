@@ -852,7 +852,6 @@ namespace LibraryManagementSystem {
 				dataGridView1->Rows->Clear();
 				TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
 			}
-
 		}
 
 		// Sort
@@ -910,7 +909,6 @@ namespace LibraryManagementSystem {
 				dataGridView1->Rows->Clear();
 				TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
 			}
-
 		}
 
 		// Search
@@ -970,7 +968,6 @@ namespace LibraryManagementSystem {
 				// Search
 				SearchNodeLinkedList(dataGridView1, this->IssueReturnList, SearchData, SearchIRStatus);
 			}
-
 		}
 
 		// Filter table to borrowing, returned 

@@ -152,7 +152,7 @@ namespace LibraryManagementSystem {
 			this->login->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->login->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->login->ForeColor = System::Drawing::Color::White;
+			this->login->ForeColor = System::Drawing::Color::Black;
 			this->login->Location = System::Drawing::Point(565, 365);
 			this->login->Name = L"login";
 			this->login->Size = System::Drawing::Size(98, 35);

@@ -219,7 +219,7 @@ namespace LibraryManagementSystem {
 			this->add->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->add->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->add->ForeColor = System::Drawing::Color::White;
+			this->add->ForeColor = System::Drawing::Color::Black;
 			this->add->Location = System::Drawing::Point(182, 289);
 			this->add->Name = L"add";
 			this->add->Size = System::Drawing::Size(98, 37);
@@ -235,7 +235,7 @@ namespace LibraryManagementSystem {
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->ForeColor = System::Drawing::Color::White;
+			this->button1->ForeColor = System::Drawing::Color::Black;
 			this->button1->Location = System::Drawing::Point(300, 289);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(98, 37);
@@ -251,7 +251,7 @@ namespace LibraryManagementSystem {
 			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->ForeColor = System::Drawing::Color::White;
+			this->button2->ForeColor = System::Drawing::Color::Black;
 			this->button2->Location = System::Drawing::Point(418, 289);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(98, 37);

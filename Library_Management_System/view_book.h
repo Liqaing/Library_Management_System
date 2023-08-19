@@ -194,7 +194,7 @@ namespace LibraryManagementSystem {
 			this->Search->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->Search->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->Search->ForeColor = System::Drawing::Color::White;
+			this->Search->ForeColor = System::Drawing::Color::Black;
 			this->Search->Location = System::Drawing::Point(343, 50);
 			this->Search->Name = L"Search";
 			this->Search->Size = System::Drawing::Size(72, 24);
@@ -223,7 +223,7 @@ namespace LibraryManagementSystem {
 			this->Refresh->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->Refresh->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->Refresh->ForeColor = System::Drawing::Color::White;
+			this->Refresh->ForeColor = System::Drawing::Color::Black;
 			this->Refresh->Location = System::Drawing::Point(421, 50);
 			this->Refresh->Name = L"Refresh";
 			this->Refresh->Size = System::Drawing::Size(71, 24);

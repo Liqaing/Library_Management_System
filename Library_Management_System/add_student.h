@@ -72,6 +72,7 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
+	private: System::Windows::Forms::Label^ label7;
 
 
 
@@ -116,6 +117,7 @@ namespace LibraryManagementSystem {
 			this->Female = (gcnew System::Windows::Forms::RadioButton());
 			this->Telephone = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label7 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->age))->BeginInit();
 			this->SuspendLayout();
@@ -345,10 +347,23 @@ namespace LibraryManagementSystem {
 			this->label2->TabIndex = 34;
 			this->label2->Text = L"Telephone";
 			// 
+			// label7
+			// 
+			this->label7->Anchor = System::Windows::Forms::AnchorStyles::Top;
+			this->label7->AutoSize = true;
+			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label7->Location = System::Drawing::Point(22, 339);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(134, 18);
+			this->label7->TabIndex = 36;
+			this->label7->Text = L"Linked List Preview";
+			// 
 			// add_student
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->ClientSize = System::Drawing::Size(1064, 681);
+			this->Controls->Add(this->label7);
 			this->Controls->Add(this->Telephone);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->Female);

@@ -267,7 +267,6 @@ namespace LibraryManagementSystem {
 			// Retrive book linked list from view_book.h
 			Issue_Book^ f = gcnew Issue_Book;
 			loadform(f);
-			
 		}
 	};
 }
