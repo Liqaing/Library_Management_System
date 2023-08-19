@@ -45,22 +45,6 @@ namespace LibraryManagementSystem {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ RDate;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Status;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::NumericUpDown^ StudentID;
 
 	public:
@@ -753,7 +737,7 @@ namespace LibraryManagementSystem {
 			// Retrive student id
 			int InputBookID = (int)(this->BookID->Value);
 
-			// Retrive student information by id
+			// Retrive book information by id
 			this->BookInfo = SearchNodeLinkedList(this->BookList, InputBookID);
 
 			// if not found
@@ -838,11 +822,15 @@ namespace LibraryManagementSystem {
 				// Retirve the selected row
 				DataGridViewRow^ SelectedRow = dataGridView1->Rows[e->RowIndex];
 
+				// Retrive book information by id
+				this->BookInfo = SearchNodeLinkedList(this->BookList, this->IssueReturnList->data.bookid);
+
 				// Open edit_delete form
 				return_book^ return_form = gcnew return_book(
 
 					// Pass pointer to book linked list
 					this->IssueReturnList,
+					this->BookInfo,
 
 					// data from datagridview
 					SelectedRow->Cells[0]->Value->ToString(),

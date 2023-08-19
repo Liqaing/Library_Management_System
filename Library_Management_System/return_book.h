@@ -23,6 +23,8 @@ namespace LibraryManagementSystem {
 		Node<IssueReturn>* IssueReturnList = nullptr;
 		Node<IssueReturn>* IssueReturnData = nullptr;
 
+		Node<Book>* BookInfo = nullptr;
+
 	public:
 		return_book(void)
 		{
@@ -33,11 +35,12 @@ namespace LibraryManagementSystem {
 		}
 
 		// parament constructor
-		return_book(Node<IssueReturn> *issue_return_list, String^ ID, String^ StudentName, String^ BookTitle, String^ IssueDate, String^ ReturnDate, String^ Status)
+		return_book(Node<IssueReturn> *issue_return_list, Node<Book> *bookinfo, String^ ID, String^ StudentName, String^ BookTitle, String^ IssueDate, String^ ReturnDate, String^ Status)
 		{
 			InitializeComponent();
 
 			this->IssueReturnList = issue_return_list;
+			this->BookInfo = bookinfo;
 
 			this->ID->Text = ID;
 			this->BookTitle->Text = BookTitle;
@@ -355,7 +358,7 @@ namespace LibraryManagementSystem {
 		// Return Book
 		private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	
-			// Retrive issue data from DB by id
+			// Retrive issue data pointer from linked list by id
 			int id = System::Convert::ToInt32(this->ID->Text);
 			this->IssueReturnData = SearchNodeLinkedList(this->IssueReturnList, id);
 
@@ -372,8 +375,12 @@ namespace LibraryManagementSystem {
 			this->IssueReturnData->data.Status = "RETURNED";
 			this->IssueReturnData->data.is_borrowing = 0;
 
-			// Update issue borrowing in database
+			// Update book qty
+			this->BookInfo->data.qty += 1;
+
+			// Update issue borrowing and book in database
 			UpdateIssueReturnInDB(this->IssueReturnData->data);
+			UpdateBookInDB(this->BookInfo->data);
 
 			this->Close();
 		}
