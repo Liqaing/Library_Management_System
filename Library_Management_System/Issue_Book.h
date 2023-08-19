@@ -709,6 +709,8 @@ namespace LibraryManagementSystem {
 			// Display Issue Return Data
 			TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
 
+			// Set defualt selected for search
+			this->SearchType->SelectedIndex = 1;
 		}
 
 		// Get student info by id
