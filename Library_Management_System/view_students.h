@@ -88,6 +88,12 @@ namespace LibraryManagementSystem {
 		void InitializeComponent(void)
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->StudentID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->age = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->gender = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Department = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Telephone = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->SearchType = (gcnew System::Windows::Forms::ComboBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -97,12 +103,6 @@ namespace LibraryManagementSystem {
 			this->Search = (gcnew System::Windows::Forms::Button());
 			this->UserInput = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->StudentID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->age = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->gender = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Department = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Telephone = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -122,6 +122,47 @@ namespace LibraryManagementSystem {
 			this->dataGridView1->Size = System::Drawing::Size(1013, 468);
 			this->dataGridView1->TabIndex = 13;
 			this->dataGridView1->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &view_student::dataGridView1_CellDoubleClick);
+			// 
+			// StudentID
+			// 
+			this->StudentID->HeaderText = L"Stu ID";
+			this->StudentID->Name = L"StudentID";
+			this->StudentID->ReadOnly = true;
+			// 
+			// Name
+			// 
+			this->Name->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Name->HeaderText = L"Student Name";
+			this->Name->Name = L"Name";
+			this->Name->ReadOnly = true;
+			// 
+			// age
+			// 
+			this->age->HeaderText = L"Age";
+			this->age->Name = L"age";
+			this->age->ReadOnly = true;
+			this->age->Width = 80;
+			// 
+			// gender
+			// 
+			this->gender->HeaderText = L"Gender";
+			this->gender->Name = L"gender";
+			this->gender->ReadOnly = true;
+			this->gender->Width = 90;
+			// 
+			// Department
+			// 
+			this->Department->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Department->HeaderText = L"Department";
+			this->Department->Name = L"Department";
+			this->Department->ReadOnly = true;
+			// 
+			// Telephone
+			// 
+			this->Telephone->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Telephone->HeaderText = L"Telephone";
+			this->Telephone->Name = L"Telephone";
+			this->Telephone->ReadOnly = true;
 			// 
 			// label4
 			// 
@@ -186,7 +227,7 @@ namespace LibraryManagementSystem {
 			// Refresh
 			// 
 			this->Refresh->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->Refresh->BackColor = System::Drawing::Color::DeepSkyBlue;
+			this->Refresh->BackColor = System::Drawing::Color::SkyBlue;
 			this->Refresh->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->Refresh->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -215,7 +256,7 @@ namespace LibraryManagementSystem {
 			// Search
 			// 
 			this->Search->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->Search->BackColor = System::Drawing::Color::DeepSkyBlue;
+			this->Search->BackColor = System::Drawing::Color::SkyBlue;
 			this->Search->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->Search->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -250,47 +291,6 @@ namespace LibraryManagementSystem {
 			this->label1->TabIndex = 14;
 			this->label1->Text = L"Student Information";
 			// 
-			// StudentID
-			// 
-			this->StudentID->HeaderText = L"Stu ID";
-			this->StudentID->Name = L"StudentID";
-			this->StudentID->ReadOnly = true;
-			// 
-			// Name
-			// 
-			this->Name->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Name->HeaderText = L"Student Name";
-			this->Name->Name = L"Name";
-			this->Name->ReadOnly = true;
-			// 
-			// age
-			// 
-			this->age->HeaderText = L"Age";
-			this->age->Name = L"age";
-			this->age->ReadOnly = true;
-			this->age->Width = 80;
-			// 
-			// gender
-			// 
-			this->gender->HeaderText = L"Gender";
-			this->gender->Name = L"gender";
-			this->gender->ReadOnly = true;
-			this->gender->Width = 90;
-			// 
-			// Department
-			// 
-			this->Department->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Department->HeaderText = L"Department";
-			this->Department->Name = L"Department";
-			this->Department->ReadOnly = true;
-			// 
-			// Telephone
-			// 
-			this->Telephone->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Telephone->HeaderText = L"Telephone";
-			this->Telephone->Name = L"Telephone";
-			this->Telephone->ReadOnly = true;
-			// 
 			// view_student
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
@@ -307,7 +307,6 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->label1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Margin = System::Windows::Forms::Padding(1);
-			
 			this->Load += gcnew System::EventHandler(this, &view_student::view_student_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);

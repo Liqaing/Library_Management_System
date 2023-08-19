@@ -190,7 +190,7 @@ namespace LibraryManagementSystem {
 			// Search
 			// 
 			this->Search->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->Search->BackColor = System::Drawing::Color::DeepSkyBlue;
+			this->Search->BackColor = System::Drawing::Color::SkyBlue;
 			this->Search->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->Search->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -219,7 +219,7 @@ namespace LibraryManagementSystem {
 			// Refresh
 			// 
 			this->Refresh->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->Refresh->BackColor = System::Drawing::Color::DeepSkyBlue;
+			this->Refresh->BackColor = System::Drawing::Color::SkyBlue;
 			this->Refresh->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->Refresh->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));

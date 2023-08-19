@@ -60,13 +60,13 @@ namespace LibraryManagementSystem {
 
 
 
-	private: System::Windows::Forms::ToolStripMenuItem^ historyToolStripMenuItem;
+
 	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ exitToolStripMenuItem;
 
 
 	private: System::Windows::Forms::Panel^ mainpanel;
-	private: System::Windows::Forms::ToolStripMenuItem^ hiToolStripMenuItem;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ registerNewStudentToolStripMenuItem1;
 	private: System::Windows::Forms::ToolStripMenuItem^ issueAndReturnToolStripMenuItem;
 
@@ -93,25 +93,22 @@ namespace LibraryManagementSystem {
 			this->studentToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->registerNewStudentToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->registerNewStudentToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->historyToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->issueAndReturnToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->hiToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->mainpanel = (gcnew System::Windows::Forms::Panel());
-			this->issueAndReturnToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// menuStrip1
 			// 
-			this->menuStrip1->BackColor = System::Drawing::Color::DodgerBlue;
+			this->menuStrip1->BackColor = System::Drawing::Color::SkyBlue;
 			this->menuStrip1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(36, 36);
-			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(6) {
+			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
 				this->booksToolStripMenuItem,
-					this->studentToolStripMenuItem, this->issueAndReturnToolStripMenuItem, this->historyToolStripMenuItem, this->exitToolStripMenuItem,
-					this->hiToolStripMenuItem
+					this->studentToolStripMenuItem, this->issueAndReturnToolStripMenuItem, this->exitToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -150,8 +147,8 @@ namespace LibraryManagementSystem {
 					this->registerNewStudentToolStripMenuItem1
 			});
 			this->studentToolStripMenuItem->Name = L"studentToolStripMenuItem";
-			this->studentToolStripMenuItem->Size = System::Drawing::Size(86, 28);
-			this->studentToolStripMenuItem->Text = L"Student";
+			this->studentToolStripMenuItem->Size = System::Drawing::Size(95, 28);
+			this->studentToolStripMenuItem->Text = L"Students";
 			// 
 			// registerNewStudentToolStripMenuItem
 			// 
@@ -167,11 +164,12 @@ namespace LibraryManagementSystem {
 			this->registerNewStudentToolStripMenuItem1->Text = L"Register New Student";
 			this->registerNewStudentToolStripMenuItem1->Click += gcnew System::EventHandler(this, &Dashboard::registerNewStudentToolStripMenuItem1_Click);
 			// 
-			// historyToolStripMenuItem
+			// issueAndReturnToolStripMenuItem
 			// 
-			this->historyToolStripMenuItem->Name = L"historyToolStripMenuItem";
-			this->historyToolStripMenuItem->Size = System::Drawing::Size(79, 28);
-			this->historyToolStripMenuItem->Text = L"History";
+			this->issueAndReturnToolStripMenuItem->Name = L"issueAndReturnToolStripMenuItem";
+			this->issueAndReturnToolStripMenuItem->Size = System::Drawing::Size(215, 28);
+			this->issueAndReturnToolStripMenuItem->Text = L"Issue And Return Book";
+			this->issueAndReturnToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::issueAndReturnToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
@@ -179,12 +177,6 @@ namespace LibraryManagementSystem {
 			this->exitToolStripMenuItem->Size = System::Drawing::Size(53, 28);
 			this->exitToolStripMenuItem->Text = L"Exit";
 			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::exitToolStripMenuItem_Click);
-			// 
-			// hiToolStripMenuItem
-			// 
-			this->hiToolStripMenuItem->Name = L"hiToolStripMenuItem";
-			this->hiToolStripMenuItem->Size = System::Drawing::Size(40, 28);
-			this->hiToolStripMenuItem->Text = L"Hi";
 			// 
 			// contextMenuStrip1
 			// 
@@ -199,13 +191,6 @@ namespace LibraryManagementSystem {
 			this->mainpanel->Name = L"mainpanel";
 			this->mainpanel->Size = System::Drawing::Size(1064, 649);
 			this->mainpanel->TabIndex = 1;
-			// 
-			// issueAndReturnToolStripMenuItem
-			// 
-			this->issueAndReturnToolStripMenuItem->Name = L"issueAndReturnToolStripMenuItem";
-			this->issueAndReturnToolStripMenuItem->Size = System::Drawing::Size(215, 28);
-			this->issueAndReturnToolStripMenuItem->Text = L"Issue And Return Book";
-			this->issueAndReturnToolStripMenuItem->Click += gcnew System::EventHandler(this, &Dashboard::issueAndReturnToolStripMenuItem_Click);
 			// 
 			// Dashboard
 			// 

@@ -161,11 +161,11 @@ namespace LibraryManagementSystem {
 			// button2
 			// 
 			this->button2->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->button2->BackColor = System::Drawing::Color::RoyalBlue;
+			this->button2->BackColor = System::Drawing::Color::SkyBlue;
 			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button2->ForeColor = System::Drawing::Color::White;
+			this->button2->ForeColor = System::Drawing::Color::Black;
 			this->button2->Location = System::Drawing::Point(412, 333);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(98, 37);
@@ -177,11 +177,11 @@ namespace LibraryManagementSystem {
 			// add
 			// 
 			this->add->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->add->BackColor = System::Drawing::Color::RoyalBlue;
+			this->add->BackColor = System::Drawing::Color::SkyBlue;
 			this->add->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->add->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->add->ForeColor = System::Drawing::Color::White;
+			this->add->ForeColor = System::Drawing::Color::Black;
 			this->add->Location = System::Drawing::Point(176, 333);
 			this->add->Name = L"add";
 			this->add->Size = System::Drawing::Size(98, 37);
@@ -255,11 +255,11 @@ namespace LibraryManagementSystem {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(244, 9);
+			this->label1->Location = System::Drawing::Point(188, 9);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(91, 20);
+			this->label1->Size = System::Drawing::Size(209, 20);
 			this->label1->TabIndex = 28;
-			this->label1->Text = L"Book Detail";
+			this->label1->Text = L"Borrowing and Return Detail";
 			// 
 			// StudentName
 			// 

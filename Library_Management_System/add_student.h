@@ -188,11 +188,11 @@ namespace LibraryManagementSystem {
 			// save
 			// 
 			this->save->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->save->BackColor = System::Drawing::Color::RoyalBlue;
+			this->save->BackColor = System::Drawing::Color::SkyBlue;
 			this->save->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->save->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->save->ForeColor = System::Drawing::Color::White;
+			this->save->ForeColor = System::Drawing::Color::Black;
 			this->save->Location = System::Drawing::Point(621, 282);
 			this->save->Name = L"save";
 			this->save->Size = System::Drawing::Size(139, 37);
@@ -204,11 +204,11 @@ namespace LibraryManagementSystem {
 			// add
 			// 
 			this->add->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->add->BackColor = System::Drawing::Color::RoyalBlue;
+			this->add->BackColor = System::Drawing::Color::SkyBlue;
 			this->add->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->add->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->add->ForeColor = System::Drawing::Color::White;
+			this->add->ForeColor = System::Drawing::Color::Black;
 			this->add->Location = System::Drawing::Point(426, 282);
 			this->add->Name = L"add";
 			this->add->Size = System::Drawing::Size(139, 37);

@@ -92,7 +92,7 @@ namespace LibraryManagementSystem {
 			this->label1->ForeColor = System::Drawing::Color::White;
 			this->label1->Location = System::Drawing::Point(202, 66);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(1393, 75);
+			this->label1->Size = System::Drawing::Size(638, 33);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Welcome to the Library Management System";
 			// 
@@ -106,7 +106,7 @@ namespace LibraryManagementSystem {
 			this->label2->ForeColor = System::Drawing::Color::White;
 			this->label2->Location = System::Drawing::Point(357, 162);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(244, 51);
+			this->label2->Size = System::Drawing::Size(107, 24);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"Username :";
 			// 
@@ -117,7 +117,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->username->Location = System::Drawing::Point(361, 189);
 			this->username->Name = L"username";
-			this->username->Size = System::Drawing::Size(302, 56);
+			this->username->Size = System::Drawing::Size(302, 29);
 			this->username->TabIndex = 2;
 			// 
 			// label3
@@ -130,7 +130,7 @@ namespace LibraryManagementSystem {
 			this->label3->ForeColor = System::Drawing::Color::White;
 			this->label3->Location = System::Drawing::Point(357, 271);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(235, 51);
+			this->label3->Size = System::Drawing::Size(102, 24);
 			this->label3->TabIndex = 3;
 			this->label3->Text = L"Password :";
 			// 
@@ -141,15 +141,15 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->password->Location = System::Drawing::Point(361, 298);
 			this->password->Name = L"password";
-			this->password->Size = System::Drawing::Size(302, 56);
+			this->password->Size = System::Drawing::Size(302, 29);
 			this->password->TabIndex = 4;
 			this->password->UseSystemPasswordChar = true;
 			// 
 			// login
 			// 
 			this->login->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->login->BackColor = System::Drawing::Color::MediumBlue;
-			this->login->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->login->BackColor = System::Drawing::Color::SkyBlue;
+			this->login->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->login->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->login->ForeColor = System::Drawing::Color::White;
@@ -165,7 +165,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->exit->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->exit->BackColor = System::Drawing::Color::SlateGray;
-			this->exit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->exit->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->exit->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->exit->ForeColor = System::Drawing::Color::White;

@@ -215,7 +215,7 @@ namespace LibraryManagementSystem {
 			// add
 			// 
 			this->add->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->add->BackColor = System::Drawing::Color::RoyalBlue;
+			this->add->BackColor = System::Drawing::Color::SkyBlue;
 			this->add->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->add->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -231,7 +231,7 @@ namespace LibraryManagementSystem {
 			// button1
 			// 
 			this->button1->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->button1->BackColor = System::Drawing::Color::RoyalBlue;
+			this->button1->BackColor = System::Drawing::Color::SkyBlue;
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -247,7 +247,7 @@ namespace LibraryManagementSystem {
 			// button2
 			// 
 			this->button2->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->button2->BackColor = System::Drawing::Color::RoyalBlue;
+			this->button2->BackColor = System::Drawing::Color::SkyBlue;
 			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
