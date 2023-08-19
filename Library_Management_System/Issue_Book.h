@@ -686,7 +686,7 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			this->Name = L"Issue_Book";
+			
 			this->Text = L"Issue_Return_Book";
 			this->Load += gcnew System::EventHandler(this, &Issue_Book::Issue_Return_Book_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();

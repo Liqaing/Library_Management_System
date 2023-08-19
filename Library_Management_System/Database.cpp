@@ -21,10 +21,19 @@ void InitializeDatabase() {
 		return;
 	}
 
+	// Enable FK support
+	const char* FKSupport = "PRAGMA foreign_keys = ON";
+	result = sqlite3_exec(db, FKSupport, 0, 0, 0);
+	if (result != SQLITE_OK) {
+		sqlite3_close(db);
+		return;
+	};
+
 	// Create book table
 	const char *createBookTableQuery = "CREATE TABLE IF NOT EXISTS Books (Id INTEGER PRIMARY KEY AUTOINCREMENT, Title TEXT NOT NULL, Pages INTEGER, QTY INTEGEER NOT NULL, Author TEXT)";
 	result = sqlite3_exec(db, createBookTableQuery, 0, 0, 0);
 	if (result != SQLITE_OK) {
+		sqlite3_close(db);
 		return;
 	}
 
@@ -32,13 +41,15 @@ void InitializeDatabase() {
 	const char* createStudentTableQuery = "CREATE TABLE IF NOT EXISTS Students (Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Age INTEGER NOT NULL, Gender TEXT NOT NULL, Department TEXT NOT NULL, Telephone TEXT NOT NULL)";
 	result = sqlite3_exec(db, createStudentTableQuery, 0, 0, 0);
 	if (result != SQLITE_OK) {
+		sqlite3_close(db);
 		return;
 	}
 
 	// IssueReturn Book table
-	const char* createIssueReturnTableQuery = "CREATE TABLE IF NOT EXISTS IssueReturn (Id INTEGER PRIMARY KEY AUTOINCREMENT, BookID INTEGER, StudentID INTEGER, IssueDate DATE NOT NULL, ReturnDate DATE, Status Text NOT NULL, Is_Borrowing INT NOT NULL, FOREIGN KEY (BookID) REFERENCES Books (Id) ON DELETE NO ACTION ON UPDATE CASCADE, FOREIGN KEY (StudentID) REFERENCES Student (Id) ON DELETE NO ACTION ON UPDATE CASCADE)";
+	const char* createIssueReturnTableQuery = "CREATE TABLE IF NOT EXISTS IssueReturn (Id INTEGER PRIMARY KEY AUTOINCREMENT, BookID INTEGER, StudentID INTEGER, IssueDate DATE NOT NULL, ReturnDate DATE, Status Text NOT NULL, Is_Borrowing INT NOT NULL, FOREIGN KEY (BookID) REFERENCES Books (Id) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY (StudentID) REFERENCES Student (Id) ON DELETE CASCADE ON UPDATE CASCADE)";
 	result = sqlite3_exec(db, createIssueReturnTableQuery, 0, 0, 0);
 	if (result != SQLITE_OK) {
+		sqlite3_close(db);
 		return;
 	}
 
@@ -463,11 +474,11 @@ Node<IssueReturn>* ReadIssueReturnDataFromDB() {
 		issue_return.id = sqlite3_column_int(stmt, 0);
 		issue_return.bookid = sqlite3_column_int(stmt, 1);
 		issue_return.studentid = sqlite3_column_int(stmt, 2);
-
 		issue_return.issueDate= reinterpret_cast<const char*>(sqlite3_column_text(stmt, 3));
 		issue_return.returnDate = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 4));
 		issue_return.Status = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5));
 		issue_return.is_borrowing = sqlite3_column_int(stmt, 6);
+
 		issue_return.BookTitle = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 7));
 		issue_return.StudentName = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 8));
 
