@@ -30,6 +30,19 @@ void FreeNode(Node<T> *Node) {
 	delete Node;
 }
 
+// Clear all node in linked list
+template <typename T>
+void ClearLinkedList(Node<T>* head) {
+	Node<T>* current = head;
+	// Create pointer node point to current, then move current to next and free node
+	while (current != nullptr) {
+		Node<T>* Node = current;
+		current = current->next;
+		free(Node);
+	}
+}
+
+
 // Insert node into linked list
 template <typename T>
 Node<T> *InsertLinkedList(Node<T> *head, T data) {
@@ -65,17 +78,6 @@ void InsertStudentLinkedListIntoDB(Node<T>* head) {
 	}
 }
 
-// Clear all node in linked list
-template <typename T>
-void ClearLinkedList(Node<T> *head) {
-	Node<T>* current = head;
-	// Create pointer node point to current, then move current to next and free node
-	while (current != nullptr) {
-		Node<T>* Node = current;
-		current = current->next;
-		free(Node);
-	}
-}
 
 // Display book in add book, without id
 template <typename T>

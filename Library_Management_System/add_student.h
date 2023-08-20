@@ -403,7 +403,7 @@ namespace LibraryManagementSystem {
 
 				dataGridView1->Rows->Clear();
 
-				// Free all node in booklist after using it
+				// Free all node in student list after using it
 				ClearLinkedList(this->StudentList);
 				this->StudentList = nullptr;
 			}

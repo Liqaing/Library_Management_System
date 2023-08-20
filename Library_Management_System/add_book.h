@@ -366,6 +366,7 @@ namespace LibraryManagementSystem {
 		}
 #pragma endregion
 		
+		// Save
 		private: System::Void save_Click_1(System::Object^ sender, System::EventArgs^ e) {
 			
 			// If booklist is not null
@@ -386,6 +387,7 @@ namespace LibraryManagementSystem {
 			}
 		}
 
+		// Add
 		private: System::Void add_Click_1(System::Object^ sender, System::EventArgs^ e) {
 
 			// Validate textbox input
