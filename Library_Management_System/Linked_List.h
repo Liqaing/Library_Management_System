@@ -41,7 +41,7 @@ void ClearLinkedList(Node<T>* head) {
 		free(Node);
 	}
 }
-
+\
 
 // Insert node into linked list
 template <typename T>
