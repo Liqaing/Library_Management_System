@@ -126,6 +126,12 @@ namespace LibraryManagementSystem {
 		void InitializeComponent(void)
 		{
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->ID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Title = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->IDate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->RDate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->Status = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
@@ -160,12 +166,6 @@ namespace LibraryManagementSystem {
 			this->BookID = (gcnew System::Windows::Forms::NumericUpDown());
 			this->Issuedate = (gcnew System::Windows::Forms::DateTimePicker());
 			this->label14 = (gcnew System::Windows::Forms::Label());
-			this->ID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Name = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Title = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->IDate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->RDate = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Status = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->StudentID))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BookID))->BeginInit();
@@ -173,6 +173,9 @@ namespace LibraryManagementSystem {
 			// 
 			// dataGridView1
 			// 
+			this->dataGridView1->AllowUserToAddRows = false;
+			this->dataGridView1->AllowUserToDeleteRows = false;
+			this->dataGridView1->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
 				this->ID, this->Name,
@@ -180,9 +183,52 @@ namespace LibraryManagementSystem {
 			});
 			this->dataGridView1->Location = System::Drawing::Point(21, 237);
 			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->ReadOnly = true;
 			this->dataGridView1->Size = System::Drawing::Size(1011, 377);
 			this->dataGridView1->TabIndex = 0;
 			this->dataGridView1->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Issue_Book::dataGridView1_CellDoubleClick);
+			// 
+			// ID
+			// 
+			this->ID->HeaderText = L"ID";
+			this->ID->Name = L"ID";
+			this->ID->ReadOnly = true;
+			this->ID->Width = 50;
+			// 
+			// Name
+			// 
+			this->Name->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Name->HeaderText = L"Student Name";
+			this->Name->Name = L"Name";
+			this->Name->ReadOnly = true;
+			// 
+			// Title
+			// 
+			this->Title->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Title->HeaderText = L"Title";
+			this->Title->Name = L"Title";
+			this->Title->ReadOnly = true;
+			// 
+			// IDate
+			// 
+			this->IDate->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->IDate->HeaderText = L"Issue Date";
+			this->IDate->Name = L"IDate";
+			this->IDate->ReadOnly = true;
+			// 
+			// RDate
+			// 
+			this->RDate->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->RDate->HeaderText = L"Return Date";
+			this->RDate->Name = L"RDate";
+			this->RDate->ReadOnly = true;
+			// 
+			// Status
+			// 
+			this->Status->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->Status->HeaderText = L"Status";
+			this->Status->Name = L"Status";
+			this->Status->ReadOnly = true;
 			// 
 			// label1
 			// 
@@ -197,6 +243,7 @@ namespace LibraryManagementSystem {
 			// 
 			// label2
 			// 
+			this->label2->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -205,18 +252,22 @@ namespace LibraryManagementSystem {
 			this->label2->Size = System::Drawing::Size(76, 18);
 			this->label2->TabIndex = 2;
 			this->label2->Text = L"Student ID";
+			this->label2->UseWaitCursor = true;
 			// 
 			// panel1
 			// 
+			this->panel1->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->panel1->BackColor = System::Drawing::Color::SkyBlue;
 			this->panel1->ForeColor = System::Drawing::Color::Transparent;
 			this->panel1->Location = System::Drawing::Point(196, 40);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(5, 147);
 			this->panel1->TabIndex = 4;
+			this->panel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Issue_Book::panel1_Paint);
 			// 
 			// button1
 			// 
+			this->button1->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->button1->BackColor = System::Drawing::Color::SkyBlue;
 			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -227,10 +278,12 @@ namespace LibraryManagementSystem {
 			this->button1->TabIndex = 5;
 			this->button1->Text = L"Get";
 			this->button1->UseVisualStyleBackColor = false;
+			this->button1->UseWaitCursor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Issue_Book::button1_Click);
 			// 
 			// StudentName
 			// 
+			this->StudentName->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->StudentName->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->StudentName->Location = System::Drawing::Point(257, 61);
@@ -241,6 +294,7 @@ namespace LibraryManagementSystem {
 			// 
 			// label3
 			// 
+			this->label3->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -252,6 +306,7 @@ namespace LibraryManagementSystem {
 			// 
 			// Department
 			// 
+			this->Department->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->Department->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Department->Location = System::Drawing::Point(416, 61);
@@ -262,6 +317,7 @@ namespace LibraryManagementSystem {
 			// 
 			// label4
 			// 
+			this->label4->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label4->AutoSize = true;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -273,6 +329,7 @@ namespace LibraryManagementSystem {
 			// 
 			// Telephone
 			// 
+			this->Telephone->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->Telephone->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Telephone->Location = System::Drawing::Point(597, 61);
@@ -283,6 +340,7 @@ namespace LibraryManagementSystem {
 			// 
 			// label5
 			// 
+			this->label5->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label5->AutoSize = true;
 			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -294,6 +352,7 @@ namespace LibraryManagementSystem {
 			// 
 			// label6
 			// 
+			this->label6->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -305,6 +364,7 @@ namespace LibraryManagementSystem {
 			// 
 			// button2
 			// 
+			this->button2->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->button2->BackColor = System::Drawing::Color::SkyBlue;
 			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -319,6 +379,7 @@ namespace LibraryManagementSystem {
 			// 
 			// button3
 			// 
+			this->button3->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->button3->BackColor = System::Drawing::Color::SkyBlue;
 			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -333,6 +394,7 @@ namespace LibraryManagementSystem {
 			// 
 			// label7
 			// 
+			this->label7->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label7->AutoSize = true;
 			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -341,9 +403,11 @@ namespace LibraryManagementSystem {
 			this->label7->Size = System::Drawing::Size(62, 18);
 			this->label7->TabIndex = 16;
 			this->label7->Text = L"Book ID";
+			this->label7->Click += gcnew System::EventHandler(this, &Issue_Book::label7_Click);
 			// 
 			// panel2
 			// 
+			this->panel2->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->panel2->BackColor = System::Drawing::Color::SkyBlue;
 			this->panel2->ForeColor = System::Drawing::Color::Transparent;
 			this->panel2->Location = System::Drawing::Point(23, 183);
@@ -468,6 +532,7 @@ namespace LibraryManagementSystem {
 			// 
 			// label11
 			// 
+			this->label11->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label11->AutoSize = true;
 			this->label11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -479,6 +544,7 @@ namespace LibraryManagementSystem {
 			// 
 			// Author
 			// 
+			this->Author->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->Author->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Author->Location = System::Drawing::Point(416, 131);
@@ -489,6 +555,7 @@ namespace LibraryManagementSystem {
 			// 
 			// Quantity
 			// 
+			this->Quantity->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->Quantity->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Quantity->Location = System::Drawing::Point(597, 130);
@@ -499,6 +566,7 @@ namespace LibraryManagementSystem {
 			// 
 			// label12
 			// 
+			this->label12->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label12->AutoSize = true;
 			this->label12->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -545,9 +613,11 @@ namespace LibraryManagementSystem {
 			this->StudentID->Name = L"StudentID";
 			this->StudentID->Size = System::Drawing::Size(91, 23);
 			this->StudentID->TabIndex = 39;
+			this->StudentID->UseWaitCursor = true;
 			// 
 			// BookTitle
 			// 
+			this->BookTitle->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->BookTitle->Enabled = false;
 			this->BookTitle->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -567,9 +637,11 @@ namespace LibraryManagementSystem {
 			this->BookID->Name = L"BookID";
 			this->BookID->Size = System::Drawing::Size(91, 23);
 			this->BookID->TabIndex = 40;
+			this->BookID->ValueChanged += gcnew System::EventHandler(this, &Issue_Book::BookID_ValueChanged);
 			// 
 			// Issuedate
 			// 
+			this->Issuedate->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->Issuedate->CalendarFont = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->Issuedate->Location = System::Drawing::Point(772, 63);
@@ -579,6 +651,7 @@ namespace LibraryManagementSystem {
 			// 
 			// label14
 			// 
+			this->label14->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label14->AutoSize = true;
 			this->label14->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -587,48 +660,6 @@ namespace LibraryManagementSystem {
 			this->label14->Size = System::Drawing::Size(78, 18);
 			this->label14->TabIndex = 42;
 			this->label14->Text = L"Issue Date";
-			// 
-			// ID
-			// 
-			this->ID->HeaderText = L"ID";
-			this->ID->Name = L"ID";
-			this->ID->ReadOnly = true;
-			this->ID->Width = 50;
-			// 
-			// Name
-			// 
-			this->Name->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Name->HeaderText = L"Student Name";
-			this->Name->Name = L"Name";
-			this->Name->ReadOnly = true;
-			// 
-			// Title
-			// 
-			this->Title->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Title->HeaderText = L"Title";
-			this->Title->Name = L"Title";
-			this->Title->ReadOnly = true;
-			// 
-			// IDate
-			// 
-			this->IDate->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->IDate->HeaderText = L"Issue Date";
-			this->IDate->Name = L"IDate";
-			this->IDate->ReadOnly = true;
-			// 
-			// RDate
-			// 
-			this->RDate->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->RDate->HeaderText = L"Return Date";
-			this->RDate->Name = L"RDate";
-			this->RDate->ReadOnly = true;
-			// 
-			// Status
-			// 
-			this->Status->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Status->HeaderText = L"Status";
-			this->Status->Name = L"Status";
-			this->Status->ReadOnly = true;
 			// 
 			// Issue_Book
 			// 
@@ -670,7 +701,6 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->panel1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			
 			this->Text = L"Issue_Return_Book";
 			this->Load += gcnew System::EventHandler(this, &Issue_Book::Issue_Return_Book_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -986,5 +1016,11 @@ namespace LibraryManagementSystem {
 				FilterIR(dataGridView1, this->IssueReturnList, 0);
 			}
 		}
-	};
+	private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
+private: System::Void label7_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+private: System::Void BookID_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
