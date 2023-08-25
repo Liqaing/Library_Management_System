@@ -22,11 +22,6 @@ namespace LibraryManagementSystem {
 	public ref class Dashboard : public System::Windows::Forms::Form
 	{
 
-	// Declare variable
-	private:
-		Node<Book>* BookList = nullptr;
-		Node<Student>* StudentList = nullptr;
-
 	public:
 		Dashboard(void)
 		{
