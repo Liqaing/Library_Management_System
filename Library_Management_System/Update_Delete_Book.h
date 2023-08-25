@@ -115,9 +115,10 @@ namespace LibraryManagementSystem {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(250, 9);
+			this->label1->Location = System::Drawing::Point(583, 20);
+			this->label1->Margin = System::Windows::Forms::Padding(7, 0, 7, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(91, 20);
+			this->label1->Size = System::Drawing::Size(201, 40);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Book Detail";
 			// 
@@ -127,9 +128,10 @@ namespace LibraryManagementSystem {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(54, 95);
+			this->label3->Location = System::Drawing::Point(126, 212);
+			this->label3->Margin = System::Windows::Forms::Padding(7, 0, 7, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(75, 18);
+			this->label3->Size = System::Drawing::Size(162, 38);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"Book Title";
 			// 
@@ -138,9 +140,10 @@ namespace LibraryManagementSystem {
 			this->BookTitle->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->BookTitle->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->BookTitle->Location = System::Drawing::Point(182, 94);
+			this->BookTitle->Location = System::Drawing::Point(425, 210);
+			this->BookTitle->Margin = System::Windows::Forms::Padding(7, 7, 7, 7);
 			this->BookTitle->Name = L"BookTitle";
-			this->BookTitle->Size = System::Drawing::Size(334, 23);
+			this->BookTitle->Size = System::Drawing::Size(774, 41);
 			this->BookTitle->TabIndex = 5;
 			// 
 			// label4
@@ -149,9 +152,10 @@ namespace LibraryManagementSystem {
 			this->label4->AutoSize = true;
 			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label4->Location = System::Drawing::Point(54, 136);
+			this->label4->Location = System::Drawing::Point(126, 303);
+			this->label4->Margin = System::Windows::Forms::Padding(7, 0, 7, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(122, 18);
+			this->label4->Size = System::Drawing::Size(267, 38);
 			this->label4->TabIndex = 6;
 			this->label4->Text = L"Number of pages";
 			// 
@@ -160,11 +164,12 @@ namespace LibraryManagementSystem {
 			this->pages->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->pages->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->pages->Location = System::Drawing::Point(182, 136);
-			this->pages->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
+			this->pages->Location = System::Drawing::Point(425, 303);
+			this->pages->Margin = System::Windows::Forms::Padding(7, 7, 7, 7);
+			this->pages->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100000, 0, 0, 0 });
 			this->pages->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			this->pages->Name = L"pages";
-			this->pages->Size = System::Drawing::Size(334, 23);
+			this->pages->Size = System::Drawing::Size(779, 41);
 			this->pages->TabIndex = 18;
 			this->pages->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			// 
@@ -174,9 +179,10 @@ namespace LibraryManagementSystem {
 			this->label5->AutoSize = true;
 			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label5->Location = System::Drawing::Point(54, 184);
+			this->label5->Location = System::Drawing::Point(126, 410);
+			this->label5->Margin = System::Windows::Forms::Padding(7, 0, 7, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(62, 18);
+			this->label5->Size = System::Drawing::Size(139, 38);
 			this->label5->TabIndex = 19;
 			this->label5->Text = L"Quantity";
 			// 
@@ -185,9 +191,10 @@ namespace LibraryManagementSystem {
 			this->qty->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->qty->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->qty->Location = System::Drawing::Point(182, 184);
+			this->qty->Location = System::Drawing::Point(425, 410);
+			this->qty->Margin = System::Windows::Forms::Padding(7, 7, 7, 7);
 			this->qty->Name = L"qty";
-			this->qty->Size = System::Drawing::Size(334, 23);
+			this->qty->Size = System::Drawing::Size(779, 41);
 			this->qty->TabIndex = 20;
 			// 
 			// label6
@@ -196,9 +203,10 @@ namespace LibraryManagementSystem {
 			this->label6->AutoSize = true;
 			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label6->Location = System::Drawing::Point(54, 232);
+			this->label6->Location = System::Drawing::Point(126, 518);
+			this->label6->Margin = System::Windows::Forms::Padding(7, 0, 7, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(51, 18);
+			this->label6->Size = System::Drawing::Size(113, 38);
 			this->label6->TabIndex = 21;
 			this->label6->Text = L"Author";
 			// 
@@ -207,9 +215,10 @@ namespace LibraryManagementSystem {
 			this->author->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->author->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->author->Location = System::Drawing::Point(182, 227);
+			this->author->Location = System::Drawing::Point(425, 506);
+			this->author->Margin = System::Windows::Forms::Padding(7, 7, 7, 7);
 			this->author->Name = L"author";
-			this->author->Size = System::Drawing::Size(334, 23);
+			this->author->Size = System::Drawing::Size(774, 41);
 			this->author->TabIndex = 22;
 			// 
 			// add
@@ -220,9 +229,10 @@ namespace LibraryManagementSystem {
 			this->add->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->add->ForeColor = System::Drawing::Color::Black;
-			this->add->Location = System::Drawing::Point(182, 289);
+			this->add->Location = System::Drawing::Point(425, 645);
+			this->add->Margin = System::Windows::Forms::Padding(7, 7, 7, 7);
 			this->add->Name = L"add";
-			this->add->Size = System::Drawing::Size(98, 37);
+			this->add->Size = System::Drawing::Size(229, 83);
 			this->add->TabIndex = 23;
 			this->add->Text = L"Cancel";
 			this->add->UseVisualStyleBackColor = false;
@@ -236,9 +246,10 @@ namespace LibraryManagementSystem {
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->ForeColor = System::Drawing::Color::Black;
-			this->button1->Location = System::Drawing::Point(300, 289);
+			this->button1->Location = System::Drawing::Point(700, 645);
+			this->button1->Margin = System::Windows::Forms::Padding(7, 7, 7, 7);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(98, 37);
+			this->button1->Size = System::Drawing::Size(229, 83);
 			this->button1->TabIndex = 24;
 			this->button1->Text = L"Update";
 			this->button1->UseVisualStyleBackColor = false;
@@ -252,9 +263,10 @@ namespace LibraryManagementSystem {
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button2->ForeColor = System::Drawing::Color::Black;
-			this->button2->Location = System::Drawing::Point(418, 289);
+			this->button2->Location = System::Drawing::Point(975, 645);
+			this->button2->Margin = System::Windows::Forms::Padding(7, 7, 7, 7);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(98, 37);
+			this->button2->Size = System::Drawing::Size(229, 83);
 			this->button2->TabIndex = 25;
 			this->button2->Text = L"Delete";
 			this->button2->UseVisualStyleBackColor = false;
@@ -266,9 +278,10 @@ namespace LibraryManagementSystem {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(54, 57);
+			this->label2->Location = System::Drawing::Point(126, 127);
+			this->label2->Margin = System::Windows::Forms::Padding(7, 0, 7, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(62, 18);
+			this->label2->Size = System::Drawing::Size(133, 38);
 			this->label2->TabIndex = 26;
 			this->label2->Text = L"Book ID";
 			// 
@@ -277,17 +290,18 @@ namespace LibraryManagementSystem {
 			this->BookID->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->BookID->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->BookID->Location = System::Drawing::Point(182, 56);
+			this->BookID->Location = System::Drawing::Point(425, 125);
+			this->BookID->Margin = System::Windows::Forms::Padding(7, 7, 7, 7);
 			this->BookID->Name = L"BookID";
 			this->BookID->ReadOnly = true;
-			this->BookID->Size = System::Drawing::Size(334, 23);
+			this->BookID->Size = System::Drawing::Size(774, 41);
 			this->BookID->TabIndex = 27;
 			// 
 			// Update_Delete_Book
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(14, 29);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(572, 461);
+			this->ClientSize = System::Drawing::Size(1335, 1028);
 			this->Controls->Add(this->BookID);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button2);
@@ -302,6 +316,7 @@ namespace LibraryManagementSystem {
 			this->Controls->Add(this->BookTitle);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label1);
+			this->Margin = System::Windows::Forms::Padding(7, 7, 7, 7);
 			this->Name = L"Update_Delete_Book";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Edit_Delete_Book";
