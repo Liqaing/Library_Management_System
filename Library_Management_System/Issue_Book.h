@@ -823,13 +823,13 @@ namespace LibraryManagementSystem {
 			// Insert issue_book into database
 			InsertIssueDB(issue_book);
 		
-			/*
+			
 			this->IssueReturnList = ReadIssueReturnDataFromDB();
 			
 			// Display Issue Return Data
 			this->dataGridView1->Rows->Clear();
 			TraverseLinkedList(dataGridView1, this->IssueReturnList, DisplayIssueReturnIntoDatagrid);
-			*/
+			
 		}
 
 		// Refresh

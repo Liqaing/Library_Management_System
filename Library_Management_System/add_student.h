@@ -135,6 +135,7 @@ namespace LibraryManagementSystem {
 			this->dataGridView1->Location = System::Drawing::Point(25, 360);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
+			this->dataGridView1->RowHeadersWidth = 92;
 			this->dataGridView1->Size = System::Drawing::Size(1013, 255);
 			this->dataGridView1->TabIndex = 31;
 			// 
@@ -142,6 +143,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->Title->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Title->HeaderText = L"Student Name";
+			this->Title->MinimumWidth = 11;
 			this->Title->Name = L"Title";
 			this->Title->ReadOnly = true;
 			// 
@@ -149,6 +151,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->dataGridViewTextBoxColumn1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::None;
 			this->dataGridViewTextBoxColumn1->HeaderText = L"Age";
+			this->dataGridViewTextBoxColumn1->MinimumWidth = 11;
 			this->dataGridViewTextBoxColumn1->Name = L"dataGridViewTextBoxColumn1";
 			this->dataGridViewTextBoxColumn1->ReadOnly = true;
 			this->dataGridViewTextBoxColumn1->Width = 80;
@@ -157,6 +160,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->dataGridViewTextBoxColumn2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::None;
 			this->dataGridViewTextBoxColumn2->HeaderText = L"Sex";
+			this->dataGridViewTextBoxColumn2->MinimumWidth = 11;
 			this->dataGridViewTextBoxColumn2->Name = L"dataGridViewTextBoxColumn2";
 			this->dataGridViewTextBoxColumn2->ReadOnly = true;
 			this->dataGridViewTextBoxColumn2->Width = 80;
@@ -165,6 +169,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->dataGridViewTextBoxColumn3->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->dataGridViewTextBoxColumn3->HeaderText = L"Department";
+			this->dataGridViewTextBoxColumn3->MinimumWidth = 11;
 			this->dataGridViewTextBoxColumn3->Name = L"dataGridViewTextBoxColumn3";
 			this->dataGridViewTextBoxColumn3->ReadOnly = true;
 			// 
@@ -172,6 +177,7 @@ namespace LibraryManagementSystem {
 			// 
 			this->Column1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Column1->HeaderText = L"Telephone";
+			this->Column1->MinimumWidth = 11;
 			this->Column1->Name = L"Column1";
 			this->Column1->ReadOnly = true;
 			// 
@@ -183,7 +189,7 @@ namespace LibraryManagementSystem {
 			this->age->Location = System::Drawing::Point(426, 100);
 			this->age->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			this->age->Name = L"age";
-			this->age->Size = System::Drawing::Size(334, 23);
+			this->age->Size = System::Drawing::Size(334, 41);
 			this->age->TabIndex = 29;
 			this->age->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 16, 0, 0, 0 });
 			// 
@@ -226,7 +232,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->Department->Location = System::Drawing::Point(426, 182);
 			this->Department->Name = L"Department";
-			this->Department->Size = System::Drawing::Size(334, 23);
+			this->Department->Size = System::Drawing::Size(334, 41);
 			this->Department->TabIndex = 26;
 			// 
 			// label6
@@ -237,7 +243,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label6->Location = System::Drawing::Point(291, 187);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(85, 18);
+			this->label6->Size = System::Drawing::Size(187, 38);
 			this->label6->TabIndex = 25;
 			this->label6->Text = L"Department";
 			// 
@@ -249,7 +255,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label5->Location = System::Drawing::Point(291, 144);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(57, 18);
+			this->label5->Size = System::Drawing::Size(126, 38);
 			this->label5->TabIndex = 24;
 			this->label5->Text = L"Gender";
 			// 
@@ -261,7 +267,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label4->Location = System::Drawing::Point(291, 100);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(33, 18);
+			this->label4->Size = System::Drawing::Size(75, 38);
 			this->label4->TabIndex = 23;
 			this->label4->Text = L"Age";
 			// 
@@ -272,7 +278,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->StudentName->Location = System::Drawing::Point(426, 55);
 			this->StudentName->Name = L"StudentName";
-			this->StudentName->Size = System::Drawing::Size(334, 23);
+			this->StudentName->Size = System::Drawing::Size(334, 41);
 			this->StudentName->TabIndex = 22;
 			// 
 			// label3
@@ -283,7 +289,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label3->Location = System::Drawing::Point(291, 56);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(102, 18);
+			this->label3->Size = System::Drawing::Size(225, 38);
 			this->label3->TabIndex = 21;
 			this->label3->Text = L"Student Name";
 			// 
@@ -295,18 +301,19 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label1->Location = System::Drawing::Point(421, 9);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(268, 29);
+			this->label1->Size = System::Drawing::Size(571, 63);
 			this->label1->TabIndex = 20;
 			this->label1->Text = L"Register New Student";
 			// 
 			// Male
 			// 
+			this->Male->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->Male->AutoSize = true;
 			this->Male->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Male->Location = System::Drawing::Point(426, 144);
 			this->Male->Name = L"Male";
-			this->Male->Size = System::Drawing::Size(55, 20);
+			this->Male->Size = System::Drawing::Size(110, 40);
 			this->Male->TabIndex = 32;
 			this->Male->TabStop = true;
 			this->Male->Text = L"Male";
@@ -314,12 +321,13 @@ namespace LibraryManagementSystem {
 			// 
 			// Female
 			// 
+			this->Female->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->Female->AutoSize = true;
 			this->Female->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Female->Location = System::Drawing::Point(512, 144);
 			this->Female->Name = L"Female";
-			this->Female->Size = System::Drawing::Size(71, 20);
+			this->Female->Size = System::Drawing::Size(142, 40);
 			this->Female->TabIndex = 33;
 			this->Female->TabStop = true;
 			this->Female->Text = L"Female";
@@ -332,7 +340,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->Telephone->Location = System::Drawing::Point(426, 230);
 			this->Telephone->Name = L"Telephone";
-			this->Telephone->Size = System::Drawing::Size(334, 23);
+			this->Telephone->Size = System::Drawing::Size(334, 41);
 			this->Telephone->TabIndex = 35;
 			// 
 			// label2
@@ -343,7 +351,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label2->Location = System::Drawing::Point(291, 235);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(77, 18);
+			this->label2->Size = System::Drawing::Size(170, 38);
 			this->label2->TabIndex = 34;
 			this->label2->Text = L"Telephone";
 			// 
@@ -355,7 +363,7 @@ namespace LibraryManagementSystem {
 				static_cast<System::Byte>(0)));
 			this->label7->Location = System::Drawing::Point(22, 339);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(134, 18);
+			this->label7->Size = System::Drawing::Size(299, 38);
 			this->label7->TabIndex = 36;
 			this->label7->Text = L"Linked List Preview";
 			// 
